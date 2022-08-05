@@ -1,10 +1,12 @@
 import { View, Text } from "react-native";
 
-export default RegistrationScreen = () => {
-console.log(3233);
+const RegistrationScreen = () => {
+console.log('RegistrationScreen');
   return (
     <View>
       <Text>Регистрация</Text>
     </View>
   )
 };
+
+export default RegistrationScreen;

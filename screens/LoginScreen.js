@@ -1,10 +1,12 @@
 import { View, Text } from "react-native";
 
-export default LoginScreen = () => {
-console.log(222);
+const LoginScreen = () => {
+// console.log('LoginScreen');
   return (
     <View>
       <Text>Войти</Text>
     </View>
   )
 };
+
+export default LoginScreen;
