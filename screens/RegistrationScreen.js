@@ -1,72 +1,158 @@
 import { useState, useEffect } from 'react';
 import {
   Platform,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard,
+  ImageBackground,
   StyleSheet,
   View,
   Text,
   TextInput,
-  Button,
   TouchableOpacity,
-  Linking
+  Button,
+  Image,
+  Linking,
 } from "react-native";
+// import { Button } from 'react-native-web';
 
 const RegistrationScreen = () => {
   const [isHiddenPassword, setIsHiddenPassword] = useState(true);
-  // console.log(Platform);
+  const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+
+  const addAvatar = () => {
+    console.log('Добавили аватар');
+  };
+  // console.log("🚀 ~ RegistrationScreen ~ isShowKeyboard", isShowKeyboard)
+  // useEffect(() => {
+  //   setIsShowKeyboard(false)
+  // }, [isShowKeyboard]);
+  // console.log("🚀 ~ RegistrationScreen ~ isShowKeyboard", isShowKeyboard ? -20 : 66)
+  // console.log('rrrrr');
   return (
-    <View>
-      <Text style={{ ...styles.title, marginBottom: 33 }}>Регистрация</Text>
-
-      <View style={{ ...styles.form, marginBottom: 16 }}>
-        <TextInput
-          style={{ ...styles.input, marginBottom: 16 }}
-          textAlign={'left'}
-          placeholder={'Логин'}
-        />
-
-        <TextInput
-          style={{ ...styles.input, marginBottom: 16 }}
-          textAlign={'left'}
-          placeholder={'Адрес электронной почты'}
-        />
-
-        <View style={styles.inputPassword}>
-          <TextInput
-            style={{ ...styles.input, marginBottom: 16 }}
-            textAlign={'left'}
-            secureTextEntry={isHiddenPassword}
-            placeholder={'Пароль'}
-          />
-          <TouchableOpacity
-            style={{ ...styles.inputPasswordBtn, marginBottom: 16 }}
-            activeOpacity={0.8}
-            onPress={() => setIsHiddenPassword(!isHiddenPassword)}
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <ImageBackground
+        source={require('../assets/images/photo_BG.jpg')}
+        style={styles.imageBackground}
+      >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View
+            style={{
+              ...styles.containerForm,
+              // marginBottom: isShowKeyboard ? -90 : -100
+            }}
           >
-            <Text style={styles.inputPasswordBtnText}>
-              {isHiddenPassword ? 'Показать' : 'Скрыть'}
-            </Text>
-          </TouchableOpacity>
-        </View>
+            <View style={styles.avatarBlock}>
+              <TouchableOpacity
+                style={styles.btnAvatar}
+                // title="добавить аватар"
+                onPress={addAvatar}
+              >
+                <Image source={require('../assets/icons/add-avatar.svg')} />
+              </TouchableOpacity>
+            </View>
 
-        <TouchableOpacity
-          style={styles.btn}
-          activeOpacity={0.8}
-        >
-          <Text style={styles.btnText}
-          >
-            Зарегистрироваться
-          </Text>
-        </TouchableOpacity>
-      </View>
+            <KeyboardAvoidingView
+              behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            >
+              <Text style={{ ...styles.title, marginBottom: 33 }}>Регистрация</Text>
 
-      <View>
-        <Text style={styles.inputPasswordBtnText}>Уже есть аккаунт? Войти</Text>
-      </View>
-    </View >
+              <View style={{ ...styles.form, marginBottom: 16 }}>
+                <TextInput
+                  style={{ ...styles.input, marginBottom: 16 }}
+                  textAlign={'left'}
+                  placeholder={'Логин'}
+                  onFocus={() => setIsShowKeyboard(true)}
+                />
+
+                <TextInput
+                  style={{ ...styles.input, marginBottom: 16 }}
+                  textAlign={'left'}
+                  placeholder={'Адрес электронной почты'}
+                  onFocus={() => setIsShowKeyboard(true)}
+                />
+
+                <View style={styles.inputPassword}>
+                  <TextInput
+                    style={styles.input}
+                    textAlign={'left'}
+                    secureTextEntry={isHiddenPassword}
+                    placeholder={'Пароль'}
+                    onFocus={() => setIsShowKeyboard(true)}
+                  />
+                  <TouchableOpacity
+                    style={{ ...styles.inputPasswordBtn, marginBottom: 16 }}
+                    activeOpacity={0.8}
+                    onPress={() => setIsHiddenPassword(!isHiddenPassword)}
+                  >
+                    <Text style={styles.inputPasswordBtnText}>
+                      {isHiddenPassword ? 'Показать' : 'Скрыть'}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+
+                <TouchableOpacity
+                  style={styles.btn}
+                  activeOpacity={0.8}
+                >
+                  <Text style={styles.btnText}
+                  >
+                    Зарегистрироваться
+                  </Text>
+                </TouchableOpacity>
+              </View>
+
+              <View>
+                <Text style={styles.inputPasswordBtnText}>Уже есть аккаунт? Войти</Text>
+              </View>
+            </KeyboardAvoidingView>
+          </View >
+        </TouchableWithoutFeedback>
+      </ImageBackground>
+    </TouchableWithoutFeedback>
   )
 };
 
 const styles = StyleSheet.create({
+  imageBackground: {
+    paddingTop: 263,
+    flex: 1,
+    justifyContent: "flex-end",
+    // alignItems: 'center',
+    resizeMode: "cover",
+  },
+  containerForm: {
+    position: 'relative',
+    paddingTop: 92,
+    paddingBottom: 66,
+    backgroundColor: '#fff',
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+  },
+  avatarBlock: {
+    position: 'absolute',
+    left: '50%',
+    transform: [
+      { translateX: -60 },
+      { translateY: -60 },
+    ],
+    backgroundColor: '#F6F6F6',
+    height: 120,
+    width: 120,
+    borderRadius: 16,
+  },
+  btnAvatar: {
+    position: 'absolute',
+    bottom: 14,
+    left: '100%',
+    transform: [
+      { translateX: -13 },
+      { translateY: 0 },
+    ],
+    height: 25,
+    width: 25,
+    backgroundColor: 'tomato',
+  },
   title: {
     fontSize: 30,
     fontStyle: 'normal',
@@ -95,7 +181,7 @@ const styles = StyleSheet.create({
     right: 16,
     transform: [
       { translateX: 0 },
-      { translateY: -15 },
+      { translateY: -10 },
     ]
   },
   inputPasswordBtnText: {
