@@ -22,30 +22,32 @@ const RegistrationScreen = () => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [isAddAvatar, setIsAddAvatar] = useState(false)
 
-  console.log('isAddAvatar', isAddAvatar);
+  console.log("isShowKeyboard", isShowKeyboard)
+  // console.log('isAddAvatar', isAddAvatar);
   const addAvatar = () => {
     setIsAddAvatar(!isAddAvatar);
   };
-  // useEffect(() => {
-  //   setIsShowKeyboard(false)
-  // }, [isShowKeyboard]);
+  const removesKeyboard = () => {
+    setIsShowKeyboard(false);
+    Keyboard.dismiss();
+  };
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    <TouchableWithoutFeedback onPress={removesKeyboard}>
       <ImageBackground
         source={require('../assets/images/photo_BG.jpg')}
         style={styles.imageBackground}
       >
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <TouchableWithoutFeedback onPress={removesKeyboard}>
           <View
             style={{
               ...styles.containerForm,
-              // marginBottom: isShowKeyboard ? -90 : -100
+              marginBottom: isShowKeyboard ? -170 : 0
             }}
           >
             <View style={styles.avatarBlock}>
               <TouchableOpacity
-                // меняем стили иконки взависимовти от того добавлен ли аватар или нет:
+                // меняем стили кнопки взависимовти от того добавлен ли аватар или нет:
                 style={isAddAvatar ? {
                   ...styles.btnAvatar,
                   transform: [
@@ -133,7 +135,7 @@ const styles = StyleSheet.create({
   containerForm: {
     position: 'relative',
     paddingTop: 92,
-    paddingBottom: 66,
+    paddingBottom: 78,
     backgroundColor: '#fff',
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
