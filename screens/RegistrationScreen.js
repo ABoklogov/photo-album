@@ -15,20 +15,21 @@ import {
   Linking,
 } from "react-native";
 // import { Button } from 'react-native-web';
+import AddAvatar from '../components/icons/AddAvatar';
 
 const RegistrationScreen = () => {
   const [isHiddenPassword, setIsHiddenPassword] = useState(true);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+  const [isAddAvatar, setIsAddAvatar] = useState(false)
 
+  console.log('isAddAvatar', isAddAvatar);
   const addAvatar = () => {
-    console.log('Добавили аватар');
+    setIsAddAvatar(!isAddAvatar);
   };
-  // console.log("🚀 ~ RegistrationScreen ~ isShowKeyboard", isShowKeyboard)
   // useEffect(() => {
   //   setIsShowKeyboard(false)
   // }, [isShowKeyboard]);
-  // console.log("🚀 ~ RegistrationScreen ~ isShowKeyboard", isShowKeyboard ? -20 : 66)
-  // console.log('rrrrr');
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <ImageBackground
@@ -44,11 +45,19 @@ const RegistrationScreen = () => {
           >
             <View style={styles.avatarBlock}>
               <TouchableOpacity
-                style={styles.btnAvatar}
-                // title="добавить аватар"
+                // меняем стили иконки взависимовти от того добавлен ли аватар или нет:
+                style={isAddAvatar ? {
+                  ...styles.btnAvatar,
+                  transform: [
+                    { translateX: -13 },
+                    { translateY: 0 },
+                    { rotate: '45deg' },
+                  ],
+                } : styles.btnAvatar}
+                activeOpacity={0.8}
                 onPress={addAvatar}
               >
-                <Image source={require('../assets/icons/add-avatar.svg')} />
+                <AddAvatar color={isAddAvatar ? '#BDBDBD' : '#56C330'} />
               </TouchableOpacity>
             </View>
 
@@ -151,7 +160,6 @@ const styles = StyleSheet.create({
     ],
     height: 25,
     width: 25,
-    backgroundColor: 'tomato',
   },
   title: {
     fontSize: 30,
