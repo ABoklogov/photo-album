@@ -1,8 +1,6 @@
 import {
   Dimensions,
-  Keyboard,
   ImageBackground,
-  TouchableWithoutFeedback,
 } from "react-native";
 
 const Background = ({ image, children }) => {
@@ -10,14 +8,12 @@ const Background = ({ image, children }) => {
   const height = Dimensions.get('window').height;
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <ImageBackground
-        source={image}
-        style={{ height }}
-      >
-        {children}
-      </ImageBackground>
-    </TouchableWithoutFeedback>
+    <ImageBackground
+      source={image}
+      style={{ height }}
+    >
+      {children}
+    </ImageBackground>
   )
 };
 
