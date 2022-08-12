@@ -9,9 +9,17 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Avatar from './Avatar';
+import Button from './shared/Button';
+
+const initialState = {
+  login: '',
+  email: '',
+  password: '',
+};
 
 const RegistrationForm = ({ opensKeyboard }) => {
   const [isHiddenPassword, setIsHiddenPassword] = useState(true);
+  const [state, setstate] = useState(initialState);
 
   return (
     <View style={styles.containerForm}>
@@ -56,15 +64,7 @@ const RegistrationForm = ({ opensKeyboard }) => {
             </TouchableOpacity>
           </View>
 
-          <TouchableOpacity
-            style={styles.btn}
-            activeOpacity={0.8}
-          >
-            <Text style={styles.btnText}
-            >
-              Зарегистрироваться
-            </Text>
-          </TouchableOpacity>
+          <Button text={'Зарегистрироваться'} />
         </View>
 
         <View>
@@ -124,36 +124,4 @@ const styles = StyleSheet.create({
     lineHeight: 19,
     color: '#0097ff',
   },
-  btn: {
-    height: 51,
-    borderWidth: 1,
-    borderRadius: 100,
-    borderColor: '#56C330',
-    marginTop: 43,
-    padding: 16,
-    justifyContent: 'center',
-    alignItems: 'center',
-
-    ...Platform.select({
-      ios: {
-        backgroundColor: 'transparent'
-      },
-      android: {
-        backgroundColor: '#56C330'
-      },
-    })
-  },
-  btnText: {
-    fontSize: 16,
-    lineHeight: 19,
-    textAlign: 'center',
-    ...Platform.select({
-      ios: {
-        color: '#56C330',
-      },
-      android: {
-        color: '#fff',
-      },
-    }),
-  }
 });
