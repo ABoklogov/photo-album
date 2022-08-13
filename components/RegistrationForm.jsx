@@ -18,7 +18,20 @@ const initialState = {
 };
 
 const RegistrationForm = ({ opensKeyboard }) => {
-  const [state, setstate] = useState(initialState);
+  const [state, setState] = useState(initialState);
+
+  const submitState = () => {
+    console.log(state);
+  };
+  const onChangeLogin = (value) => {
+    setState((prevState) => ({ ...prevState, login: value }))
+  };
+  const onChangeEmail = (value) => {
+    setState((prevState) => ({ ...prevState, email: value }))
+  };
+  const onChangePassword = (value) => {
+    setState((prevState) => ({ ...prevState, password: value }))
+  };
 
   return (
     <View style={styles.containerForm}>
@@ -31,16 +44,31 @@ const RegistrationForm = ({ opensKeyboard }) => {
 
         <View style={{ ...styles.form, marginBottom: 16 }}>
           <View style={styles.inputPosition}>
-            <Input placeholder={'Логин'} opensKeyboard={opensKeyboard} />
+            <Input
+              placeholder={'Логин'}
+              opensKeyboard={opensKeyboard}
+              stateKey={state.login}
+              onChange={onChangeLogin}
+            />
           </View>
 
           <View style={styles.inputPosition}>
-            <Input placeholder={'Адрес электронной почты'} opensKeyboard={opensKeyboard} />
+            <Input
+              placeholder={'Адрес электронной почты'}
+              opensKeyboard={opensKeyboard}
+              stateKey={state.email}
+              onChange={onChangeEmail}
+            />
           </View>
 
-          <InputPassword placeholder={'Пароль'} opensKeyboard={opensKeyboard} />
+          <InputPassword
+            placeholder={'Пароль'}
+            opensKeyboard={opensKeyboard}
+            stateKey={state.password}
+            onChange={onChangePassword}
+          />
 
-          <Button text={'Зарегистрироваться'} />
+          <Button text={'Зарегистрироваться'} submitState={submitState} />
         </View>
 
         <View>

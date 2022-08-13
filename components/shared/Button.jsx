@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   StyleSheet,
   Platform,
@@ -6,11 +5,12 @@ import {
   Text,
 } from "react-native";
 
-const Button = ({ text }) => {
+const Button = ({ text, submitState }) => {
   return (
     <TouchableOpacity
       style={styles.btn}
       activeOpacity={0.8}
+      onPress={submitState}
     >
       <Text style={styles.btnText}
       >

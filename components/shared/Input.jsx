@@ -4,13 +4,15 @@ import {
   TextInput,
 } from "react-native";
 
-const Input = ({ placeholder, opensKeyboard }) => {
+const Input = ({ placeholder, opensKeyboard, stateKey, onChange }) => {
   return (
     <TextInput
       style={styles.input}
       textAlign={'left'}
       placeholder={placeholder}
       onFocus={opensKeyboard}
+      value={stateKey}
+      onChangeText={(value) => onChange(value)}
     />
   )
 };

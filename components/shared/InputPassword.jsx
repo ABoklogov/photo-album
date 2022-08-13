@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-const InputPassword = ({ placeholder, opensKeyboard }) => {
+const InputPassword = ({ placeholder, opensKeyboard, stateKey, onChange }) => {
   const [isHiddenPassword, setIsHiddenPassword] = useState(true);
 
   return (
@@ -18,6 +18,8 @@ const InputPassword = ({ placeholder, opensKeyboard }) => {
         secureTextEntry={isHiddenPassword}
         placeholder={placeholder}
         onFocus={opensKeyboard}
+        value={stateKey}
+        onChangeText={(value) => onChange(value)}
       />
       <TouchableOpacity
         style={{ ...styles.inputPasswordBtn, marginBottom: 16 }}
