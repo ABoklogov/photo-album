@@ -5,11 +5,11 @@ import {
   StyleSheet,
   View,
   Text,
-  TextInput,
-  TouchableOpacity,
 } from "react-native";
 import Avatar from './Avatar';
 import Button from './shared/Button';
+import Input from './shared/Input';
+import InputPassword from './shared/InputPassword';
 
 const initialState = {
   login: '',
@@ -18,7 +18,6 @@ const initialState = {
 };
 
 const RegistrationForm = ({ opensKeyboard }) => {
-  const [isHiddenPassword, setIsHiddenPassword] = useState(true);
   const [state, setstate] = useState(initialState);
 
   return (
@@ -31,44 +30,21 @@ const RegistrationForm = ({ opensKeyboard }) => {
         <Text style={{ ...styles.title, marginBottom: 33 }}>Регистрация</Text>
 
         <View style={{ ...styles.form, marginBottom: 16 }}>
-          <TextInput
-            style={{ ...styles.input, marginBottom: 16 }}
-            textAlign={'left'}
-            placeholder={'Логин'}
-            onFocus={opensKeyboard}
-          />
-
-          <TextInput
-            style={{ ...styles.input, marginBottom: 16 }}
-            textAlign={'left'}
-            placeholder={'Адрес электронной почты'}
-            onFocus={opensKeyboard}
-          />
-
-          <View style={styles.inputPassword}>
-            <TextInput
-              style={styles.input}
-              textAlign={'left'}
-              secureTextEntry={isHiddenPassword}
-              placeholder={'Пароль'}
-              onFocus={opensKeyboard}
-            />
-            <TouchableOpacity
-              style={{ ...styles.inputPasswordBtn, marginBottom: 16 }}
-              activeOpacity={0.8}
-              onPress={() => setIsHiddenPassword(!isHiddenPassword)}
-            >
-              <Text style={styles.inputPasswordBtnText}>
-                {isHiddenPassword ? 'Показать' : 'Скрыть'}
-              </Text>
-            </TouchableOpacity>
+          <View style={styles.inputPosition}>
+            <Input placeholder={'Логин'} opensKeyboard={opensKeyboard} />
           </View>
+
+          <View style={styles.inputPosition}>
+            <Input placeholder={'Адрес электронной почты'} opensKeyboard={opensKeyboard} />
+          </View>
+
+          <InputPassword placeholder={'Пароль'} opensKeyboard={opensKeyboard} />
 
           <Button text={'Зарегистрироваться'} />
         </View>
 
         <View>
-          <Text style={styles.inputPasswordBtnText}>Уже есть аккаунт? Войти</Text>
+          <Text style={styles.linkBottom}>Уже есть аккаунт? Войти</Text>
         </View>
       </KeyboardAvoidingView>
     </View>
@@ -95,29 +71,10 @@ const styles = StyleSheet.create({
   form: {
     marginHorizontal: 16,
   },
-  input: {
-    fontSize: 16,
-    borderWidth: 1,
-    borderColor: '#E8E8E8',
-    borderRadius: 8,
-    height: 50,
-    padding: 15,
-    color: '#212121',
-    backgroundColor: '#F6F6F6',
+  inputPosition: {
+    marginBottom: 16
   },
-  inputPassword: {
-    position: 'relative',
-  },
-  inputPasswordBtn: {
-    position: 'absolute',
-    top: '50%',
-    right: 16,
-    transform: [
-      { translateX: 0 },
-      { translateY: -10 },
-    ]
-  },
-  inputPasswordBtnText: {
+  linkBottom: {
     fontSize: 16,
     fontStyle: 'normal',
     textAlign: 'center',
