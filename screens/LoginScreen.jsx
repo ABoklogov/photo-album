@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   StyleSheet,
   View,
@@ -12,13 +12,17 @@ const image = require('../assets/images/photo_BG.jpg');
 
 const LoginScreen = () => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+  // слушатель закрытия клавиатуры (при закрытии клавиатуры возвращаемся в первоначальное состояние):
+  useEffect(() => {
+    const keyboardDidHide = Keyboard.addListener('keyboardDidHide', () => setIsShowKeyboard(false));
+    return () => keyboardDidHide.remove();
+  }, []);
+
   const removesKeyboard = () => {
     setIsShowKeyboard(false);
     Keyboard.dismiss();
   };
-  const opensKeyboard = () => {
-    setIsShowKeyboard(true);
-  };
+  const opensKeyboard = () => setIsShowKeyboard(true);
 
   return (
     <Background image={image}>

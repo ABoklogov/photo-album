@@ -6,9 +6,19 @@ import {
   View,
   Text,
 } from "react-native";
+// import * as Font from 'expo-font';
+// import { AppLoading } from 'expo';
+
 import Button from './shared/Button';
 import Input from './shared/Input';
 import InputPassword from './shared/InputPassword';
+
+// const loadFonts = async () => {
+//   await Font.loadAsync({
+//     "GothamProBlack": require("../assets/fonts/GothamProBlack.ttf"),
+//     "GothamProRegular": require("../assets/fonts/GothamProRegular.ttf"),
+//   });
+// };
 
 const initialState = {
   email: '',
@@ -16,13 +26,11 @@ const initialState = {
 };
 
 const LoginForm = ({ opensKeyboard }) => {
+  // const [isReady, setIsReady] = useState(false);
   const [state, setState] = useState(initialState);
 
   const submitState = () => {
     console.log(state);
-  };
-  const onChangeLogin = (value) => {
-    setState((prevState) => ({ ...prevState, login: value }))
   };
   const onChangeEmail = (value) => {
     setState((prevState) => ({ ...prevState, email: value }))
@@ -30,6 +38,16 @@ const LoginForm = ({ opensKeyboard }) => {
   const onChangePassword = (value) => {
     setState((prevState) => ({ ...prevState, password: value }))
   };
+
+  // if (!isReady) {
+  //   return (
+  //     <AppLoading
+  //       startAsync={loadFonts}
+  //       onFinish={() =>
+  //         setIsReady(true)}
+  //     />
+  //   )
+  // };
 
   return (
     <View style={styles.containerForm}>
@@ -78,6 +96,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 25,
   },
   title: {
+    fontFamily: 'GothamProBlack',
     fontSize: 30,
     fontStyle: 'normal',
     textAlign: 'center',
