@@ -38,10 +38,10 @@ const RegistrationScreen = () => {
   )
 };
 
-export default RegistrationScreen;
-
 const styles = StyleSheet.create({
   wrapper: {
     height: '100%',
   },
 });
+
+export default RegistrationScreen;

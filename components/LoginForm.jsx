@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Platform,
   KeyboardAvoidingView,
@@ -6,10 +6,21 @@ import {
   View,
   Text,
 } from "react-native";
+// import * as Font from 'expo-font';
+// import AppLoading from 'expo-app-loading';
+// import * as SplashScreen from 'expo-splash-screen';
 
 import Button from './shared/Button';
 import Input from './shared/Input';
 import InputPassword from './shared/InputPassword';
+
+// SplashScreen.preventAutoHideAsync();
+// const loadFonts = async () => {
+//   await Font.loadAsync({
+//     "GothamProBlack": require("../assets/fonts/GothamProBlack.ttf"),
+//     "GothamProRegular": require("../assets/fonts/GothamProRegular.ttf"),
+//   });
+// };
 
 const initialState = {
   email: '',
@@ -17,6 +28,7 @@ const initialState = {
 };
 
 const LoginForm = ({ opensKeyboard }) => {
+  // const [isReady, setIsReady] = useState(false);
   const [state, setState] = useState(initialState);
 
   const submitState = () => {
@@ -76,6 +88,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 25,
   },
   title: {
+    // fontFamily: 'gotham_pro_black',
     fontSize: 30,
     fontStyle: 'normal',
     textAlign: 'center',
