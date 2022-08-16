@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Platform,
   KeyboardAvoidingView,
@@ -7,12 +7,14 @@ import {
   Text,
 } from "react-native";
 // import * as Font from 'expo-font';
-// import { AppLoading } from 'expo';
+// import AppLoading from 'expo-app-loading';
+// import * as SplashScreen from 'expo-splash-screen';
 
 import Button from './shared/Button';
 import Input from './shared/Input';
 import InputPassword from './shared/InputPassword';
 
+// SplashScreen.preventAutoHideAsync();
 // const loadFonts = async () => {
 //   await Font.loadAsync({
 //     "GothamProBlack": require("../assets/fonts/GothamProBlack.ttf"),
@@ -38,16 +40,6 @@ const LoginForm = ({ opensKeyboard }) => {
   const onChangePassword = (value) => {
     setState((prevState) => ({ ...prevState, password: value }))
   };
-
-  // if (!isReady) {
-  //   return (
-  //     <AppLoading
-  //       startAsync={loadFonts}
-  //       onFinish={() =>
-  //         setIsReady(true)}
-  //     />
-  //   )
-  // };
 
   return (
     <View style={styles.containerForm}>
@@ -96,7 +88,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 25,
   },
   title: {
-    fontFamily: 'GothamProBlack',
+    fontFamily: 'gotham_pro_black',
     fontSize: 30,
     fontStyle: 'normal',
     textAlign: 'center',
