@@ -31,8 +31,8 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={{ 'fontFamily': 'GothamPro-Bold' }}>frfregfre</Text>
-      {/* <LoginScreen/> */}
+      {/* <Text style={{ 'fontFamily': 'GothamPro-Bold' }}>frfregfre</Text> */}
+      <LoginScreen />
       {/* <RegistrationScreen /> */}
     </View>
   );
@@ -41,8 +41,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: "center",
-    alignItems: 'center',
+    // backgroundColor: '#fff',
+    // justifyContent: "center",
+    // alignItems: 'center',
   },
 });
