@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   input: {
+    fontFamily: 'GothamPro-Medium',
     fontSize: 16,
     borderWidth: 1,
     borderColor: '#E8E8E8',
@@ -60,6 +61,7 @@ const styles = StyleSheet.create({
     ]
   },
   inputPasswordBtnText: {
+    fontFamily: 'GothamPro-Medium',
     fontSize: 16,
     fontStyle: 'normal',
     textAlign: 'center',

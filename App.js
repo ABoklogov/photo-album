@@ -1,39 +1,44 @@
-import { useState, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import * as Font from 'expo-font';
-import AppLoading from 'expo-app-loading';
+import * as SplashScreen from 'expo-splash-screen';
 import LoginScreen from './screens/LoginScreen';
 import RegistrationScreen from './screens/RegistrationScreen';
+import useFonts from './hooks/useFonts';
 
-// подключение шрифтов
-const loadFonts = async () => {
-  await Font.loadAsync({
-    'GothamPro-Light': require('./assets/fonts/GotmanPro/GothamPro-Light.ttf'),
-    'GothamPro-Medium': require('./assets/fonts/GotmanPro/GothamPro-Medium.ttf'),
-    'GothamPro-Bold': require('./assets/fonts/GotmanPro/GothamPro-Bold.ttf'),
-    'GothamPro-Black': require('./assets/fonts/GotmanPro/GothamPro-Black.ttf'),
-  })
-};
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
 
-  // компонент лоадер, пока шрифты подключаются
+  // --- подключение шрифтов start---
+  useEffect(() => {
+    async function prepare() {
+      try {
+        await useFonts();
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        setIsReady(true);
+      }
+    };
+    prepare();
+  }, []);
+
+  const onLayoutRootView = useCallback(async () => {
+    if (isReady) {
+      await SplashScreen.hideAsync();
+    }
+  }, [isReady]);
+
   if (!isReady) {
-    return (
-      <AppLoading
-        startAsync={loadFonts}
-        onFinish={() => setIsReady(true)}
-        onError={err => console.log(err)}
-      />
-    )
-  }
+    return null;
+  };
+  // --- подключение шрифтов end---
 
   return (
-    <View style={styles.container}>
-      {/* <Text style={{ 'fontFamily': 'GothamPro-Bold' }}>frfregfre</Text> */}
-      <LoginScreen />
-      {/* <RegistrationScreen /> */}
+    <View style={styles.container} onLayout={onLayoutRootView}>
+      {/* <LoginScreen /> */}
+      <RegistrationScreen />
     </View>
   );
 }

@@ -2,8 +2,8 @@ import * as Font from "expo-font";
 
 export default useFonts = async () =>
   await Font.loadAsync({
-    // "gothampro_bold": require("../assets/fonts/gothampro_bold.ttf"),
-    // "Roboto-Regular": require("../assets/fonts/Roboto-Regular.ttf"),
-    // "Roboto-Medium": require("../assets/fonts/Roboto-Medium.ttf"),
-    // "Roboto-Bold": require("../assets/fonts/Roboto-Bold.ttf"),
+    'GothamPro-Light': require('../assets/fonts/GotmanPro/GothamPro-Light.ttf'),
+    'GothamPro-Medium': require('../assets/fonts/GotmanPro/GothamPro-Medium.ttf'),
+    'GothamPro-Bold': require('../assets/fonts/GotmanPro/GothamPro-Bold.ttf'),
+    'GothamPro-Black': require('../assets/fonts/GotmanPro/GothamPro-Black.ttf'),
   });

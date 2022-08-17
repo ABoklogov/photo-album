@@ -20,6 +20,7 @@ export default Input;
 
 const styles = StyleSheet.create({
   input: {
+    fontFamily: 'GothamPro-Medium',
     fontSize: 16,
     borderWidth: 1,
     borderColor: '#E8E8E8',

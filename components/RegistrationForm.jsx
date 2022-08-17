@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 25,
   },
   title: {
+    fontFamily: 'GothamPro-Bold',
     fontSize: 30,
     fontStyle: 'normal',
     textAlign: 'center',
@@ -103,6 +104,7 @@ const styles = StyleSheet.create({
     marginBottom: 16
   },
   linkBottom: {
+    fontFamily: 'GothamPro-Medium',
     fontSize: 16,
     fontStyle: 'normal',
     textAlign: 'center',

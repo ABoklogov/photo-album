@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     })
   },
   btnText: {
+    fontFamily: 'GothamPro-Medium',
     fontSize: 16,
     lineHeight: 19,
     textAlign: 'center',
