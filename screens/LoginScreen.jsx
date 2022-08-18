@@ -10,7 +10,7 @@ import LoginForm from "../components/LoginForm";
 
 const image = require('../assets/images/photo_BG.jpg');
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   // слушатель закрытия клавиатуры (при закрытии клавиатуры возвращаемся в первоначальное состояние):
   useEffect(() => {
@@ -31,7 +31,10 @@ const LoginScreen = () => {
           ...styles.wrapper,
           paddingTop: isShowKeyboard ? 300 : 323,
         }}>
-          <LoginForm opensKeyboard={opensKeyboard} />
+          <LoginForm
+            opensKeyboard={opensKeyboard}
+            navigation={navigation}
+          />
         </View>
       </TouchableWithoutFeedback>
     </Background>

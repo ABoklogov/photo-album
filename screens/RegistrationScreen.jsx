@@ -10,7 +10,7 @@ import RegistrationForm from "../components/RegistrationForm";
 
 const image = require('../assets/images/photo_BG.jpg');
 
-const RegistrationScreen = () => {
+const RegistrationScreen = ({ navigation }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   // слушатель закрытия клавиатуры (при закрытии клавиатуры возвращаемся в первоначальное состояние):
   useEffect(() => {
@@ -29,9 +29,12 @@ const RegistrationScreen = () => {
       <TouchableWithoutFeedback onPress={removesKeyboard}>
         <View style={{
           ...styles.wrapper,
-          paddingTop: isShowKeyboard ? 166 : 263,
+          paddingTop: isShowKeyboard ? 175 : 263,
         }}>
-          <RegistrationForm opensKeyboard={opensKeyboard} />
+          <RegistrationForm
+            opensKeyboard={opensKeyboard}
+            navigation={navigation}
+          />
         </View>
       </TouchableWithoutFeedback>
     </Background>

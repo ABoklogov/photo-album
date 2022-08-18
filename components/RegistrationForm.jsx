@@ -17,11 +17,15 @@ const initialState = {
   password: '',
 };
 
-const RegistrationForm = ({ opensKeyboard }) => {
+const RegistrationForm = ({ opensKeyboard, navigation }) => {
   const [state, setState] = useState(initialState);
 
   const submitState = () => {
     console.log(state);
+    onChangeLogin('');
+    onChangeEmail('');
+    onChangePassword('');
+    logIn();
   };
   const onChangeLogin = (value) => {
     setState((prevState) => ({ ...prevState, login: value }))
@@ -32,6 +36,7 @@ const RegistrationForm = ({ opensKeyboard }) => {
   const onChangePassword = (value) => {
     setState((prevState) => ({ ...prevState, password: value }))
   };
+  const logIn = () => navigation.navigate("Home");
 
   return (
     <View style={styles.containerForm}>
@@ -72,7 +77,12 @@ const RegistrationForm = ({ opensKeyboard }) => {
         </View>
 
         <View>
-          <Text style={styles.linkBottom}>Уже есть аккаунт? Войти</Text>
+          <Text
+            style={styles.linkBottom}
+            onPress={() => navigation.navigate("Login")}
+          >
+            Уже есть аккаунт? Войти
+          </Text>
         </View>
       </KeyboardAvoidingView>
     </View>

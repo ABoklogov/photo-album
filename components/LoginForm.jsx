@@ -16,18 +16,23 @@ const initialState = {
   password: '',
 };
 
-const LoginForm = ({ opensKeyboard }) => {
+const LoginForm = ({ opensKeyboard, navigation }) => {
   const [state, setState] = useState(initialState);
 
   const submitState = () => {
     console.log(state);
+    onChangeEmail('');
+    onChangePassword('');
+    logIn();
   };
+
   const onChangeEmail = (value) => {
     setState((prevState) => ({ ...prevState, email: value }))
   };
   const onChangePassword = (value) => {
     setState((prevState) => ({ ...prevState, password: value }))
   };
+  const logIn = () => navigation.navigate("Home");
 
   return (
     <View style={styles.containerForm}>
@@ -57,7 +62,12 @@ const LoginForm = ({ opensKeyboard }) => {
         </View>
 
         <View>
-          <Text style={styles.linkBottom}>Нет аккаунта? Зарегистрироваться</Text>
+          <Text
+            style={styles.linkBottom}
+            onPress={() => navigation.navigate("Registration")}
+          >
+            Нет аккаунта? Зарегистрироваться
+          </Text>
         </View>
       </KeyboardAvoidingView>
     </View>
