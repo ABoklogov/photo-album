@@ -1,16 +1,15 @@
-// import { useState, useEffect } from 'react';
 import {
   StyleSheet,
   View,
   Text,
   TouchableOpacity,
 } from "react-native";
-import Header from "../../components/Header";
+// import Header from "../../components/Header";
 
 const PostsScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Header navigation={navigation} />
+      {/* <Header navigation={navigation} /> */}
     </View>
   )
 };

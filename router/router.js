@@ -62,7 +62,28 @@ export default useRoute = (isAuth) => {
         name='Posts'
         component={PostsScreen}
         options={{
-          headerShown: false,
+          // headerShown: false,
+          title: 'Публикации',
+          headerTitleStyle: {
+            fontFamily: 'GothamPro-Medium',
+            fontSize: 17,
+            lineHeight: 22,
+            fontStyle: 'normal',
+            // textAlign: 'center',
+          },
+          headerTintColor: '#212121',
+          headerStyle: {
+            height: 88,
+            // flex: 1,
+            // alignItems: 'center',
+            // justifyContent: "center",
+            // paddingTop: 55,
+            // paddingBottom: 11,
+            backgroundColor: '#fff',
+            borderBottomWidth: 1,
+            borderBottomColor: '#E5E5E5',
+          },
+
           tabBarIcon: () => <PostsGrid />
         }}
       />
@@ -70,16 +91,19 @@ export default useRoute = (isAuth) => {
         name='CreatePosts'
         component={CreatePostsScreen}
         options={{
-          headerShown: false,
-          // tabBarButton: () => <BtnFooterCenter background={'#56C330'} />,
-          tabBarIcon: () => <CreateIcon />
+          // headerShown: false,
+          tabBarIcon: () => (
+            <BtnFooterCenter background={'#56C330'} >
+              <CreateIcon />
+            </BtnFooterCenter>
+          )
         }}
       />
       <MainTabs.Screen
         name='Profile'
         component={ProfileScreen}
         options={{
-          headerShown: false,
+          // headerShown: false,
           tabBarIcon: () => <Profile />
         }}
       />
