@@ -5,12 +5,12 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-import Background from '../components/shared/Background';
-import LoginForm from "../components/LoginForm";
+import Background from '../../components/shared/Background';
+import RegistrationForm from "../../components/RegistrationForm";
 
-const image = require('../assets/images/photo_BG.jpg');
+const image = require('../../assets/images/photo_BG.jpg');
 
-const LoginScreen = ({ navigation }) => {
+const RegistrationScreen = ({ navigation }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   // слушатель закрытия клавиатуры (при закрытии клавиатуры возвращаемся в первоначальное состояние):
   useEffect(() => {
@@ -29,9 +29,9 @@ const LoginScreen = ({ navigation }) => {
       <TouchableWithoutFeedback onPress={removesKeyboard}>
         <View style={{
           ...styles.wrapper,
-          paddingTop: isShowKeyboard ? 300 : 323,
+          paddingTop: isShowKeyboard ? 175 : 263,
         }}>
-          <LoginForm
+          <RegistrationForm
             opensKeyboard={opensKeyboard}
             navigation={navigation}
           />
@@ -41,10 +41,10 @@ const LoginScreen = ({ navigation }) => {
   )
 };
 
-export default LoginScreen;
-
 const styles = StyleSheet.create({
   wrapper: {
     height: '100%',
   },
 });
+
+export default RegistrationScreen;

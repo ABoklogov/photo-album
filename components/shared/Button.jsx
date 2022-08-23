@@ -5,7 +5,7 @@ import {
   Text,
 } from "react-native";
 
-const Button = ({ text, submitState }) => {
+export default Button = ({ text, submitState }) => {
   return (
     <TouchableOpacity
       style={styles.btn}
@@ -19,8 +19,6 @@ const Button = ({ text, submitState }) => {
     </TouchableOpacity>
   )
 };
-
-export default Button;
 
 const styles = StyleSheet.create({
   btn: {

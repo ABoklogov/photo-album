@@ -5,9 +5,9 @@ import {
   Text,
   TouchableOpacity,
 } from "react-native";
-import Header from "../components/Header";
+import Header from "../../components/Header";
 
-const HomeScreen = ({ navigation }) => {
+const PostsScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Header navigation={navigation} />
@@ -15,7 +15,7 @@ const HomeScreen = ({ navigation }) => {
   )
 };
 
-export default HomeScreen;
+export default PostsScreen;
 
 const styles = StyleSheet.create({
   container: {

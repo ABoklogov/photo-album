@@ -23,7 +23,7 @@ const LoginForm = ({ opensKeyboard, navigation }) => {
     console.log(state);
     onChangeEmail('');
     onChangePassword('');
-    logIn();
+    // logIn();
   };
 
   const onChangeEmail = (value) => {
@@ -32,7 +32,7 @@ const LoginForm = ({ opensKeyboard, navigation }) => {
   const onChangePassword = (value) => {
     setState((prevState) => ({ ...prevState, password: value }))
   };
-  const logIn = () => navigation.navigate("Home");
+  // const logIn = () => navigation.navigate("Home");
 
   return (
     <View style={styles.containerForm}>

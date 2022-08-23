@@ -25,7 +25,7 @@ const RegistrationForm = ({ opensKeyboard, navigation }) => {
     onChangeLogin('');
     onChangeEmail('');
     onChangePassword('');
-    logIn();
+    // logIn();
   };
   const onChangeLogin = (value) => {
     setState((prevState) => ({ ...prevState, login: value }))
@@ -36,7 +36,7 @@ const RegistrationForm = ({ opensKeyboard, navigation }) => {
   const onChangePassword = (value) => {
     setState((prevState) => ({ ...prevState, password: value }))
   };
-  const logIn = () => navigation.navigate("Home");
+  // const logIn = () => navigation.navigate("Home");
 
   return (
     <View style={styles.containerForm}>

@@ -2,18 +2,16 @@ import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 import useFonts from './hooks/useFonts';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from "@react-navigation/stack";
 
-import LoginScreen from './screens/LoginScreen';
-import RegistrationScreen from './screens/RegistrationScreen';
-import HomeScreen from './screens/HomeScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import useRoute from './router/router';
 
 SplashScreen.preventAutoHideAsync(); // для шрифтов
-const MainStack = createStackNavigator(); // указывает на группу навигаторов
+
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
+  const routing = useRoute(true);
 
   // --- подключение шрифтов start---
   useEffect(() => {
@@ -41,15 +39,11 @@ export default function App() {
   // --- подключение шрифтов end---
 
   return (
-    <NavigationContainer>
-      <View style={styles.container} onLayout={onLayoutRootView}>
-        <MainStack.Navigator initialRouteName='Login'>
-          <MainStack.Screen name='Registration' component={RegistrationScreen} />
-          <MainStack.Screen name='Login' component={LoginScreen} />
-          <MainStack.Screen name='Home' component={HomeScreen} />
-        </MainStack.Navigator>
-      </View>
-    </NavigationContainer>
+    <View style={styles.container} onLayout={onLayoutRootView}>
+      <NavigationContainer>
+        {routing}
+      </NavigationContainer>
+    </View>
   );
 }
 

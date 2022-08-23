@@ -1,7 +1,7 @@
 import * as React from "react";
 import Svg, { Path, Circle } from "react-native-svg";
 
-const AddAvatar = ({ color }) => {
+export default AddAvatar = ({ color }) => {
   return (
     <Svg width={25} height={25} viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
       <Circle cx="12.5" cy="12.5" r="12" fill="white" stroke={color} />
@@ -10,4 +10,3 @@ const AddAvatar = ({ color }) => {
   )
 };
 
-export default AddAvatar;
