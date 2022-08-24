@@ -5,18 +5,16 @@ import {
 } from "react-native";
 import BtnLogOut from './shared/BtnLogOut';
 
-const Header = ({ navigation }) => {
+export default Header = ({ title, navigation }) => {
   return (
     <View style={styles.header}>
       <View>
-        <Text style={styles.title}>Публикации</Text>
-        <BtnLogOut navigation={navigation} />
+        <Text style={styles.title}>{title}</Text>
+        {title === 'Публикации' && <BtnLogOut navigation={navigation} />}
       </View>
     </View>
   )
 };
-
-export default Header;
 
 const styles = StyleSheet.create({
   header: {
