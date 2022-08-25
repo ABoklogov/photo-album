@@ -47,7 +47,8 @@ export default useRoute = (isAuth) => {
 
       </AuthStack.Navigator>
     )
-  }
+  };
+
   // приватная навигация
   return (
     <MainTabs.Navigator
@@ -96,7 +97,7 @@ export default useRoute = (isAuth) => {
             <BtnFooterCenter background={'#56C330'} >
               <CreateIcon />
             </BtnFooterCenter>
-          )
+          ),
         }}
       />
 

@@ -16,6 +16,8 @@ export default UserPhoto = () => {
 
 const styles = StyleSheet.create({
   photo: {
+    borderRadius: 16,
+    visibility: 'hidden',
     marginRight: 8,
   },
 });
