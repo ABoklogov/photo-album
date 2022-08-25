@@ -6,7 +6,7 @@ import {
   Keyboard,
 } from "react-native";
 import Background from '../../components/shared/Background';
-import LoginForm from "../../components/LoginForm";
+import LoginForm from '../../components/LoginForm';
 
 const image = require('../../assets/images/photo_BG.jpg');
 

@@ -4,13 +4,27 @@ import {
   Text,
 } from "react-native";
 import BtnLogOut from './shared/BtnLogOut';
+import BtnBack from "./shared/BtnBack";
 
 export default Header = ({ title, navigation }) => {
   return (
     <View style={styles.header}>
       <View>
         <Text style={styles.title}>{title}</Text>
-        {title === 'Публикации' && <BtnLogOut navigation={navigation} />}
+
+        {
+          title === 'Публикации' &&
+          <View style={styles.logOutBtn}>
+            <BtnLogOut navigation={navigation} />
+          </View>
+        }
+
+        {
+          title === 'Создать публикацию' &&
+          <View style={styles.backBtn}>
+            <BtnBack navigation={navigation} />
+          </View>
+        }
       </View>
     </View>
   )
@@ -32,5 +46,13 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     textAlign: 'center',
     color: '#212121',
+  },
+  logOutBtn: {
+    position: 'absolute',
+    right: 10,
+  },
+  backBtn: {
+    position: 'absolute',
+    left: 16,
   },
 })
