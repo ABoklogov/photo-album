@@ -53,19 +53,29 @@ export default useRoute = (isAuth) => {
   return (
     <MainTabs.Navigator
       initialRouteName='Posts'
-      screenOptions={{
-        "tabBarShowLabel": false,
-        // стили нижней навигации
-        "tabBarStyle": [
-          {
-            "height": 83,
-            "paddingLeft": 90,
-            "paddingRight": 90,
-            "paddingBottom": 34,
-            "paddingTop": 9,
-          },
-          null
-        ],
+      screenOptions={({ route, navigation }) => {
+        console.log("🚀 ~ navigation", navigation)
+        console.log("🚀 ~ route", route)
+        if (route.name === 'CreatePosts') {
+
+        }
+
+        return {
+          "tabBarShowLabel": false,
+          // "tabBarActiveTintColor": "tomato",
+          // "tabBarInactiveTintColor": "gray",
+          // стили нижней навигации
+          "tabBarStyle": [
+            {
+              "height": 83,
+              "paddingLeft": 90,
+              "paddingRight": 90,
+              "paddingBottom": 34,
+              "paddingTop": 9,
+            },
+            null
+          ],
+        }
       }}
     >
 
@@ -93,8 +103,8 @@ export default useRoute = (isAuth) => {
             const title = getHeaderTitle(options, route.name);
             return <Header title={title} navigation={navigation} />;
           },
-          tabBarIcon: () => (
-            <BtnFooterCenter background={'#56C330'} >
+          tabBarIcon: ({ navigation }) => (
+            <BtnFooterCenter background={'#56C330'} navigation={navigation}>
               <CreateIcon />
             </BtnFooterCenter>
           ),
@@ -109,6 +119,6 @@ export default useRoute = (isAuth) => {
           tabBarIcon: () => <Profile />
         }}
       />
-    </MainTabs.Navigator>
+    </MainTabs.Navigator >
   )
 }; 
