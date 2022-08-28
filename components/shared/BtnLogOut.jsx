@@ -3,7 +3,7 @@ import {
 } from "react-native";
 import LogOut from '../icons/LogOut';
 
-export default BtnLogOut = ({ navigation }) => {
+export default BtnLogOut = () => {
   return (
     <TouchableOpacity
       activeOpacity={0.8}

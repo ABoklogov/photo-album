@@ -1,15 +1,21 @@
+import { useNavigation } from "@react-navigation/native";
 import {
   StyleSheet,
   View,
+  TouchableOpacity,
 } from "react-native";
 
 export default BtnFooterCenter = ({ background, children }) => {
+  const navigation = useNavigation();
+
   return (
-    <View
+    <TouchableOpacity
       style={{ ...styles.button, backgroundColor: background }}
+      activeOpacity={0.8}
+      onPress={() => navigation.navigate('CreatePosts')}
     >
       {children}
-    </View>
+    </TouchableOpacity>
   )
 };
 

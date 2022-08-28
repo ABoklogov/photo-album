@@ -1,12 +1,17 @@
+import { useNavigation } from "@react-navigation/native";
 import {
   StyleSheet,
   View,
   Text,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import UserBlock from "../../components/UserBlock";
+// import BtnFooterCenter from '../../components/shared/BtnFooterCenter';
+// import CreateIcon from '../../components/icons/CreateIcon';
 
-const PostsScreen = ({ navigation }) => {
+const PostsScreen = () => {
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.userBlockPosition}>
@@ -20,6 +25,7 @@ export default PostsScreen;
 
 const styles = StyleSheet.create({
   container: {
+    position: 'relative',
     height: '100%',
     paddingLeft: 16,
     paddingRight: 16,
@@ -30,4 +36,8 @@ const styles = StyleSheet.create({
   userBlockPosition: {
     marginBottom: 32,
   },
+  // btnFooter: {
+  //   position: 'absolute',
+  //   bottom: -12,
+  // },
 });

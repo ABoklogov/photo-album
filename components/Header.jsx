@@ -6,7 +6,7 @@ import {
 import BtnLogOut from './shared/BtnLogOut';
 import BtnBack from "./shared/BtnBack";
 
-export default Header = ({ title, navigation }) => {
+export default Header = ({ title }) => {
   return (
     <View style={styles.header}>
       <View>
@@ -15,14 +15,14 @@ export default Header = ({ title, navigation }) => {
         {
           title === 'Публикации' &&
           <View style={styles.logOutBtn}>
-            <BtnLogOut navigation={navigation} />
+            <BtnLogOut />
           </View>
         }
 
         {
           title === 'Создать публикацию' &&
           <View style={styles.backBtn}>
-            <BtnBack navigation={navigation} />
+            <BtnBack />
           </View>
         }
       </View>

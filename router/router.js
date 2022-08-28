@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { getHeaderTitle } from '@react-navigation/elements';
 const AuthStack = createStackNavigator();
 const MainTabs = createBottomTabNavigator();
+const NotTabsStack = createStackNavigator();
 
 // import icons
 import { AntDesign } from '@expo/vector-icons';
@@ -25,76 +26,98 @@ export default useRoute = (isAuth) => {
   if (!isAuth) {
     return (
       // публичная навигация
-      <AuthStack.Navigator initialRouteName='Login'>
+      <AuthStack.Navigator initialRouteName='Login' screenOptions={{
+        headerShown: false,
+      }}>
 
         <AuthStack.Screen
           name='Registration'
           component={RegistrationScreen}
-          options={{ headerShown: false }}
         />
 
         <AuthStack.Screen
           name='Login'
           component={LoginScreen}
-          options={{ headerShown: false }}
         />
-
-        <AuthStack.Screen
-          name='Post'
-          component={PostsScreen}
-          options={{ headerShown: false }}
-        />
-
       </AuthStack.Navigator>
     )
   };
 
-  // приватная навигация
-  return (
-    <MainTabs.Navigator
-      initialRouteName='Posts'
-      screenOptions={({ route, navigation }) => {
-        console.log("🚀 ~ navigation", navigation)
-        console.log("🚀 ~ route", route)
-        if (route.name === 'CreatePosts') {
 
-        }
+  const TabCreatePostsScreen = () => <></>;
 
-        return {
+  const TabNavigation = () => {
+    return (
+      <MainTabs.Navigator
+        initialRouteName='Posts'
+        screenOptions={{
           "tabBarShowLabel": false,
-          // "tabBarActiveTintColor": "tomato",
-          // "tabBarInactiveTintColor": "gray",
           // стили нижней навигации
           "tabBarStyle": [
             {
               "height": 83,
-              "paddingLeft": 90,
-              "paddingRight": 90,
+              "paddingLeft": 50,
+              "paddingRight": 50,
               "paddingBottom": 34,
               "paddingTop": 9,
             },
             null
           ],
-        }
-      }}
-    >
+        }}
+      >
+        <MainTabs.Screen
+          name='Posts'
+          component={PostsScreen}
+          options={{
+            title: 'Публикации',
+            // подключаем компонент Header
+            header: ({ navigation, route, options }) => {
+              const title = getHeaderTitle(options, route.name);
+              return <Header title={title} navigation={navigation} />;
+            },
+            tabBarIcon: () => <PostsGrid />
+          }}
+        />
+        <MainTabs.Screen
+          name='TabCreatePosts'
+          component={TabCreatePostsScreen}
+          options={{
+            title: 'Создать публикацию',
+            tabBarIcon: () => (
+              <BtnFooterCenter background={'#56C330'}>
+                <CreateIcon />
+              </BtnFooterCenter>
+            ),
+          }}
+        />
+        <MainTabs.Screen
+          name='Profile'
+          component={ProfileScreen}
+          options={{
+            headerShown: false,
+            tabBarIcon: () => <Profile />
+          }}
+        />
+      </MainTabs.Navigator >
+    )
+  };
 
-      <MainTabs.Screen
-        name='Posts'
-        component={PostsScreen}
+  return (
+    <NotTabsStack.Navigator
+      initialRouteName='Home'
+    // screenOptions={{
+    //   headerShown: false,
+    // }}
+    >
+      <NotTabsStack.Screen
+        name="Home"
+        component={TabNavigation}
         options={{
-          title: 'Публикации',
-          // подключаем компонент Header
-          header: ({ navigation, route, options }) => {
-            const title = getHeaderTitle(options, route.name);
-            return <Header title={title} navigation={navigation} />;
-          },
-          tabBarIcon: () => <PostsGrid />
+          headerShown: false,
         }}
       />
-
-      <MainTabs.Screen
-        name='CreatePosts'
+      <NotTabsStack.Screen
+        name="CreatePosts"
         component={CreatePostsScreen}
         options={{
           title: 'Создать публикацию',
@@ -103,22 +126,9 @@ export default useRoute = (isAuth) => {
             const title = getHeaderTitle(options, route.name);
             return <Header title={title} navigation={navigation} />;
           },
-          tabBarIcon: ({ navigation }) => (
-            <BtnFooterCenter background={'#56C330'} navigation={navigation}>
-              <CreateIcon />
-            </BtnFooterCenter>
-          ),
         }}
       />
 
-      <MainTabs.Screen
-        name='Profile'
-        component={ProfileScreen}
-        options={{
-          headerShown: false,
-          tabBarIcon: () => <Profile />
-        }}
-      />
-    </MainTabs.Navigator >
+    </NotTabsStack.Navigator>
   )
 }; 
