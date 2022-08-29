@@ -8,19 +8,15 @@ const MainTabs = createBottomTabNavigator();
 const NotTabsStack = createStackNavigator();
 
 // import icons
-import { AntDesign } from '@expo/vector-icons';
 import PostsGrid from '../components/icons/PostsGrid';
 import Profile from '../components/icons/Profile';
-import CreateIcon from '../components/icons/CreateIcon';
-import BtnFooterCenter from '../components/shared/BtnFooterCenter';
-
 import LoginScreen from '../screens/auth/LoginScreen';
 import RegistrationScreen from '../screens/auth/RegistrationScreen';
 import PostsScreen from '../screens/main/PostsScreen';
 import CreatePostsScreen from '../screens/main/CreatePostsScreen';
 import ProfileScreen from '../screens/main/ProfileScreen';
 import Header from '../components/Header';
-import BtnLogOut from '../components/shared/BtnLogOut';
+import BtnCreatePost from "../components/shared/BtnCreatePost";
 
 export default useRoute = (isAuth) => {
   if (!isAuth) {
@@ -44,9 +40,9 @@ export default useRoute = (isAuth) => {
   };
 
 
-  const TabCreatePostsScreen = () => <></>;
+  const StubComponent = () => <></>;
 
-  const TabNavigation = () => {
+  const TabsStack = () => {
     return (
       <MainTabs.Navigator
         initialRouteName='Posts'
@@ -80,14 +76,10 @@ export default useRoute = (isAuth) => {
         />
         <MainTabs.Screen
           name='TabCreatePosts'
-          component={TabCreatePostsScreen}
+          component={StubComponent}
           options={{
             title: 'Создать публикацию',
-            tabBarIcon: () => (
-              <BtnFooterCenter background={'#56C330'}>
-                <CreateIcon />
-              </BtnFooterCenter>
-            ),
+            tabBarIcon: () => <BtnCreatePost />
           }}
         />
         <MainTabs.Screen
@@ -98,20 +90,17 @@ export default useRoute = (isAuth) => {
             tabBarIcon: () => <Profile />
           }}
         />
-      </MainTabs.Navigator >
+      </MainTabs.Navigator>
     )
   };
 
   return (
     <NotTabsStack.Navigator
       initialRouteName='Home'
-    // screenOptions={{
-    //   headerShown: false,
-    // }}
     >
       <NotTabsStack.Screen
         name="Home"
-        component={TabNavigation}
+        component={TabsStack}
         options={{
           headerShown: false,
         }}

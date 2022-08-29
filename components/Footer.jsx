@@ -1,21 +1,15 @@
-import { useNavigation } from "@react-navigation/native";
 import {
   StyleSheet,
   View,
 } from "react-native";
-import BtnFooterCenter from "./shared/BtnFooterCenter";
-import RemoveIcon from './icons/RemoveIcon';
+import BtnDeletePost from './shared/BtnDeletePost';
 
 export default Footer = () => {
-  const navigation = useNavigation();
-
   return (
     <View
       style={styles.footer}
     >
-      <BtnFooterCenter background={'#F6F6F6'}>
-        <RemoveIcon />
-      </BtnFooterCenter>
+      <BtnDeletePost />
     </View>
   )
 };
@@ -29,8 +23,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     height: 83,
     width: '100%',
-    "paddingBottom": 34,
-    "paddingTop": 9,
+    paddingBottom: 34,
+    paddingTop: 9,
     marginTop: 'auto',
   },
 });

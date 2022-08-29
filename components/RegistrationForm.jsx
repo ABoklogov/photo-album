@@ -17,7 +17,7 @@ const initialState = {
   password: '',
 };
 
-const RegistrationForm = ({ opensKeyboard, navigation }) => {
+export default RegistrationForm = ({ opensKeyboard, navigation }) => {
   const [state, setState] = useState(initialState);
 
   const submitState = () => {
@@ -88,8 +88,6 @@ const RegistrationForm = ({ opensKeyboard, navigation }) => {
     </View>
   )
 };
-
-export default RegistrationForm;
 
 const styles = StyleSheet.create({
   containerForm: {

@@ -3,25 +3,37 @@ import {
   View,
   Text,
 } from "react-native";
+import PostPhoto from '../../components/PostPhoto';
 import Footer from '../../components/Footer';
+import BtnUploadPhoto from '../../components/shared/BtnUploadPhoto';
 
-const CreatePostsScreen = ({ navigation }) => {
+export default CreatePostsScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text>CreatePostsScreen111</Text>
+      <PostPhoto />
+
+      <View style={styles.btnUploadPhoto}>
+        <BtnUploadPhoto />
+      </View>
       <Footer />
     </View>
   )
 };
 
-export default CreatePostsScreen;
-
 const styles = StyleSheet.create({
   container: {
     position: 'relative',
+    paddingTop: 32,
+    paddingBottom: 83,
+    paddingRight: 16,
+    paddingLeft: 16,
     flex: 1,
     backgroundColor: '#fff',
-    justifyContent: "center",
-    alignItems: 'center',
+    // justifyContent: 'flex-start',
+    // alignItems: 'center',
+  },
+  btnUploadPhoto: {
+    marginTop: 8,
+
   },
 });
