@@ -6,6 +6,7 @@ import {
 import PostPhoto from '../../components/PostPhoto';
 import Footer from '../../components/Footer';
 import BtnUploadPhoto from '../../components/shared/BtnUploadPhoto';
+import CreatePostForm from "../../components/CreatePostForm";
 
 export default CreatePostsScreen = ({ navigation }) => {
   return (
@@ -14,6 +15,7 @@ export default CreatePostsScreen = ({ navigation }) => {
 
       <View style={styles.btnUploadPhoto}>
         <BtnUploadPhoto />
+        <CreatePostForm />
       </View>
       <Footer />
     </View>
@@ -25,8 +27,8 @@ const styles = StyleSheet.create({
     position: 'relative',
     paddingTop: 32,
     paddingBottom: 83,
-    paddingRight: 16,
-    paddingLeft: 16,
+    // paddingRight: 16,
+    // paddingLeft: 16,
     flex: 1,
     backgroundColor: '#fff',
     // justifyContent: 'flex-start',

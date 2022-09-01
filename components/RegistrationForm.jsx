@@ -73,7 +73,12 @@ export default RegistrationForm = ({ opensKeyboard, navigation }) => {
             onChange={onChangePassword}
           />
 
-          <Button text={'Зарегистрироваться'} submitState={submitState} />
+          <Button
+            text={'Зарегистрироваться'}
+            submitState={submitState}
+            background={'#56C330'}
+            textColor={'#ffffff'}
+          />
         </View>
 
         <View>

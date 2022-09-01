@@ -18,12 +18,10 @@ export default PostPhoto = () => {
 
 const styles = StyleSheet.create({
   container: {
-    // marginHorizontal: 16,
     justifyContent: "center",
     alignItems: 'center',
-    // width: 343,
-    width: '100%',
     height: 240,
+    marginHorizontal: 16,
     borderWidth: 1,
     borderColor: '#E8E8E8',
     borderRadius: 8,

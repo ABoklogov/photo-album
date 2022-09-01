@@ -23,5 +23,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 19,
     color: '#BDBDBD',
+    width: 150,
+    marginHorizontal: 16,
   },
 });

@@ -16,7 +16,7 @@ const initialState = {
   password: '',
 };
 
-const LoginForm = ({ opensKeyboard, navigation }) => {
+export default LoginForm = ({ opensKeyboard, navigation }) => {
   const [state, setState] = useState(initialState);
 
   const submitState = () => {
@@ -58,7 +58,12 @@ const LoginForm = ({ opensKeyboard, navigation }) => {
             onChange={onChangePassword}
           />
 
-          <Button text={'Войти'} submitState={submitState} />
+          <Button
+            text={'Войти'}
+            submitState={submitState}
+            background={'#56C330'}
+            textColor={'#ffffff'}
+          />
         </View>
 
         <View>
@@ -73,8 +78,6 @@ const LoginForm = ({ opensKeyboard, navigation }) => {
     </View>
   )
 };
-
-export default LoginForm;
 
 const styles = StyleSheet.create({
   containerForm: {
