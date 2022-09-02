@@ -17,7 +17,6 @@ export default BtnDeletePost = () => {
 
 const styles = StyleSheet.create({
   button: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     height: 40,

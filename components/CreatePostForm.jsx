@@ -4,11 +4,11 @@ import {
   KeyboardAvoidingView,
   StyleSheet,
   View,
-  Text,
 } from "react-native";
 
 import Button from './shared/Button';
 import ImputNamePost from './shared/InputNamePost';
+import InputPositionPost from './shared/InputPositionPost';
 
 const statePost = {
   name: '',
@@ -39,21 +39,19 @@ export default CreatePostForm = ({ opensKeyboard, navigation }) => {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
         <View>
-          <View style={styles.inputPosition}>
-            <ImputNamePost
-              placeholder={'Название...'}
-              opensKeyboard={opensKeyboard}
-              stateKey={state.name}
-              onChange={onChangeName}
-            />
-          </View>
-
-          {/* <InputPassword
-            placeholder={'Пароль'}
+          <ImputNamePost
+            placeholder={'Название...'}
             opensKeyboard={opensKeyboard}
-            stateKey={state.password}
-            onChange={onChangePassword}
-          /> */}
+            stateKey={state.name}
+            onChange={onChangeName}
+          />
+
+          <InputPositionPost
+            placeholder={'Местность...'}
+            opensKeyboard={opensKeyboard}
+            stateKey={state.position}
+            onChange={onChangePosition}
+          />
 
           <Button
             text={'Опубликовать'}
@@ -69,11 +67,8 @@ export default CreatePostForm = ({ opensKeyboard, navigation }) => {
 
 const styles = StyleSheet.create({
   containerForm: {
-    marginTop: 38,
+    marginTop: 32,
     backgroundColor: '#fff',
     marginHorizontal: 16,
-  },
-  inputPosition: {
-    marginBottom: 16
   },
 });

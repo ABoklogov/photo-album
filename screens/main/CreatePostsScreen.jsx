@@ -1,38 +1,57 @@
+import { useState, useEffect } from 'react';
 import {
   StyleSheet,
   View,
   Text,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from "react-native";
+
 import PostPhoto from '../../components/PostPhoto';
 import Footer from '../../components/Footer';
 import BtnUploadPhoto from '../../components/shared/BtnUploadPhoto';
 import CreatePostForm from "../../components/CreatePostForm";
 
 export default CreatePostsScreen = ({ navigation }) => {
-  return (
-    <View style={styles.container}>
-      <PostPhoto />
+  const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+  // слушатель закрытия клавиатуры (при закрытии клавиатуры возвращаемся в первоначальное состояние):
+  useEffect(() => {
+    const keyboardDidHide = Keyboard.addListener('keyboardDidHide', () => setIsShowKeyboard(false));
+    return () => keyboardDidHide.remove();
+  }, []);
 
-      <View style={styles.btnUploadPhoto}>
-        <BtnUploadPhoto />
-        <CreatePostForm />
+  const removesKeyboard = () => {
+    setIsShowKeyboard(false);
+    Keyboard.dismiss();
+  };
+  const opensKeyboard = () => setIsShowKeyboard(true);
+
+  return (
+    <TouchableWithoutFeedback onPress={removesKeyboard}>
+      <View style={styles.container}>
+        <View>
+          <PostPhoto />
+
+          <View style={styles.btnUploadPhoto}>
+            <BtnUploadPhoto />
+            <CreatePostForm opensKeyboard={opensKeyboard} />
+          </View>
+        </View>
+
+        <View>
+          {!isShowKeyboard && <Footer />}
+        </View>
       </View>
-      <Footer />
-    </View>
+    </TouchableWithoutFeedback>
   )
 };
 
 const styles = StyleSheet.create({
   container: {
-    position: 'relative',
-    paddingTop: 32,
-    paddingBottom: 83,
-    // paddingRight: 16,
-    // paddingLeft: 16,
     flex: 1,
+    justifyContent: 'space-between',
+    paddingTop: 32,
     backgroundColor: '#fff',
-    // justifyContent: 'flex-start',
-    // alignItems: 'center',
   },
   btnUploadPhoto: {
     marginTop: 8,

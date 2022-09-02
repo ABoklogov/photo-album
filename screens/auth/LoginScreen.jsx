@@ -10,7 +10,7 @@ import LoginForm from '../../components/LoginForm';
 
 const image = require('../../assets/images/photo_BG.jpg');
 
-const LoginScreen = ({ navigation }) => {
+export default LoginScreen = ({ navigation }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   // слушатель закрытия клавиатуры (при закрытии клавиатуры возвращаемся в первоначальное состояние):
   useEffect(() => {
@@ -40,8 +40,6 @@ const LoginScreen = ({ navigation }) => {
     </Background>
   )
 };
-
-export default LoginScreen;
 
 const styles = StyleSheet.create({
   wrapper: {
