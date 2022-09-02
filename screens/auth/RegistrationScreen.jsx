@@ -5,12 +5,13 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
+
 import Background from '../../components/shared/Background';
 import RegistrationForm from "../../components/RegistrationForm";
 
 const image = require('../../assets/images/photo_BG.jpg');
 
-const RegistrationScreen = ({ navigation }) => {
+export default RegistrationScreen = ({ navigation }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   // слушатель закрытия клавиатуры (при закрытии клавиатуры возвращаемся в первоначальное состояние):
   useEffect(() => {
@@ -46,5 +47,3 @@ const styles = StyleSheet.create({
     height: '100%',
   },
 });
-
-export default RegistrationScreen;

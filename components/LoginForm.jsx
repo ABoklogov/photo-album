@@ -7,6 +7,7 @@ import {
   Text,
 } from "react-native";
 
+import Title from './shared/Title';
 import Button from './shared/Button';
 import Input from './shared/Input';
 import InputPassword from './shared/InputPassword';
@@ -39,7 +40,9 @@ export default LoginForm = ({ opensKeyboard, navigation }) => {
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
-        <Text style={{ ...styles.title, marginBottom: 33 }}>Войти</Text>
+        <View style={{ marginBottom: 33 }}>
+          <Title title={'Войти'} />
+        </View>
 
         <View style={{ ...styles.form, marginBottom: 16 }}>
           <View style={styles.inputPosition}>

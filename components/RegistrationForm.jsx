@@ -6,7 +6,9 @@ import {
   View,
   Text,
 } from "react-native";
+
 import Avatar from './Avatar';
+import Title from './shared/Title';
 import Button from './shared/Button';
 import Input from './shared/Input';
 import InputPassword from './shared/InputPassword';
@@ -45,7 +47,9 @@ export default RegistrationForm = ({ opensKeyboard, navigation }) => {
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
-        <Text style={{ ...styles.title, marginBottom: 33 }}>Регистрация</Text>
+        <View style={{ marginBottom: 33 }}>
+          <Title title={'Регистрация'} />
+        </View>
 
         <View style={{ ...styles.form, marginBottom: 16 }}>
           <View style={styles.inputPosition}>
@@ -102,13 +106,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
-  },
-  title: {
-    fontFamily: 'GothamPro-Bold',
-    fontSize: 30,
-    fontStyle: 'normal',
-    textAlign: 'center',
-    color: '#212121',
   },
   form: {
     marginHorizontal: 16,

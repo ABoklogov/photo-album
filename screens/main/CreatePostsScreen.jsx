@@ -2,12 +2,11 @@ import { useState, useEffect } from 'react';
 import {
   StyleSheet,
   View,
-  Text,
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
 
-import PostPhoto from '../../components/PostPhoto';
+import CreatePostPhoto from '../../components/CreatePostPhoto';
 import Footer from '../../components/Footer';
 import BtnUploadPhoto from '../../components/shared/BtnUploadPhoto';
 import CreatePostForm from "../../components/CreatePostForm";
@@ -30,7 +29,7 @@ export default CreatePostsScreen = ({ navigation }) => {
     <TouchableWithoutFeedback onPress={removesKeyboard}>
       <View style={styles.container}>
         <View>
-          <PostPhoto />
+          <CreatePostPhoto />
 
           <View style={styles.btnUploadPhoto}>
             <BtnUploadPhoto />
@@ -38,9 +37,7 @@ export default CreatePostsScreen = ({ navigation }) => {
           </View>
         </View>
 
-        <View>
-          {!isShowKeyboard && <Footer />}
-        </View>
+        {!isShowKeyboard && <Footer />}
       </View>
     </TouchableWithoutFeedback>
   )
@@ -55,6 +52,5 @@ const styles = StyleSheet.create({
   },
   btnUploadPhoto: {
     marginTop: 8,
-
   },
 });
