@@ -2,13 +2,12 @@ import { useNavigation } from "@react-navigation/native";
 import {
   StyleSheet,
   View,
-  Text,
   ScrollView,
-  TouchableOpacity,
 } from "react-native";
-import UserBlock from "../../components/UserBlock";
-// import BtnFooterCenter from '../../components/shared/BtnFooterCenter';
-// import CreateIcon from '../../components/icons/CreateIcon';
+
+import UserBlock from "components/UserBlock";
+// import BtnFooterCenter from 'components/shared/BtnFooterCenter';
+// import CreateIcon from 'components/icons/CreateIcon';
 
 const PostsScreen = () => {
 

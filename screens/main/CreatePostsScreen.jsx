@@ -6,10 +6,10 @@ import {
   Keyboard,
 } from "react-native";
 
-import CreatePostPhoto from '../../components/CreatePostPhoto';
-import Footer from '../../components/Footer';
-import BtnUploadPhoto from '../../components/shared/BtnUploadPhoto';
-import CreatePostForm from "../../components/CreatePostForm";
+import CreatePostPhoto from 'components/CreatePostPhoto';
+import Footer from 'components/Footer';
+import BtnUploadPhoto from 'components/shared/BtnUploadPhoto';
+import CreatePostForm from "components/CreatePostForm";
 
 export default CreatePostsScreen = ({ navigation }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);

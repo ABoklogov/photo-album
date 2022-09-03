@@ -1,17 +1,17 @@
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import {
   StyleSheet,
   View,
   ScrollView,
 } from "react-native";
 
-import Background from '../../components/shared/Background';
-import Title from '../../components/shared/Title';
-import Avatar from '../../components/Avatar';
-import BtnLogOut from '../../components/shared/BtnLogOut';
-import PostPhoto from '../../components/shared/PostPhoto';
+import Background from 'components/shared/Background';
+import Title from 'components/shared/Title';
+import Avatar from 'components/Avatar';
+import BtnLogOut from 'components/shared/BtnLogOut';
+import PostPhoto from 'components/shared/PostPhoto';
 
-const image = require('../../assets/images/photo_BG.jpg');
+const image = require('assets/images/photo_BG.jpg');
 
 export default ProfileScreen = ({ navigation }) => {
   return (

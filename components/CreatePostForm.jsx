@@ -6,9 +6,9 @@ import {
   View,
 } from "react-native";
 
-import Button from './shared/Button';
-import ImputNamePost from './shared/InputNamePost';
-import InputPositionPost from './shared/InputPositionPost';
+import Button from 'components/shared/Button';
+import ImputNamePost from 'components/shared/InputNamePost';
+import InputPositionPost from 'components/shared/InputPositionPost';
 
 const statePost = {
   name: '',

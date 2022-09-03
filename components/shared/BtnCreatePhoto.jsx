@@ -2,7 +2,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import Camera from '../icons/Camera';
+import Camera from 'icons/Camera';
 
 export default BtnCreatePhoto = () => {
   return (

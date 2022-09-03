@@ -1,9 +1,10 @@
+import { useState } from 'react';
 import {
   StyleSheet,
   TextInput,
   View,
 } from "react-native";
-import MapMarker from '../icons/MapMarker';
+import MapMarker from 'icons/MapMarker';
 
 export default InputPositionPost = ({
   placeholder,
@@ -11,14 +12,21 @@ export default InputPositionPost = ({
   stateKey,
   onChange
 }) => {
+  const [isFocus, setIsFocus] = useState(false);
+
+  const chengeFocusInput = () => {
+    setIsFocus(true);
+    opensKeyboard();
+  };
   return (
     <View style={styles.container}>
       <TextInput
-        style={styles.input}
+        style={{ ...styles.input, borderBottomColor: isFocus ? '#56C330' : '#E8E8E8' }}
         textAlign={'left'}
         placeholder={placeholder}
         placeholderTextColor={'#BDBDBD'}
-        onFocus={opensKeyboard}
+        onFocus={chengeFocusInput}
+        onBlur={() => setIsFocus(false)}
         value={stateKey}
         onChangeText={(value) => onChange(value)}
       />
@@ -44,7 +52,6 @@ const styles = StyleSheet.create({
     borderLeftColor: '#fff',
     borderRightColor: '#fff',
     borderTopColor: '#fff',
-    borderBottomColor: '#E8E8E8',
     height: 50,
     paddingTop: 15,
     paddingBottom: 15,

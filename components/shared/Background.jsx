@@ -3,7 +3,7 @@ import {
   ImageBackground,
 } from "react-native";
 
-const Background = ({ image, children }) => {
+export default Background = ({ image, children }) => {
   // определяем высоту экрана и задаем ее бекграенду
   const height = Dimensions.get('window').height;
 
@@ -16,5 +16,3 @@ const Background = ({ image, children }) => {
     </ImageBackground>
   )
 };
-
-export default Background;

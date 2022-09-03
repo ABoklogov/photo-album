@@ -2,7 +2,7 @@ import {
   StyleSheet,
   ImageBackground,
 } from "react-native";
-import BtnCreatePhoto from './shared/BtnCreatePhoto';
+import BtnCreatePhoto from 'components/shared/BtnCreatePhoto';
 
 export default CreatePostPhoto = () => {
   return (

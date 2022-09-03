@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import {
   TouchableOpacity,
 } from "react-native";
-import ArrowLeft from '../icons/ArrowLeft';
+import ArrowLeft from 'icons/ArrowLeft';
 
 export default BtnBack = () => {
   const navigation = useNavigation();

@@ -1,5 +1,4 @@
 import React from "react";
-
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { getHeaderTitle } from '@react-navigation/elements';
@@ -8,15 +7,18 @@ const MainTabs = createBottomTabNavigator();
 const NotTabsStack = createStackNavigator();
 
 // import icons
-import PostsGrid from '../components/icons/PostsGrid';
-import Profile from '../components/icons/Profile';
-import LoginScreen from '../screens/auth/LoginScreen';
-import RegistrationScreen from '../screens/auth/RegistrationScreen';
-import PostsScreen from '../screens/main/PostsScreen';
-import CreatePostsScreen from '../screens/main/CreatePostsScreen';
-import ProfileScreen from '../screens/main/ProfileScreen';
-import Header from '../components/Header';
-import BtnCreatePost from "../components/shared/BtnCreatePost";
+import PostsGrid from 'icons/PostsGrid';
+import Profile from 'icons/Profile';
+// import components
+import Header from 'components/Header';
+import BtnCreatePost from "components/shared/BtnCreatePost";
+// import screens
+import LoginScreen from 'screens/auth/LoginScreen';
+import RegistrationScreen from 'screens/auth/RegistrationScreen';
+import PostsScreen from 'screens/main/PostsScreen';
+import CreatePostsScreen from 'screens/main/CreatePostsScreen';
+import ProfileScreen from 'screens/main/ProfileScreen';
+
 
 export default useRoute = (isAuth) => {
   if (!isAuth) {
@@ -39,9 +41,10 @@ export default useRoute = (isAuth) => {
     )
   };
 
+  // приватная навигайия
+  const StubComponent = () => <></>; // <-- компонент заглушка
 
-  const StubComponent = () => <></>;
-
+  // навигация с нижними табами
   const TabsStack = () => {
     return (
       <MainTabs.Navigator
@@ -94,6 +97,7 @@ export default useRoute = (isAuth) => {
     )
   };
 
+  // навигация без нижних табов
   return (
     <NotTabsStack.Navigator
       initialRouteName='Home'
@@ -117,7 +121,6 @@ export default useRoute = (isAuth) => {
           },
         }}
       />
-
     </NotTabsStack.Navigator>
   )
 }; 

@@ -5,10 +5,11 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-import Background from '../../components/shared/Background';
-import LoginForm from '../../components/LoginForm';
 
-const image = require('../../assets/images/photo_BG.jpg');
+import Background from 'components/shared/Background';
+import LoginForm from 'components/LoginForm';
+
+const image = require('assets/images/photo_BG.jpg');
 
 export default LoginScreen = ({ navigation }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);

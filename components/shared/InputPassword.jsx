@@ -7,17 +7,29 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-const InputPassword = ({ placeholder, opensKeyboard, stateKey, onChange }) => {
+const InputPassword = ({
+  placeholder,
+  opensKeyboard,
+  stateKey,
+  onChange
+}) => {
   const [isHiddenPassword, setIsHiddenPassword] = useState(true);
+  const [isFocus, setIsFocus] = useState(false);
+
+  const chengeFocusInput = () => {
+    setIsFocus(true);
+    opensKeyboard();
+  };
 
   return (
     <View style={styles.inputPassword}>
       <TextInput
-        style={styles.input}
+        style={{ ...styles.input, borderColor: isFocus ? '#56C330' : '#E8E8E8' }}
         textAlign={'left'}
         secureTextEntry={isHiddenPassword}
         placeholder={placeholder}
-        onFocus={opensKeyboard}
+        onFocus={chengeFocusInput}
+        onBlur={() => setIsFocus(false)}
         value={stateKey}
         onChangeText={(value) => onChange(value)}
       />
@@ -44,7 +56,6 @@ const styles = StyleSheet.create({
     fontFamily: 'GothamPro-Medium',
     fontSize: 16,
     borderWidth: 1,
-    borderColor: '#E8E8E8',
     borderRadius: 8,
     height: 50,
     padding: 15,

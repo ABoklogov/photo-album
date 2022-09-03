@@ -2,7 +2,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import RemoveIcon from '../icons/RemoveIcon';
+import RemoveIcon from 'icons/RemoveIcon';
 
 export default BtnDeletePost = () => {
   return (

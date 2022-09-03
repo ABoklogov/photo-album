@@ -7,11 +7,11 @@ import {
   Text,
 } from "react-native";
 
-import Avatar from './Avatar';
-import Title from './shared/Title';
-import Button from './shared/Button';
-import Input from './shared/Input';
-import InputPassword from './shared/InputPassword';
+import Avatar from 'components/Avatar';
+import Title from 'components/shared/Title';
+import Button from 'components/shared/Button';
+import Input from 'components/shared/Input';
+import InputPassword from 'components/shared/InputPassword';
 
 const initialState = {
   login: '',

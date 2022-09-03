@@ -2,7 +2,7 @@ import {
   StyleSheet,
   View,
 } from "react-native";
-import BtnDeletePost from './shared/BtnDeletePost';
+import BtnDeletePost from 'components/shared/BtnDeletePost';
 
 export default Footer = () => {
   return (

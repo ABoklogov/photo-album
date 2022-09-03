@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   StyleSheet,
   TextInput,
@@ -9,13 +10,21 @@ export default InputNamePost = ({
   stateKey,
   onChange
 }) => {
+  const [isFocus, setIsFocus] = useState(false);
+
+  const chengeFocusInput = () => {
+    setIsFocus(true);
+    opensKeyboard();
+  };
+
   return (
     <TextInput
-      style={styles.input}
+      style={{ ...styles.input, borderBottomColor: isFocus ? '#56C330' : '#E8E8E8' }}
       textAlign={'left'}
       placeholder={placeholder}
       placeholderTextColor={'#BDBDBD'}
-      onFocus={opensKeyboard}
+      onFocus={chengeFocusInput}
+      onBlur={() => setIsFocus(false)}
       value={stateKey}
       onChangeText={(value) => onChange(value)}
     />
@@ -31,7 +40,6 @@ const styles = StyleSheet.create({
     borderLeftColor: '#fff',
     borderRightColor: '#fff',
     borderTopColor: '#fff',
-    borderBottomColor: '#E8E8E8',
     height: 50,
     paddingTop: 15,
     paddingBottom: 15,

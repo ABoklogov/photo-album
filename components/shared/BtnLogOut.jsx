@@ -1,7 +1,7 @@
 import {
   TouchableOpacity,
 } from "react-native";
-import LogOut from '../icons/LogOut';
+import LogOut from 'icons/LogOut';
 
 export default BtnLogOut = () => {
   return (

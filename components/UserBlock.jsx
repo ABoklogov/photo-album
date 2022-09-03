@@ -1,10 +1,9 @@
 import {
   StyleSheet,
   View,
-  Text,
 } from "react-native";
-import UserPhoto from "./shared/UserPhoto";
-import UserName from "./shared/UserName";
+import UserPhoto from "components/shared/UserPhoto";
+import UserName from "components/shared/UserName";
 
 export default UserBlock = () => {
   return (

@@ -4,7 +4,7 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
-import AddAvatar from '../components/icons/AddAvatar';
+import AddAvatar from 'icons/AddAvatar';
 
 const Avatar = () => {
   const [isAddAvatar, setIsAddAvatar] = useState(false);

@@ -3,8 +3,8 @@ import {
   View,
   Text,
 } from "react-native";
-import BtnLogOut from './shared/BtnLogOut';
-import BtnBack from "./shared/BtnBack";
+import BtnLogOut from 'components/shared/BtnLogOut';
+import BtnBack from "components/shared/BtnBack";
 
 export default Header = ({ title }) => {
   return (

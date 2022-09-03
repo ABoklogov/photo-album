@@ -3,6 +3,9 @@ import {
   View,
   Text,
 } from "react-native";
+import fonts from 'res/fonts';
+import sizeText from 'res/sizeText';
+import colors from 'res/colors';
 
 const { name, email } = {
   name: 'Natali Romanova',
@@ -28,17 +31,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   name: {
-    fontFamily: 'GothamPro-Bold',
-    fontSize: 13,
+    fontFamily: fonts.bold,
+    fontSize: sizeText.light,
     lineHeight: 15,
     fontStyle: 'normal',
-    color: '#212121',
+    color: colors.black,
   },
   email: {
-    fontFamily: 'GothamPro-Medium',
-    fontSize: 11,
+    fontFamily: fonts.medium,
+    fontSize: sizeText.mini,
     lineHeight: 13,
     fontStyle: 'normal',
-    color: '#767676',
+    color: colors.darkGrey,
   },
 });

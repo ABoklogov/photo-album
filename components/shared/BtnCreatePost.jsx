@@ -3,7 +3,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import CreateIcon from '../icons/CreateIcon';
+import CreateIcon from 'icons/CreateIcon';
 
 export default BtnCreatePost = () => {
   const navigation = useNavigation();

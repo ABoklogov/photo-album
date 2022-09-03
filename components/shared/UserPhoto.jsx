@@ -1,10 +1,9 @@
 import {
   StyleSheet,
   View,
-  Text,
   Image,
 } from "react-native";
-const avatar = require('../../assets/images/avatars/avatar.jpg');
+const avatar = require('assets/images/avatars/avatar.jpg');
 
 export default UserPhoto = () => {
   return (

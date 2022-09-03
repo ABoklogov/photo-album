@@ -1,13 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
-import useFonts from './hooks/useFonts';
+import useFonts from 'hooks/useFonts';
 
 import { NavigationContainer } from '@react-navigation/native';
-import useRoute from './router/router';
+import useRoute from 'router/router';
 
 SplashScreen.preventAutoHideAsync(); // для шрифтов
-
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
