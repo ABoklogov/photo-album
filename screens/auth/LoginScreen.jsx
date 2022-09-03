@@ -8,8 +8,7 @@ import {
 
 import Background from 'components/shared/Background';
 import LoginForm from 'components/LoginForm';
-
-const image = require('assets/images/photo_BG.jpg');
+import { images } from 'res/vars.js';
 
 export default LoginScreen = ({ navigation }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
@@ -26,7 +25,7 @@ export default LoginScreen = ({ navigation }) => {
   const opensKeyboard = () => setIsShowKeyboard(true);
 
   return (
-    <Background image={image}>
+    <Background image={images.background}>
       <TouchableWithoutFeedback onPress={removesKeyboard}>
         <View style={{
           ...styles.wrapper,

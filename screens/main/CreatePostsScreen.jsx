@@ -10,6 +10,7 @@ import CreatePostPhoto from 'components/CreatePostPhoto';
 import Footer from 'components/Footer';
 import BtnUploadPhoto from 'components/shared/BtnUploadPhoto';
 import CreatePostForm from "components/CreatePostForm";
+import { colors } from 'res/vars.js';
 
 export default CreatePostsScreen = ({ navigation }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
@@ -48,7 +49,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     paddingTop: 32,
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
   },
   btnUploadPhoto: {
     marginTop: 8,

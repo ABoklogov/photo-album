@@ -10,13 +10,12 @@ import Title from 'components/shared/Title';
 import Avatar from 'components/Avatar';
 import BtnLogOut from 'components/shared/BtnLogOut';
 import PostPhoto from 'components/shared/PostPhoto';
-
-const image = require('assets/images/photo_BG.jpg');
+import { images, colors } from 'res/vars.js';
 
 export default ProfileScreen = ({ navigation }) => {
   return (
     <ScrollView>
-      <Background image={image}>
+      <Background image={images.background}>
         <View style={styles.wrapper}>
           <Avatar />
 
@@ -49,7 +48,7 @@ const styles = StyleSheet.create({
     marginTop: 147,
     paddingTop: 92,
     paddingBottom: 43,
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
   },

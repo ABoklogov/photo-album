@@ -4,12 +4,12 @@ import {
   View,
   ScrollView,
 } from "react-native";
-
 import UserBlock from "components/UserBlock";
+import { colors } from 'res/vars.js';
 // import BtnFooterCenter from 'components/shared/BtnFooterCenter';
 // import CreateIcon from 'components/icons/CreateIcon';
 
-const PostsScreen = () => {
+export default PostsScreen = () => {
 
   return (
     <ScrollView style={styles.container}>
@@ -20,8 +20,6 @@ const PostsScreen = () => {
   )
 };
 
-export default PostsScreen;
-
 const styles = StyleSheet.create({
   container: {
     position: 'relative',
@@ -30,7 +28,7 @@ const styles = StyleSheet.create({
     paddingRight: 16,
     paddingTop: 32,
     paddingBottom: 32,
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
   },
   userBlockPosition: {
     marginBottom: 32,

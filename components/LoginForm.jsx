@@ -12,6 +12,13 @@ import Button from 'components/shared/Button';
 import Input from 'components/shared/Input';
 import InputPassword from 'components/shared/InputPassword';
 
+import {
+  strings,
+  colors,
+  fonts,
+  sizeText
+} from 'res/vars.js';
+
 const initialState = {
   email: '',
   password: '',
@@ -41,13 +48,13 @@ export default LoginForm = ({ opensKeyboard, navigation }) => {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
         <View style={{ marginBottom: 33 }}>
-          <Title title={'Войти'} />
+          <Title title={strings.buttonLogin} />
         </View>
 
         <View style={{ ...styles.form, marginBottom: 16 }}>
           <View style={styles.inputPosition}>
             <Input
-              placeholder={'Адрес электронной почты'}
+              placeholder={strings.placeholderEmail}
               opensKeyboard={opensKeyboard}
               stateKey={state.email}
               onChange={onChangeEmail}
@@ -55,17 +62,17 @@ export default LoginForm = ({ opensKeyboard, navigation }) => {
           </View>
 
           <InputPassword
-            placeholder={'Пароль'}
+            placeholder={strings.placeholderPassword}
             opensKeyboard={opensKeyboard}
             stateKey={state.password}
             onChange={onChangePassword}
           />
 
           <Button
-            text={'Войти'}
+            text={strings.buttonLogin}
             submitState={submitState}
-            background={'#56C330'}
-            textColor={'#ffffff'}
+            background={colors.green}
+            textColor={colors.white}
           />
         </View>
 
@@ -74,7 +81,7 @@ export default LoginForm = ({ opensKeyboard, navigation }) => {
             style={styles.linkBottom}
             onPress={() => navigation.navigate("Registration")}
           >
-            Нет аккаунта? Зарегистрироваться
+            {strings.linkLogin}
           </Text>
         </View>
       </KeyboardAvoidingView>
@@ -87,16 +94,16 @@ const styles = StyleSheet.create({
     height: '100%',
     paddingTop: 32,
     paddingBottom: 78,
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
   },
   title: {
-    fontFamily: 'GothamPro-Bold',
-    fontSize: 30,
+    fontFamily: fonts.bold,
+    fontSize: sizeText.big,
     fontStyle: 'normal',
     textAlign: 'center',
-    color: '#212121',
+    color: colors.black,
   },
   form: {
     marginHorizontal: 16,
@@ -105,11 +112,11 @@ const styles = StyleSheet.create({
     marginBottom: 16
   },
   linkBottom: {
-    fontFamily: 'GothamPro-Medium',
-    fontSize: 16,
+    fontFamily: fonts.medium,
+    fontSize: sizeText.normal,
     fontStyle: 'normal',
     textAlign: 'center',
     lineHeight: 19,
-    color: '#0097ff',
+    color: colors.blue,
   },
 });

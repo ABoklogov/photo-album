@@ -3,9 +3,8 @@ import {
   View,
   Text,
 } from "react-native";
-import fonts from 'res/fonts';
-import sizeText from 'res/sizeText';
-import colors from 'res/colors';
+
+import { colors, fonts, sizeText } from 'res/vars.js';
 
 const { name, email } = {
   name: 'Natali Romanova',

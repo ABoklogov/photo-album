@@ -19,6 +19,7 @@ import PostsScreen from 'screens/main/PostsScreen';
 import CreatePostsScreen from 'screens/main/CreatePostsScreen';
 import ProfileScreen from 'screens/main/ProfileScreen';
 
+import { strings } from 'res/vars.js';
 
 export default useRoute = (isAuth) => {
   if (!isAuth) {
@@ -68,7 +69,7 @@ export default useRoute = (isAuth) => {
           name='Posts'
           component={PostsScreen}
           options={{
-            title: 'Публикации',
+            title: strings.headerTitlePosts,
             // подключаем компонент Header
             header: ({ navigation, route, options }) => {
               const title = getHeaderTitle(options, route.name);
@@ -81,7 +82,7 @@ export default useRoute = (isAuth) => {
           name='TabCreatePosts'
           component={StubComponent}
           options={{
-            title: 'Создать публикацию',
+            title: strings.headerTitleCreatePosts,
             tabBarIcon: () => <BtnCreatePost />
           }}
         />
@@ -113,7 +114,7 @@ export default useRoute = (isAuth) => {
         name="CreatePosts"
         component={CreatePostsScreen}
         options={{
-          title: 'Создать публикацию',
+          title: strings.headerTitleCreatePosts,
           // подключаем компонент Header
           header: ({ navigation, route, options }) => {
             const title = getHeaderTitle(options, route.name);

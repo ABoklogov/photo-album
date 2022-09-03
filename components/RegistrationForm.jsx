@@ -13,6 +13,13 @@ import Button from 'components/shared/Button';
 import Input from 'components/shared/Input';
 import InputPassword from 'components/shared/InputPassword';
 
+import {
+  strings,
+  colors,
+  fonts,
+  sizeText
+} from 'res/vars.js';
+
 const initialState = {
   login: '',
   email: '',
@@ -48,13 +55,13 @@ export default RegistrationForm = ({ opensKeyboard, navigation }) => {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
         <View style={{ marginBottom: 33 }}>
-          <Title title={'Регистрация'} />
+          <Title title={strings.titleRegistration} />
         </View>
 
         <View style={{ ...styles.form, marginBottom: 16 }}>
           <View style={styles.inputPosition}>
             <Input
-              placeholder={'Логин'}
+              placeholder={strings.placeholderLogin}
               opensKeyboard={opensKeyboard}
               stateKey={state.login}
               onChange={onChangeLogin}
@@ -63,7 +70,7 @@ export default RegistrationForm = ({ opensKeyboard, navigation }) => {
 
           <View style={styles.inputPosition}>
             <Input
-              placeholder={'Адрес электронной почты'}
+              placeholder={strings.placeholderEmail}
               opensKeyboard={opensKeyboard}
               stateKey={state.email}
               onChange={onChangeEmail}
@@ -71,17 +78,17 @@ export default RegistrationForm = ({ opensKeyboard, navigation }) => {
           </View>
 
           <InputPassword
-            placeholder={'Пароль'}
+            placeholder={strings.placeholderPassword}
             opensKeyboard={opensKeyboard}
             stateKey={state.password}
             onChange={onChangePassword}
           />
 
           <Button
-            text={'Зарегистрироваться'}
+            text={strings.buttonRegistration}
             submitState={submitState}
-            background={'#56C330'}
-            textColor={'#ffffff'}
+            background={colors.green}
+            textColor={colors.white}
           />
         </View>
 
@@ -90,7 +97,7 @@ export default RegistrationForm = ({ opensKeyboard, navigation }) => {
             style={styles.linkBottom}
             onPress={() => navigation.navigate("Login")}
           >
-            Уже есть аккаунт? Войти
+            {strings.linkRegistration}
           </Text>
         </View>
       </KeyboardAvoidingView>
@@ -103,7 +110,7 @@ const styles = StyleSheet.create({
     height: '100%',
     paddingBottom: 78,
     paddingTop: 92,
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
   },
@@ -114,11 +121,11 @@ const styles = StyleSheet.create({
     marginBottom: 16
   },
   linkBottom: {
-    fontFamily: 'GothamPro-Medium',
-    fontSize: 16,
+    fontFamily: fonts.medium,
+    fontSize: sizeText.normal,
     fontStyle: 'normal',
     textAlign: 'center',
     lineHeight: 19,
-    color: '#0097ff',
+    color: colors.blue,
   },
 });
