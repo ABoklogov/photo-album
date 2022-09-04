@@ -5,8 +5,9 @@ import {
   TouchableOpacity,
 } from "react-native";
 import AddAvatar from 'icons/AddAvatar';
+import { colors } from 'res/vars.js';
 
-const Avatar = () => {
+export default Avatar = () => {
   const [isAddAvatar, setIsAddAvatar] = useState(false);
 
   const addAvatar = () => {
@@ -28,13 +29,11 @@ const Avatar = () => {
         activeOpacity={0.8}
         onPress={addAvatar}
       >
-        <AddAvatar color={isAddAvatar ? '#BDBDBD' : '#56C330'} />
+        <AddAvatar color={isAddAvatar ? colors.grey : colors.green} />
       </TouchableOpacity>
     </View>
   )
 };
-
-export default Avatar;
 
 const styles = StyleSheet.create({
   avatarBlock: {
@@ -44,7 +43,7 @@ const styles = StyleSheet.create({
       { translateX: -60 },
       { translateY: -60 },
     ],
-    backgroundColor: '#F6F6F6',
+    backgroundColor: colors.lightGrey,
     height: 120,
     width: 120,
     borderRadius: 16,

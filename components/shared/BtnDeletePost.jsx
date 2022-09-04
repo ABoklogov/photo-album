@@ -3,6 +3,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import RemoveIcon from 'icons/RemoveIcon';
+import { colors } from 'res/vars.js';
 
 export default BtnDeletePost = () => {
   return (
@@ -22,6 +23,6 @@ const styles = StyleSheet.create({
     height: 40,
     width: 70,
     borderRadius: 20,
-    backgroundColor: '#F6F6F6',
+    backgroundColor: colors.lightGrey,
   },
 });

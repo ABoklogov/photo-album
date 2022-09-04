@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import CreateIcon from 'icons/CreateIcon';
+import { colors } from 'res/vars.js';
 
 export default BtnCreatePost = () => {
   const navigation = useNavigation();
@@ -27,6 +28,6 @@ const styles = StyleSheet.create({
     height: 40,
     width: 70,
     borderRadius: 20,
-    backgroundColor: '#56C330',
+    backgroundColor: colors.green,
   },
 });

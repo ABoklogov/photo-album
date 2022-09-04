@@ -5,6 +5,12 @@ import {
 } from "react-native";
 import BtnLogOut from 'components/shared/BtnLogOut';
 import BtnBack from "components/shared/BtnBack";
+import {
+  strings,
+  colors,
+  fonts,
+  sizeText
+} from 'res/vars.js';
 
 export default Header = ({ title }) => {
   return (
@@ -13,14 +19,14 @@ export default Header = ({ title }) => {
         <Text style={styles.title}>{title}</Text>
 
         {
-          title === 'Публикации' &&
+          title === strings.headerTitlePosts &&
           <View style={styles.logOutBtn}>
             <BtnLogOut />
           </View>
         }
 
         {
-          title === 'Создать публикацию' &&
+          title === strings.headerTitleCreatePosts &&
           <View style={styles.backBtn}>
             <BtnBack />
           </View>
@@ -35,17 +41,17 @@ const styles = StyleSheet.create({
     position: 'relative',
     paddingTop: 55,
     paddingBottom: 11,
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     borderBottomWidth: 1,
-    borderBottomColor: '#E5E5E5',
+    borderBottomColor: colors.borderGrey,
   },
   title: {
-    fontFamily: 'GothamPro-Medium',
-    fontSize: 17,
+    fontFamily: fonts.medium,
+    fontSize: sizeText.medium,
     lineHeight: 22,
     fontStyle: 'normal',
     textAlign: 'center',
-    color: '#212121',
+    color: colors.black,
   },
   logOutBtn: {
     position: 'absolute',

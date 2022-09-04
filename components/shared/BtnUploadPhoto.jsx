@@ -3,6 +3,12 @@ import {
   TouchableOpacity,
   Text,
 } from "react-native";
+import {
+  colors,
+  fonts,
+  sizeText,
+  strings
+} from 'res/vars.js';
 
 export default BtnUploadPhoto = () => {
   return (
@@ -10,7 +16,7 @@ export default BtnUploadPhoto = () => {
       activeOpacity={0.8}
     >
       <Text style={styles.text}>
-        Загрузите фото
+        {strings.buttonUploadPhoto}
       </Text>
     </TouchableOpacity>
   )
@@ -18,11 +24,11 @@ export default BtnUploadPhoto = () => {
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: 'GothamPro-Medium',
+    fontFamily: fonts.medium,
+    fontSize: sizeText.normal,
     fontStyle: 'normal',
-    fontSize: 16,
     lineHeight: 19,
-    color: '#BDBDBD',
+    color: colors.grey,
     width: 150,
     marginHorizontal: 16,
   },

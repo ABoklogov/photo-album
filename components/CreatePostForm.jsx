@@ -9,6 +9,7 @@ import {
 import Button from 'components/shared/Button';
 import ImputNamePost from 'components/shared/InputNamePost';
 import InputPositionPost from 'components/shared/InputPositionPost';
+import { colors, strings } from 'res/vars.js';
 
 const statePost = {
   name: '',
@@ -40,23 +41,23 @@ export default CreatePostForm = ({ opensKeyboard, navigation }) => {
       >
         <View>
           <ImputNamePost
-            placeholder={'Название...'}
+            placeholder={strings.placeholderNamePost}
             opensKeyboard={opensKeyboard}
             stateKey={state.name}
             onChange={onChangeName}
           />
 
           <InputPositionPost
-            placeholder={'Местность...'}
+            placeholder={strings.placeholderPositionPost}
             opensKeyboard={opensKeyboard}
             stateKey={state.position}
             onChange={onChangePosition}
           />
 
           <Button
-            text={'Опубликовать'}
-            background={'#F6F6F6'}
-            textColor={'#BDBDBD'}
+            text={strings.buttonPost}
+            background={colors.lightGrey}
+            textColor={colors.grey}
             submitState={submitState}
           />
         </View>
@@ -68,7 +69,7 @@ export default CreatePostForm = ({ opensKeyboard, navigation }) => {
 const styles = StyleSheet.create({
   containerForm: {
     marginTop: 32,
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     marginHorizontal: 16,
   },
 });

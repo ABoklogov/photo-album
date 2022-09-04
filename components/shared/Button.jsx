@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   Text,
 } from "react-native";
+import { fonts, sizeText } from 'res/vars.js';
 
 export default Button = ({
   text,
@@ -52,8 +53,8 @@ const styles = StyleSheet.create({
     // })
   },
   btnText: {
-    fontFamily: 'GothamPro-Medium',
-    fontSize: 16,
+    fontFamily: fonts.medium,
+    fontSize: sizeText.normal,
     lineHeight: 19,
     textAlign: 'center',
 

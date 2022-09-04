@@ -2,6 +2,7 @@ import {
   StyleSheet,
   ImageBackground,
 } from "react-native";
+import { colors } from 'res/vars.js';
 
 export default PostPhoto = () => {
   return (
@@ -20,8 +21,8 @@ const styles = StyleSheet.create({
     height: 240,
     // marginHorizontal: 16,
     borderWidth: 1,
-    borderColor: '#E8E8E8',
+    borderColor: colors.borderGrey,
     borderRadius: 8,
-    backgroundColor: '#F6F6F6',
+    backgroundColor: colors.lightGrey,
   },
 });

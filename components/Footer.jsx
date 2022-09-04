@@ -3,6 +3,7 @@ import {
   View,
 } from "react-native";
 import BtnDeletePost from 'components/shared/BtnDeletePost';
+import { colors } from 'res/vars.js';
 
 export default Footer = () => {
   return (
@@ -15,7 +16,7 @@ export default Footer = () => {
 const styles = StyleSheet.create({
   footer: {
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     height: 83,
     width: '100%',
     paddingBottom: 34,

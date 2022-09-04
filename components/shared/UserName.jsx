@@ -3,7 +3,6 @@ import {
   View,
   Text,
 } from "react-native";
-
 import { colors, fonts, sizeText } from 'res/vars.js';
 
 const { name, email } = {

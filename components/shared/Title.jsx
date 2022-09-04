@@ -2,6 +2,7 @@ import {
   StyleSheet,
   Text,
 } from "react-native";
+import { colors, fonts, sizeText } from 'res/vars.js';
 
 export default Title = ({ title }) => {
   return (
@@ -13,10 +14,10 @@ export default Title = ({ title }) => {
 
 const styles = StyleSheet.create({
   title: {
-    fontFamily: 'GothamPro-Bold',
-    fontSize: 30,
+    fontFamily: fonts.bold,
+    fontSize: sizeText.big,
     fontStyle: 'normal',
     textAlign: 'center',
-    color: '#212121',
+    color: colors.black,
   },
 });

@@ -3,6 +3,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Camera from 'icons/Camera';
+import { colors } from 'res/vars.js';
 
 export default BtnCreatePhoto = () => {
   return (
@@ -21,7 +22,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: 60,
     height: 60,
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    backgroundColor: colors.transparent,
     borderRadius: 60 / 2,
   },
 });

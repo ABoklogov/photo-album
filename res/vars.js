@@ -35,9 +35,12 @@ export const strings = {
   placeholderLogin: 'Логин',
   placeholderEmail: 'Адрес электронной почты',
   placeholderPassword: 'Пароль',
+  placeholderNamePost: 'Название...',
+  placeholderPositionPost: 'Местность...',
   buttonRegistration: 'Зарегистрироваться',
   buttonLogin: 'Войти',
   buttonPost: 'Опубликовать',
+  buttonUploadPhoto: 'Загрузите фото',
   linkRegistration: 'Уже есть аккаунт? Войти',
   linkLogin: 'Нет аккаунта? Зарегистрироваться',
 };

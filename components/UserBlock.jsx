@@ -7,7 +7,6 @@ import {
 import UserName from "components/shared/UserName";
 import { images } from 'res/vars.js';
 
-
 export default UserBlock = () => {
   return (
     <View style={styles.userBlock}>

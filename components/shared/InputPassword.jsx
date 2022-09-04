@@ -6,8 +6,9 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import { colors, fonts, sizeText } from 'res/vars.js';
 
-const InputPassword = ({
+export default InputPassword = ({
   placeholder,
   opensKeyboard,
   stateKey,
@@ -24,10 +25,11 @@ const InputPassword = ({
   return (
     <View style={styles.inputPassword}>
       <TextInput
-        style={{ ...styles.input, borderColor: isFocus ? '#56C330' : '#E8E8E8' }}
+        style={{ ...styles.input, borderColor: isFocus ? colors.green : colors.borderGrey }}
         textAlign={'left'}
         secureTextEntry={isHiddenPassword}
         placeholder={placeholder}
+        placeholderTextColor={colors.grey}
         onFocus={chengeFocusInput}
         onBlur={() => setIsFocus(false)}
         value={stateKey}
@@ -46,21 +48,19 @@ const InputPassword = ({
   )
 };
 
-export default InputPassword;
-
 const styles = StyleSheet.create({
   inputPassword: {
     position: 'relative',
   },
   input: {
-    fontFamily: 'GothamPro-Medium',
-    fontSize: 16,
+    fontFamily: fonts.medium,
+    fontSize: sizeText.normal,
     borderWidth: 1,
     borderRadius: 8,
     height: 50,
     padding: 15,
-    color: '#212121',
-    backgroundColor: '#F6F6F6',
+    color: colors.black,
+    backgroundColor: colors.lightGrey,
   },
   inputPasswordBtn: {
     position: 'absolute',
@@ -72,11 +72,11 @@ const styles = StyleSheet.create({
     ]
   },
   inputPasswordBtnText: {
-    fontFamily: 'GothamPro-Medium',
-    fontSize: 16,
+    fontFamily: fonts.medium,
+    fontSize: sizeText.normal,
     fontStyle: 'normal',
     textAlign: 'center',
     lineHeight: 19,
-    color: '#0097ff',
+    color: colors.blue,
   },
 });

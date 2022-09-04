@@ -3,6 +3,7 @@ import {
   StyleSheet,
   TextInput,
 } from "react-native";
+import { colors, fonts, sizeText } from 'res/vars.js';
 
 export default InputNamePost = ({
   placeholder,
@@ -19,10 +20,10 @@ export default InputNamePost = ({
 
   return (
     <TextInput
-      style={{ ...styles.input, borderBottomColor: isFocus ? '#56C330' : '#E8E8E8' }}
+      style={{ ...styles.input, borderBottomColor: isFocus ? colors.green : colors.borderGrey }}
       textAlign={'left'}
       placeholder={placeholder}
-      placeholderTextColor={'#BDBDBD'}
+      placeholderTextColor={colors.grey}
       onFocus={chengeFocusInput}
       onBlur={() => setIsFocus(false)}
       value={stateKey}
@@ -33,17 +34,17 @@ export default InputNamePost = ({
 
 const styles = StyleSheet.create({
   input: {
-    fontFamily: 'GothamPro-Medium',
-    fontSize: 16,
+    fontFamily: fonts.medium,
+    fontSize: sizeText.normal,
     lineHeight: 19,
     borderWidth: 1,
-    borderLeftColor: '#fff',
-    borderRightColor: '#fff',
-    borderTopColor: '#fff',
+    borderLeftColor: colors.white,
+    borderRightColor: colors.white,
+    borderTopColor: colors.white,
     height: 50,
     paddingTop: 15,
     paddingBottom: 15,
-    color: '#212121',
-    backgroundColor: '#fff',
+    color: colors.black,
+    backgroundColor: colors.white,
   },
 });
