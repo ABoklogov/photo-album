@@ -1,16 +1,17 @@
 import {
   StyleSheet,
   ImageBackground,
+  Image
 } from "react-native";
 import { colors } from 'res/vars.js';
 
-export default PostPhoto = () => {
+export default PostPhoto = ({ image }) => {
   return (
-    <ImageBackground
+    <Image
       style={styles.container}
-    // source={image}
+      source={image}
     >
-    </ImageBackground>
+    </Image>
   )
 };
 
@@ -19,7 +20,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: 'center',
     height: 240,
-    // marginHorizontal: 16,
     borderWidth: 1,
     borderColor: colors.borderGrey,
     borderRadius: 8,

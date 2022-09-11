@@ -3,42 +3,38 @@ import {
   StyleSheet,
   View,
   ScrollView,
+  SafeAreaView,
 } from "react-native";
 
 import Background from 'components/shared/Background';
 import Title from 'components/shared/Title';
 import Avatar from 'components/Avatar';
 import BtnLogOut from 'components/shared/BtnLogOut';
-import PostPhoto from 'components/shared/PostPhoto';
+import PostsList from 'components/PostsList';
 import { images, colors } from 'res/vars.js';
+
 
 export default ProfileScreen = ({ navigation }) => {
   return (
-    <ScrollView>
-      <Background image={images.background}>
-        <View style={styles.wrapper}>
-          <Avatar />
+    <Background image={images.background}>
+      <SafeAreaView>
+        <ScrollView>
+          <View style={styles.wrapper}>
+            <Avatar />
 
-          <View style={styles.btnLogOut}>
-            <BtnLogOut />
-          </View>
-
-          <Title title={'Natali Romanova'} />
-
-          <View style={styles.postList}>
-            <View style={styles.postItem}>
-              <PostPhoto />
+            <View style={styles.btnLogOut}>
+              <BtnLogOut />
             </View>
-            <View style={styles.postItem}>
-              <PostPhoto />
-            </View>
-            <View style={styles.postItem}>
-              <PostPhoto />
+
+            <Title title={'Natali Romanova'} />
+
+            <View style={styles.postList}>
+              <PostsList />
             </View>
           </View>
-        </View>
-      </Background>
-    </ScrollView>
+        </ScrollView>
+      </SafeAreaView>
+    </Background>
   )
 };
 
@@ -60,6 +56,7 @@ const styles = StyleSheet.create({
   postList: {
     marginHorizontal: 16,
     marginTop: 33,
+    paddingBottom: 33,
   },
   postItem: {
     marginTop: 32,
