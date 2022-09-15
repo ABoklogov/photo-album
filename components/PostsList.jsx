@@ -1,9 +1,12 @@
+import { useEffect } from 'react';
 import {
   StyleSheet,
   View,
   Text,
   ScrollView,
   SafeAreaView,
+  FlatList,
+  LogBox
 } from "react-native";
 import PostItem from 'components/PostItem';
 import { colors, fonts, sizeText } from 'res/vars.js';
@@ -32,9 +35,33 @@ const posts = [
   },
 ]
 export default PostsList = () => {
+  // для удаление ошибки вложенных скроллов друг в друга
+  useEffect(() => {
+    LogBox.ignoreLogs(["VirtualizedLists should never be nested"])
+  }, []);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView>
+      <FlatList
+        data={posts}
+        scrollEnabled={false}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => (
+          <View style={styles.item}>
+            <PostItem
+              name={item.name}
+              amountComments={item.amountComments}
+              amountLikes={item.amountLikes}
+              image={item.image}
+            />
+          </View>
+        )}
+      />
+    </SafeAreaView>
+
+  )
+};
+/* <View style={styles.container}>
       {posts.map(({
         id,
         name,
@@ -51,10 +78,7 @@ export default PostsList = () => {
           />
         </View>
       ))}
-    </View>
-  )
-};
-
+    </View> */
 const styles = StyleSheet.create({
   container: {
   },

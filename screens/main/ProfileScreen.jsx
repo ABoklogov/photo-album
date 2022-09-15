@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     marginTop: 33,
     paddingBottom: 33,
   },
-  postItem: {
-    marginTop: 32,
-  }
+  // postItem: {
+  //   marginTop: 32,
+  // }
 });
