@@ -30,6 +30,7 @@ export const colors = {
 export const strings = {
   headerTitlePosts: 'Публикации',
   headerTitleCreatePosts: 'Создать публикацию',
+  headerTitleComments: 'Комментарии',
   titleRegistration: 'Регистрация',
   titleLogin: 'Войти',
   placeholderLogin: 'Логин',

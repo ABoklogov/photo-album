@@ -2,14 +2,14 @@ import { useEffect } from 'react';
 import {
   StyleSheet,
   View,
-  Text,
-  ScrollView,
+  // Text,
+  // ScrollView,
   SafeAreaView,
   FlatList,
   LogBox
 } from "react-native";
 import PostItem from 'components/PostItem';
-import { colors, fonts, sizeText } from 'res/vars.js';
+// import { colors, fonts, sizeText } from 'res/vars.js';
 
 const posts = [
   {
@@ -17,21 +17,24 @@ const posts = [
     name: 'Лес',
     amountComments: 8,
     amountLikes: 123,
-    image: require('assets/images/posts/post2.jpg')
+    image: require('assets/images/posts/post2.jpg'),
+    location: 'Russia',
   },
   {
     id: 222,
     name: 'Закат на Черном море',
     amountComments: 1,
     amountLikes: 24,
-    image: require('assets/images/posts/post1.jpg')
+    image: require('assets/images/posts/post1.jpg'),
+    location: 'USA',
   },
   {
     id: 333,
     name: 'Старый домик в Венеции',
     amountComments: 4,
     amountLikes: 77,
-    image: require('assets/images/posts/post3.jpg')
+    image: require('assets/images/posts/post3.jpg'),
+    location: 'Chine',
   },
 ]
 export default PostsList = () => {
@@ -53,12 +56,12 @@ export default PostsList = () => {
               amountComments={item.amountComments}
               amountLikes={item.amountLikes}
               image={item.image}
+              location={item.location}
             />
           </View>
         )}
       />
     </SafeAreaView>
-
   )
 };
 /* <View style={styles.container}>

@@ -18,6 +18,7 @@ import RegistrationScreen from 'screens/auth/RegistrationScreen';
 import PostsScreen from 'screens/main/PostsScreen';
 import CreatePostsScreen from 'screens/main/CreatePostsScreen';
 import ProfileScreen from 'screens/main/ProfileScreen';
+import CommentsScreen from 'screens/main/CommentsScreen';
 
 import { strings } from 'res/vars.js';
 
@@ -115,6 +116,18 @@ export default useRoute = (isAuth) => {
         component={CreatePostsScreen}
         options={{
           title: strings.headerTitleCreatePosts,
+          // подключаем компонент Header
+          header: ({ navigation, route, options }) => {
+            const title = getHeaderTitle(options, route.name);
+            return <Header title={title} navigation={navigation} />;
+          },
+        }}
+      />
+      <NotTabsStack.Screen
+        name="Comments"
+        component={CommentsScreen}
+        options={{
+          title: strings.headerTitleComments,
           // подключаем компонент Header
           header: ({ navigation, route, options }) => {
             const title = getHeaderTitle(options, route.name);

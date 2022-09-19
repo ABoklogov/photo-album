@@ -31,6 +31,13 @@ export default Header = ({ title }) => {
             <BtnBack />
           </View>
         }
+
+        {
+          title === strings.headerTitleComments &&
+          <View style={styles.backBtn}>
+            <BtnBack />
+          </View>
+        }
       </View>
     </View>
   )

@@ -6,13 +6,15 @@ import {
 import PostPhoto from 'components/shared/PostPhoto';
 import PostCommentsNum from 'components/shared/PostCommentsNum';
 import PostLikeNum from 'components/shared/PostLikeNum';
+import PostLocation from 'components/shared/PostLocation';
 import { colors, fonts, sizeText } from 'res/vars.js';
 
 export default PostItem = ({
   name,
   amountComments,
   amountLikes,
-  image
+  image,
+  location
 }) => {
   return (
     <View style={styles.container}>
@@ -24,9 +26,16 @@ export default PostItem = ({
 
       <View style={styles.footerPost}>
         <View style={styles.comments}>
-          <PostCommentsNum amountComments={amountComments} />
+          <PostCommentsNum
+            amountComments={amountComments}
+            image={image}
+          />
         </View>
         <PostLikeNum amountLikes={amountLikes} />
+
+        <View style={styles.location}>
+          <PostLocation location={location} />
+        </View>
       </View>
     </View>
   )
@@ -53,5 +62,8 @@ const styles = StyleSheet.create({
     fontSize: sizeText.normal,
     lineHeight: 19,
     color: colors.black,
+  },
+  location: {
+    marginLeft: 'auto',
   }
 });
