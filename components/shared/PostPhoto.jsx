@@ -1,6 +1,5 @@
 import {
   StyleSheet,
-  ImageBackground,
   Image
 } from "react-native";
 import { colors } from 'res/vars.js';

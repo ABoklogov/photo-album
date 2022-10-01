@@ -19,6 +19,29 @@ const posts = [
     amountLikes: 123,
     image: require('assets/images/posts/post2.jpg'),
     location: 'Russia',
+    comments: [
+      {
+        id: 'm4kto34o5nm',
+        isMaster: false,
+        text: 'Really love your most recent photo. I’ve been trying to capture the same thing for a few months and would love some tips!',
+        date: '09 июня, 2020',
+        time: '08:40',
+      },
+      {
+        id: 'dk348nfgeri',
+        isMaster: true,
+        text: 'A fast 50mm like f1.8 would help with the bokeh. I’ve been using primes as they tend to get a bit sharper images.',
+        date: '09 июня, 2020',
+        time: '09:14',
+      },
+      {
+        id: 'flwp489fhui',
+        isMaster: false,
+        text: 'Thank you! That was very helpful!',
+        date: '09 июня, 2020',
+        time: '09:20',
+      },
+    ],
   },
   {
     id: 222,
@@ -36,7 +59,8 @@ const posts = [
     image: require('assets/images/posts/post3.jpg'),
     location: 'Chine',
   },
-]
+];
+
 export default PostsList = () => {
   // для удаление ошибки вложенных скроллов друг в друга
   useEffect(() => {
@@ -57,6 +81,7 @@ export default PostsList = () => {
               amountLikes={item.amountLikes}
               image={item.image}
               location={item.location}
+              comments={item.comments}
             />
           </View>
         )}

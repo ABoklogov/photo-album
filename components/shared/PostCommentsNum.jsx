@@ -8,13 +8,17 @@ import {
 import CommentsIcon from 'icons/CommentsIcon';
 import { colors, fonts, sizeText } from 'res/vars.js';
 
-export default PostCommentsNum = ({ amountComments, image }) => {
+export default PostCommentsNum = ({
+  amountComments,
+  image,
+  comments
+}) => {
   const navigation = useNavigation();
 
   return (
     <TouchableOpacity
       activeOpacity={0.8}
-      onPress={() => navigation.navigate('Comments', { image })}
+      onPress={() => navigation.navigate('Comments', { image, comments })}
     >
       <View style={styles.container}>
         <View style={styles.icon}>

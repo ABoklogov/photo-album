@@ -14,7 +14,8 @@ export default PostItem = ({
   amountComments,
   amountLikes,
   image,
-  location
+  location,
+  comments
 }) => {
   return (
     <View style={styles.container}>
@@ -29,6 +30,7 @@ export default PostItem = ({
           <PostCommentsNum
             amountComments={amountComments}
             image={image}
+            comments={comments}
           />
         </View>
         <PostLikeNum amountLikes={amountLikes} />
@@ -43,7 +45,6 @@ export default PostItem = ({
 
 const styles = StyleSheet.create({
   container: {
-
   },
   photo: {
     marginBottom: 8,
