@@ -12,7 +12,7 @@ import Avatar from 'components/Avatar';
 import BtnLogOut from 'components/shared/BtnLogOut';
 import PostsList from 'components/PostsList';
 import { images, colors } from 'res/vars.js';
-
+import data from 'res/data.js';
 
 export default ProfileScreen = ({ navigation }) => {
   return (
@@ -20,13 +20,13 @@ export default ProfileScreen = ({ navigation }) => {
       <SafeAreaView>
         <ScrollView>
           <View style={styles.wrapper}>
-            <Avatar />
+            <Avatar avatar={data.userAvatar} />
 
             <View style={styles.btnLogOut}>
               <BtnLogOut />
             </View>
 
-            <Title title={'Natali Romanova'} />
+            <Title title={data.nameUser} />
 
             <View style={styles.postList}>
               <PostsList />

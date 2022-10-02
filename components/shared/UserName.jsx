@@ -5,12 +5,7 @@ import {
 } from "react-native";
 import { colors, fonts, sizeText } from 'res/vars.js';
 
-const { name, email } = {
-  name: 'Natali Romanova',
-  email: 'email@example.com',
-};
-
-export default UserName = () => {
+export default UserName = ({ name, email }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.name}>

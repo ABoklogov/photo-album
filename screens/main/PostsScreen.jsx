@@ -6,6 +6,7 @@ import {
 } from "react-native";
 import UserBlock from "components/UserBlock";
 import { colors } from 'res/vars.js';
+import data from 'res/data.js';
 // import BtnFooterCenter from 'components/shared/BtnFooterCenter';
 // import CreateIcon from 'components/icons/CreateIcon';
 
@@ -14,7 +15,11 @@ export default PostsScreen = () => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.userBlockPosition}>
-        <UserBlock />
+        <UserBlock
+          avatar={data.userAvatar}
+          name={data.nameUser}
+          email={data.emailUser}
+        />
       </View>
     </ScrollView>
   )

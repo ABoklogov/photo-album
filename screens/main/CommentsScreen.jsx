@@ -15,9 +15,9 @@ import { colors } from 'res/vars.js';
 export default CommentsScreen = ({ navigation, route }) => {
   return (
     // <TouchableWithoutFeedback onPress={removesKeyboard}>
-    <SafeAreaView>
-      <ScrollView>
-        <View style={styles.wrapper}>
+    <View style={styles.wrapper}>
+      <SafeAreaView>
+        <ScrollView>
           <View style={styles.container}>
             <PostPhoto image={route.params.image} />
 
@@ -25,9 +25,9 @@ export default CommentsScreen = ({ navigation, route }) => {
               <CommentsList comments={route.params.comments} />
             </View>
           </View>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+        </ScrollView>
+      </SafeAreaView>
+    </View>
     // </TouchableWithoutFeedback >
   )
 };
@@ -35,6 +35,7 @@ export default CommentsScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: colors.white,
+    height: '100%',
   },
   container: {
     flex: 1,

@@ -5,16 +5,21 @@ import {
 } from "react-native";
 
 import UserName from "components/shared/UserName";
-import { images } from 'res/vars.js';
 
-export default UserBlock = () => {
+export default UserBlock = ({ avatar, name, email }) => {
   return (
     <View style={styles.userBlock}>
-      <Image
-        style={styles.photo}
-        source={images.avatar}
+      <View style={styles.photoBlock}>
+        <Image
+          style={styles.photo}
+          source={avatar}
+        />
+      </View>
+
+      <UserName
+        name={name}
+        email={email}
       />
-      <UserName />
     </View>
   )
 };
@@ -24,10 +29,14 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
   },
-  photo: {
-    borderRadius: 16,
+  photoBlock: {
     marginRight: 8,
     height: 60,
     width: 60,
+  },
+  photo: {
+    borderRadius: 16,
+    height: '100%',
+    width: '100%',
   },
 });

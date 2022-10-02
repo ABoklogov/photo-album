@@ -9,7 +9,6 @@ import CommentsIcon from 'icons/CommentsIcon';
 import { colors, fonts, sizeText } from 'res/vars.js';
 
 export default PostCommentsNum = ({
-  amountComments,
   image,
   comments
 }) => {
@@ -22,9 +21,10 @@ export default PostCommentsNum = ({
     >
       <View style={styles.container}>
         <View style={styles.icon}>
-          <CommentsIcon amountComments={amountComments} />
+          <CommentsIcon amountComments={comments.length} />
         </View>
-        <Text style={styles.textComments}>{amountComments}</Text>
+
+        {comments.length !== 0 && <Text style={styles.textComments}>{comments.length}</Text>}
       </View>
     </TouchableOpacity>
   )

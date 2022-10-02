@@ -11,7 +11,6 @@ import { colors, fonts, sizeText } from 'res/vars.js';
 
 export default PostItem = ({
   name,
-  amountComments,
   amountLikes,
   image,
   location,
@@ -28,7 +27,6 @@ export default PostItem = ({
       <View style={styles.footerPost}>
         <View style={styles.comments}>
           <PostCommentsNum
-            amountComments={amountComments}
             image={image}
             comments={comments}
           />

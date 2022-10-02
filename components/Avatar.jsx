@@ -1,14 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   StyleSheet,
   View,
+  Image,
   TouchableOpacity,
 } from "react-native";
 import AddAvatar from 'icons/AddAvatar';
 import { colors } from 'res/vars.js';
 
-export default Avatar = () => {
+export default Avatar = ({ avatar }) => {
   const [isAddAvatar, setIsAddAvatar] = useState(false);
+
+  useEffect(() => {
+    avatar ? setIsAddAvatar(true) : setIsAddAvatar(false)
+  }, [avatar]);
 
   const addAvatar = () => {
     setIsAddAvatar(!isAddAvatar);
@@ -16,6 +21,11 @@ export default Avatar = () => {
 
   return (
     <View style={styles.avatarBlock}>
+      {avatar &&
+        <Image
+          style={styles.photo}
+          source={avatar}
+        />}
       <TouchableOpacity
         // меняем стили кнопки взависимовти от того добавлен ли аватар или нет:
         style={isAddAvatar ? {
@@ -47,6 +57,7 @@ const styles = StyleSheet.create({
     height: 120,
     width: 120,
     borderRadius: 16,
+
   },
   btnAvatar: {
     position: 'absolute',
@@ -59,4 +70,9 @@ const styles = StyleSheet.create({
     height: 25,
     width: 25,
   },
+  photo: {
+    borderRadius: 16,
+    height: '100%',
+    width: '100%',
+  }
 })
