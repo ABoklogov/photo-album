@@ -20,7 +20,7 @@ export default ProfileScreen = ({ navigation }) => {
       <SafeAreaView>
         <ScrollView>
           <View style={styles.wrapper}>
-            <Avatar avatar={data.userAvatar} />
+            <Avatar avatar={data.avatarUser} />
 
             <View style={styles.btnLogOut}>
               <BtnLogOut />

@@ -48,4 +48,5 @@ export const strings = {
 
 export const images = {
   background: require('assets/images/photo_BG.jpg'),
+  defaultAvatar: require('assets/images/avatars/default-avatar.jpg'),
 };

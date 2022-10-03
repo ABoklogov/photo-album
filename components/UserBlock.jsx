@@ -3,7 +3,7 @@ import {
   View,
   Image,
 } from "react-native";
-
+import { images } from 'res/vars.js';
 import UserName from "components/shared/UserName";
 
 export default UserBlock = ({ avatar, name, email }) => {
@@ -12,7 +12,7 @@ export default UserBlock = ({ avatar, name, email }) => {
       <View style={styles.photoBlock}>
         <Image
           style={styles.photo}
-          source={avatar}
+          source={avatar ? avatar : images.defaultAvatar}
         />
       </View>
 

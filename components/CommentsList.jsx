@@ -6,9 +6,7 @@ import {
   FlatList,
   LogBox
 } from "react-native";
-import CommentsGuest from 'components/CommentsGuest';
-import CommentsMaster from 'components/CommentsMaster';
-import { images, colors } from 'res/vars.js';
+import Comments from 'components/Comments';
 
 export default CommentsList = ({ comments }) => {
   // для удаление ошибки вложенных скроллов друг в друга
@@ -23,19 +21,15 @@ export default CommentsList = ({ comments }) => {
         scrollEnabled={false}
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
-          item.isMaster
-            ?
-            <CommentsMaster
+          <View style={styles.comment}>
+            <Comments
               text={item.text}
               date={item.date}
               time={item.time}
+              isMaster={item.isMaster}
+              idUser={item.idUser}
             />
-            :
-            <CommentsGuest
-              text={item.text}
-              date={item.date}
-              time={item.time}
-            />
+          </View>
         )}
       />
     </SafeAreaView>
@@ -43,5 +37,7 @@ export default CommentsList = ({ comments }) => {
 };
 
 const styles = StyleSheet.create({
-
+  comment: {
+    marginBottom: 24,
+  },
 });

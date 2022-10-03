@@ -16,7 +16,7 @@ export default PostsScreen = () => {
     <ScrollView style={styles.container}>
       <View style={styles.userBlockPosition}>
         <UserBlock
-          avatar={data.userAvatar}
+          avatar={data.avatarUser}
           name={data.nameUser}
           email={data.emailUser}
         />
