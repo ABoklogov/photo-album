@@ -2,15 +2,12 @@ import { useEffect } from 'react';
 import {
   StyleSheet,
   View,
-  // Text,
-  // ScrollView,
   SafeAreaView,
   FlatList,
   LogBox
 } from "react-native";
 import PostItem from 'components/PostItem';
-// import { colors, fonts, sizeText } from 'res/vars.js';
-import data from 'res/data.js';
+import data from 'bd/data.js';
 
 export default PostsList = () => {
   // для удаление ошибки вложенных скроллов друг в друга

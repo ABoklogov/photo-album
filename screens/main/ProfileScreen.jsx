@@ -12,7 +12,7 @@ import Avatar from 'components/Avatar';
 import BtnLogOut from 'components/shared/BtnLogOut';
 import PostsList from 'components/PostsList';
 import { images, colors } from 'res/vars.js';
-import data from 'res/data.js';
+import data from 'bd/data.js';
 
 export default ProfileScreen = ({ navigation }) => {
   return (

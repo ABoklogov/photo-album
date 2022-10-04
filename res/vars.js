@@ -38,6 +38,7 @@ export const strings = {
   placeholderPassword: 'Пароль',
   placeholderNamePost: 'Название...',
   placeholderPositionPost: 'Местность...',
+  placeholderCommentsForm: 'Комментировать...',
   buttonRegistration: 'Зарегистрироваться',
   buttonLogin: 'Войти',
   buttonPost: 'Опубликовать',

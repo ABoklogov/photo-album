@@ -10,6 +10,7 @@ import CreatePostPhoto from 'components/CreatePostPhoto';
 import Footer from 'components/Footer';
 import BtnUploadPhoto from 'components/shared/BtnUploadPhoto';
 import CreatePostForm from "components/CreatePostForm";
+import BtnDeletePost from 'components/shared/BtnDeletePost';
 import { colors } from 'res/vars.js';
 
 export default CreatePostsScreen = ({ navigation }) => {
@@ -38,7 +39,10 @@ export default CreatePostsScreen = ({ navigation }) => {
           </View>
         </View>
 
-        {!isShowKeyboard && <Footer />}
+        {!isShowKeyboard &&
+          <Footer>
+            <BtnDeletePost />
+          </Footer>}
       </View>
     </TouchableWithoutFeedback>
   )

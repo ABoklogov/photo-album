@@ -2,13 +2,12 @@ import {
   StyleSheet,
   View,
 } from "react-native";
-import BtnDeletePost from 'components/shared/BtnDeletePost';
 import { colors } from 'res/vars.js';
 
-export default Footer = () => {
+export default Footer = ({ children }) => {
   return (
     <View style={styles.footer}>
-      <BtnDeletePost />
+      {children}
     </View>
   )
 };

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useRef } from 'react';
 import {
   StyleSheet,
   View,
@@ -10,14 +10,18 @@ import {
 } from "react-native";
 import PostPhoto from 'components/shared/PostPhoto';
 import CommentsList from 'components/CommentsList';
+import CommentsForm from 'components/CommentsForm';
 import { colors } from 'res/vars.js';
 
 export default CommentsScreen = ({ navigation, route }) => {
+  const scrollRef = useRef();
+
   return (
-    // <TouchableWithoutFeedback onPress={removesKeyboard}>
     <View style={styles.wrapper}>
       <SafeAreaView>
-        <ScrollView>
+        <ScrollView
+          ref={scrollRef}
+        >
           <View style={styles.container}>
             <PostPhoto image={route.params.image} />
 
@@ -27,13 +31,17 @@ export default CommentsScreen = ({ navigation, route }) => {
           </View>
         </ScrollView>
       </SafeAreaView>
+
+      <View style={styles.footer}>
+        <CommentsForm scrollEnd={() => scrollRef.current.scrollToEnd()} />
+      </View>
     </View>
-    // </TouchableWithoutFeedback >
   )
 };
 
 const styles = StyleSheet.create({
   wrapper: {
+    position: 'relative',
     backgroundColor: colors.white,
     height: '100%',
   },
@@ -45,5 +53,14 @@ const styles = StyleSheet.create({
   },
   commentsList: {
     marginTop: 32,
+    paddingBottom: 83,
+  },
+  footer: {
+    position: 'absolute',
+    bottom: -1,
+    alignItems: 'center',
+    padding: 16,
+    backgroundColor: colors.white,
+    width: '100%',
   }
 });

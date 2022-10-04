@@ -6,7 +6,7 @@ import {
 } from "react-native";
 import UserBlock from "components/UserBlock";
 import { colors } from 'res/vars.js';
-import data from 'res/data.js';
+import data from 'bd/data.js';
 // import BtnFooterCenter from 'components/shared/BtnFooterCenter';
 // import CreateIcon from 'components/icons/CreateIcon';
 

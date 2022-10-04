@@ -5,16 +5,17 @@ import {
 } from "react-native";
 import CommentsText from "components/CommentsText";
 import { images } from 'res/vars.js';
-import users from 'res/users.js';
+import users from 'bd/users.js';
+import data from 'bd/data.js';
 
 export default Comments = ({
   text,
   date,
   time,
   idUser,
-  isMaster,
 }) => {
   const { avatarUser } = users.find(el => el.id === idUser);
+  const isMaster = idUser === data.id;
 
   return (
     <View style={{ flexDirection: isMaster ? 'row-reverse' : 'row' }}>

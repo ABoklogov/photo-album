@@ -26,7 +26,6 @@ export default CommentsList = ({ comments }) => {
               text={item.text}
               date={item.date}
               time={item.time}
-              isMaster={item.isMaster}
               idUser={item.idUser}
             />
           </View>

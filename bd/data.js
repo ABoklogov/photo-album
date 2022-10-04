@@ -14,7 +14,6 @@ const data = {
         {
           id: 'm4kto34o5nm',
           idUser: 'qwerty123456',
-          isMaster: false,
           text: 'Really love your most recent photo. I’ve been trying to capture the same thing for a few months and would love some tips!',
           date: '09 июня, 2020',
           time: '08:40',
@@ -22,7 +21,6 @@ const data = {
         {
           id: 'dk348nfgeri',
           idUser: '13h5h3h2ge',
-          isMaster: true,
           text: 'A fast 50mm like f1.8 would help with the bokeh. I’ve been using primes as they tend to get a bit sharper images.',
           date: '09 июня, 2020',
           time: '09:14',
@@ -30,7 +28,6 @@ const data = {
         {
           id: 'flwp489fhui',
           idUser: 'sasweqefcd342',
-          isMaster: false,
           text: 'Thank you! That was very helpful!',
           date: '09 июня, 2020',
           time: '09:20',
@@ -38,7 +35,6 @@ const data = {
         {
           id: 'ngaklirnerg734',
           idUser: 'pppppp4444p4p4',
-          isMaster: false,
           text: 'Thank you!',
           date: '44 июня, 2020',
           time: '44:20',
@@ -63,7 +59,6 @@ const data = {
         {
           id: '333gfdgf44',
           idUser: 'fdfdfdf21212',
-          isMaster: false,
           text: 'Cool)))',
           date: '11 июня, 2021',
           time: '03:40',
@@ -71,7 +66,6 @@ const data = {
         {
           id: '423234gdflhn',
           idUser: '13h5h3h2ge',
-          isMaster: true,
           text: 'A fast 50mm like f1.8 would help with the bokeh. I’ve been using primes as they tend to get a bit sharper images.',
           date: '11 июня, 2024',
           time: '13:14',
@@ -79,7 +73,6 @@ const data = {
         {
           id: 'ksjfkk9342jfk',
           idUser: 'kdkdkdjfjfjhghg',
-          isMaster: false,
           text: 'Fuck you!!!',
           date: '11 июня, 2021',
           time: '03:40',
@@ -87,7 +80,6 @@ const data = {
         {
           id: 'vbnmklkghff5',
           idUser: 'sasweqefcd342',
-          isMaster: false,
           text: 'Pidor...........))) Cool!!!',
           date: '07 июня, 2021',
           time: '03:43',
@@ -95,7 +87,6 @@ const data = {
         {
           id: 'cftgbhuy54',
           idUser: '13h5h3h2ge',
-          isMaster: true,
           text: 'A fast 50mm like f1.8 would help with the bokeh. I’ve been using primes as they tend to get a bit sharper images. Fuck you all you fucking bastards',
           date: '15 июня, 2027',
           time: '13:14',
@@ -103,7 +94,6 @@ const data = {
         {
           id: '5423hfgdopui',
           idUser: 'kdkdkdjfjfjhghg',
-          isMaster: false,
           text: 'A fast 50mm like f1.8 would help with the bokeh. I’ve been using primes as they tend to get a bit sharper images.',
           date: '11 июня, 2029',
           time: '13:14',
