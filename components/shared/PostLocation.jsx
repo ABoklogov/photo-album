@@ -1,19 +1,28 @@
+import { useNavigation } from "@react-navigation/native";
 import {
   StyleSheet,
   View,
-  Text
+  Text,
+  TouchableOpacity
 } from "react-native";
 import MapMarker from 'icons/MapMarker';
 import { colors, fonts, sizeText } from 'res/vars.js';
 
 export default PostLocation = ({ location }) => {
+  const navigation = useNavigation();
+
   return (
-    <View style={styles.container}>
-      <View style={styles.marker}>
-        <MapMarker />
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={() => navigation.navigate('Map', { location })}
+    >
+      <View style={styles.container}>
+        <View style={styles.marker}>
+          <MapMarker />
+        </View>
+        <Text style={styles.text}>{location}</Text>
       </View>
-      <Text style={styles.text}>{location}</Text>
-    </View>
+    </TouchableOpacity>
   )
 };
 

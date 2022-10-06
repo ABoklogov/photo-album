@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useNavigation } from "@react-navigation/native";
 import {
   StyleSheet,
   TextInput,
   View,
+  TouchableOpacity
 } from "react-native";
 import MapMarker from 'icons/MapMarker';
 import { colors, fonts, sizeText } from 'res/vars.js';
@@ -14,6 +16,7 @@ export default InputPositionPost = ({
   onChange
 }) => {
   const [isFocus, setIsFocus] = useState(false);
+  const navigation = useNavigation();
 
   const chengeFocusInput = () => {
     setIsFocus(true);
@@ -33,7 +36,12 @@ export default InputPositionPost = ({
       />
 
       <View style={styles.icon}>
-        <MapMarker />
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={() => navigation.navigate('Map')}
+        >
+          <MapMarker />
+        </TouchableOpacity>
       </View>
     </View>
 

@@ -19,6 +19,7 @@ import PostsScreen from 'screens/main/PostsScreen';
 import CreatePostsScreen from 'screens/main/CreatePostsScreen';
 import ProfileScreen from 'screens/main/ProfileScreen';
 import CommentsScreen from 'screens/main/CommentsScreen';
+import MapScreen from 'screens/main/MapScreen';
 
 import { strings } from 'res/vars.js';
 
@@ -116,7 +117,6 @@ export default useRoute = (isAuth) => {
         component={CreatePostsScreen}
         options={{
           title: strings.headerTitleCreatePosts,
-          // подключаем компонент Header
           header: ({ navigation, route, options }) => {
             const title = getHeaderTitle(options, route.name);
             return <Header title={title} navigation={navigation} />;
@@ -128,7 +128,17 @@ export default useRoute = (isAuth) => {
         component={CommentsScreen}
         options={{
           title: strings.headerTitleComments,
-          // подключаем компонент Header
+          header: ({ navigation, route, options }) => {
+            const title = getHeaderTitle(options, route.name);
+            return <Header title={title} navigation={navigation} />;
+          },
+        }}
+      />
+      <NotTabsStack.Screen
+        name="Map"
+        component={MapScreen}
+        options={{
+          title: strings.headerTitleMap,
           header: ({ navigation, route, options }) => {
             const title = getHeaderTitle(options, route.name);
             return <Header title={title} navigation={navigation} />;
