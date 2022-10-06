@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import CommentsSend from 'icons/CommentsSend';
 import { colors, fonts, sizeText, strings } from 'res/vars.js';
-import data from 'bd/data.js';
+import dataUser from 'bd/dataUser.js';
 
 export default CommentsForm = ({ scrollEnd }) => {
   const [comment, setComment] = useState('');
@@ -15,7 +15,7 @@ export default CommentsForm = ({ scrollEnd }) => {
   const submitComment = () => {
     console.log("🚀 ~ comment",
       {
-        idUser: data.id,
+        idUser: dataUser.id,
         comment: comment
       });
     scrollEnd();

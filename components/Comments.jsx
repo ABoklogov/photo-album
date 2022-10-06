@@ -6,7 +6,7 @@ import {
 import CommentsText from "components/CommentsText";
 import { images } from 'res/vars.js';
 import users from 'bd/users.js';
-import data from 'bd/data.js';
+import dataUser from 'bd/dataUser.js';
 
 export default Comments = ({
   text,
@@ -15,7 +15,7 @@ export default Comments = ({
   idUser,
 }) => {
   const { avatarUser } = users.find(el => el.id === idUser);
-  const isMaster = idUser === data.id;
+  const isMaster = idUser === dataUser.id;
 
   return (
     <View style={{ flexDirection: isMaster ? 'row-reverse' : 'row' }}>

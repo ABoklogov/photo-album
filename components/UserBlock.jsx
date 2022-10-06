@@ -3,22 +3,26 @@ import {
   View,
   Image,
 } from "react-native";
-import { images } from 'res/vars.js';
 import UserName from "components/shared/UserName";
+import users from 'bd/users';
+import { images } from 'res/vars.js';
 
-export default UserBlock = ({ avatar, name, email }) => {
+export default UserBlock = ({ idUser }) => {
+  // достаем данные конкретного юзера
+  const { nameUser, emailUser, avatarUser } = users.find(el => el.id === idUser);
+
   return (
     <View style={styles.userBlock}>
       <View style={styles.photoBlock}>
         <Image
           style={styles.photo}
-          source={avatar ? avatar : images.defaultAvatar}
+          source={avatarUser ? avatarUser : images.defaultAvatar}
         />
       </View>
 
       <UserName
-        name={name}
-        email={email}
+        name={nameUser}
+        email={emailUser}
       />
     </View>
   )

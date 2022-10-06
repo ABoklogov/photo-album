@@ -7,9 +7,13 @@ import {
   LogBox
 } from "react-native";
 import PostItem from 'components/PostItem';
-import data from 'bd/data.js';
+import dataUser from 'bd/dataUser.js';
+import posts from 'bd/posts.js';
 
 export default PostsList = () => {
+  // создаем массив постов конкретного юзера
+  const postsUser = posts.filter(el => el.idUser === dataUser.id);
+
   // для удаление ошибки вложенных скроллов друг в друга
   useEffect(() => {
     LogBox.ignoreLogs(["VirtualizedLists should never be nested"])
@@ -18,7 +22,7 @@ export default PostsList = () => {
   return (
     <SafeAreaView>
       <FlatList
-        data={data.posts}
+        data={postsUser}
         scrollEnabled={false}
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
