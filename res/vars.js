@@ -14,7 +14,6 @@ export const sizeText = {
   micro: 10,
 };
 
-
 export const colors = {
   black: '#212121',
   transparent: 'rgba(255, 255, 255, 0.3)',
@@ -46,6 +45,8 @@ export const strings = {
   buttonUploadPhoto: 'Загрузите фото',
   linkRegistration: 'Уже есть аккаунт? Войти',
   linkLogin: 'Нет аккаунта? Зарегистрироваться',
+  permissionRequest: 'Запрос разрешений...',
+  noPermission: 'Разрешение для камеры не предоставлено. Пожалуйста, измените это в настройках.',
 };
 
 export const images = {
