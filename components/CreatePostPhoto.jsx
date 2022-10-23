@@ -3,6 +3,7 @@ import {
   StyleSheet,
   View,
   Image,
+  Dimensions
 } from "react-native";
 import { Camera, CameraType } from 'expo-camera';
 import { shareAsync } from 'expo-sharing';
@@ -15,6 +16,7 @@ import { colors, strings } from 'res/vars.js';
 
 export default CreatePostPhoto = () => {
   let cameraRef = useRef();
+
   const [hasCameraPermission, setHasCameraPermission] = useState();
   const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState();
   const [type, setType] = useState(CameraType.back);
@@ -105,27 +107,27 @@ export default CreatePostPhoto = () => {
         ref={cameraRef}
         style={styles.camera}
         type={type}
+        ratio={'3:2'}
       >
         {photo &&
-          <View style={styles.preview}>
-            <Image
-              style={styles.image}
-              source={{ uri: photo }}
-            />
-          </View>}
+          <Image
+            style={styles.preview}
+            source={{ uri: photo }}
+          />}
 
         {!photo &&
           <View style={styles.btnTake}>
             <BtnCreatePhoto takePhoto={takePhoto} />
           </View>}
-        {!photo &&
-          <View style={styles.btnToggleCamera}>
-            <BtnToglleTypePhoto toggleCamera={toggleCameraType} />
-          </View>}
-        {!photo &&
-          <View style={styles.btnSizeCamera}>
-            <BtnSizeCamera toggleSizeCamera={toggleSizeCamera} />
-          </View>}
+
+        <View style={styles.additionalBtn}>
+          {!photo &&
+            <View style={styles.btnToggleCamera}>
+              <BtnToglleTypePhoto toggleCamera={toggleCameraType} />
+            </View>}
+
+          <BtnSizeCamera toggleSizeCamera={toggleSizeCamera} />
+        </View>
       </Camera>
     </View>
   )
@@ -147,8 +149,9 @@ const styles = StyleSheet.create({
   camera: {
     justifyContent: "center",
     alignItems: 'center',
-    height: '100%',
     width: '100%',
+    // определяем высоту блока камеры в зависимости от ширины экрана и соотношения сторон камеры равное '3:2'
+    height: ((Dimensions.get('window').width - 32) * 3) / 2,
   },
   preview: {
     position: 'absolute',
@@ -156,7 +159,6 @@ const styles = StyleSheet.create({
     left: 0,
     width: '100%',
     height: '100%',
-    height: 240,
   },
   image: {
     width: '100%',
@@ -168,16 +170,22 @@ const styles = StyleSheet.create({
     // justifyContent: "center",
     // alignItems: 'center',
   },
-  btnToggleCamera: {
+  additionalBtn: {
     position: 'absolute',
-    bottom: 70,
     right: 15,
-    zIndex: -1,
+    top: '50%',
+    transform: [
+      { translateX: 0 },
+      { translateY: -40 },
+    ]
   },
-  btnSizeCamera: {
-    position: 'absolute',
-    bottom: 15,
-    right: 15,
-    zIndex: -1,
-  }
+  btnToggleCamera: {
+    marginBottom: 10,
+  },
+  // btnSizeCamera: {
+  //   position: 'absolute',
+  //   bottom: 15,
+  //   right: 15,
+  //   zIndex: -1,
+  // }
 });
