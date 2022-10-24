@@ -31,6 +31,7 @@ export const strings = {
   headerTitleCreatePosts: 'Создать публикацию',
   headerTitleComments: 'Комментарии',
   headerTitleMap: 'Карта',
+  headerTitleCamera: 'Камера',
   titleRegistration: 'Регистрация',
   titleLogin: 'Войти',
   placeholderLogin: 'Логин',

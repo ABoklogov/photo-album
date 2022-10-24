@@ -45,6 +45,13 @@ export default Header = ({ title }) => {
             <BtnBack />
           </View>
         }
+
+        {
+          title === strings.headerTitleCamera &&
+          <View style={styles.backBtn}>
+            <BtnBack />
+          </View>
+        }
       </View>
     </View>
   )
