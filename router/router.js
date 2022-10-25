@@ -150,11 +150,12 @@ export default useRoute = (isAuth) => {
         name="Camera"
         component={CameraScreen}
         options={{
-          title: strings.headerTitleCamera,
-          header: ({ navigation, route, options }) => {
-            const title = getHeaderTitle(options, route.name);
-            return <Header title={title} navigation={navigation} />;
-          },
+          headerShown: false,
+          // title: strings.headerTitleCamera,
+          // header: ({ navigation, route, options }) => {
+          //   const title = getHeaderTitle(options, route.name);
+          //   return <Header title={title} navigation={navigation} />;
+          // },
         }}
       />
     </NotTabsStack.Navigator>

@@ -4,6 +4,7 @@ import {
   View,
   TouchableWithoutFeedback,
   Keyboard,
+  ScrollView,
 } from "react-native";
 
 import CreatePostPhoto from 'components/CreatePostPhoto';
@@ -28,23 +29,25 @@ export default CreatePostsScreen = ({ navigation }) => {
   const opensKeyboard = () => setIsShowKeyboard(true);
 
   return (
-    <TouchableWithoutFeedback onPress={removesKeyboard}>
-      <View style={styles.container}>
-        <View>
-          <CreatePostPhoto />
+    <ScrollView>
+      <TouchableWithoutFeedback onPress={removesKeyboard}>
+        <View style={styles.container}>
+          <View>
+            <CreatePostPhoto />
 
-          <View style={styles.btnUploadPhoto}>
-            <BtnUploadPhoto />
-            <CreatePostForm opensKeyboard={opensKeyboard} />
+            <View style={styles.btnUploadPhoto}>
+              <BtnUploadPhoto />
+              <CreatePostForm opensKeyboard={opensKeyboard} />
+            </View>
           </View>
-        </View>
 
-        {!isShowKeyboard &&
-          <Footer>
-            <BtnDeletePost />
-          </Footer>}
-      </View>
-    </TouchableWithoutFeedback>
+          {!isShowKeyboard &&
+            <Footer>
+              <BtnDeletePost />
+            </Footer>}
+        </View>
+      </TouchableWithoutFeedback>
+    </ScrollView>
   )
 };
 

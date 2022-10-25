@@ -46,12 +46,12 @@ export default Header = ({ title }) => {
           </View>
         }
 
-        {
+        {/* {
           title === strings.headerTitleCamera &&
           <View style={styles.backBtn}>
             <BtnBack />
           </View>
-        }
+        } */}
       </View>
     </View>
   )
