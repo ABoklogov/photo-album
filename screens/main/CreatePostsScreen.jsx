@@ -6,7 +6,7 @@ import {
   Keyboard,
   ScrollView,
 } from "react-native";
-
+import * as ScreenOrientation from 'expo-screen-orientation';
 import CreatePostPhoto from 'components/CreatePostPhoto';
 import Footer from 'components/Footer';
 import BtnUploadPhoto from 'components/shared/BtnUploadPhoto';
@@ -16,9 +16,11 @@ import { colors } from 'res/vars.js';
 
 export default CreatePostsScreen = ({ navigation }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
-  // слушатель закрытия клавиатуры (при закрытии клавиатуры возвращаемся в первоначальное состояние):
+
   useEffect(() => {
+    // слушатель закрытия клавиатуры (при закрытии клавиатуры возвращаемся в первоначальное состояние):
     const keyboardDidHide = Keyboard.addListener('keyboardDidHide', () => setIsShowKeyboard(false));
+
     return () => keyboardDidHide.remove();
   }, []);
 
@@ -29,9 +31,9 @@ export default CreatePostsScreen = ({ navigation }) => {
   const opensKeyboard = () => setIsShowKeyboard(true);
 
   return (
-    <ScrollView>
-      <TouchableWithoutFeedback onPress={removesKeyboard}>
-        <View style={styles.container}>
+    <TouchableWithoutFeedback onPress={removesKeyboard}>
+      <View style={styles.container}>
+        <ScrollView>
           <View>
             <CreatePostPhoto />
 
@@ -40,14 +42,14 @@ export default CreatePostsScreen = ({ navigation }) => {
               <CreatePostForm opensKeyboard={opensKeyboard} />
             </View>
           </View>
+        </ScrollView>
 
-          {!isShowKeyboard &&
-            <Footer>
-              <BtnDeletePost />
-            </Footer>}
-        </View>
-      </TouchableWithoutFeedback>
-    </ScrollView>
+        {!isShowKeyboard &&
+          <Footer>
+            <BtnDeletePost />
+          </Footer>}
+      </View>
+    </TouchableWithoutFeedback>
   )
 };
 

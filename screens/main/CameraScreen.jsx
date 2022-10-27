@@ -31,6 +31,12 @@ export default CameraScreen = () => {
   console.log("🚀 ~ photo", photo)
   console.log("🚀 ~ orientation", orientation)
 
+  const onOrientation = async () => {
+    await ScreenOrientation.unlockAsync();
+  };
+  const offOrientation = async () => {
+    await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
+  };
   // получаем разрешения для камеры и доступ к внутренней памяти
   useEffect(() => {
     (async () => {
@@ -39,7 +45,8 @@ export default CameraScreen = () => {
       setHasCameraPermission(cameraPromission.status === 'granted');
       setHasMediaLibraryPermission(mediaLibraryPromissions.status === 'granted');
     })();
-
+    // разблокируем поворот экрана
+    onOrientation();
     // определяет ориентацию экрана и записывает в стейт
     const onChengeOrientation = async () => {
       const orientation = await ScreenOrientation.getOrientationAsync();
@@ -47,8 +54,10 @@ export default CameraScreen = () => {
     };
     // вешаем слушатель на ориентацию экрана
     ScreenOrientation.addOrientationChangeListener(onChengeOrientation);
+    // при уходе со страницы убираем слушателя на ориентацию экрана и блокируем поворот экрана
     return () => {
-      ScreenOrientation.removeOrientationChangeListeners()
+      ScreenOrientation.removeOrientationChangeListeners();
+      offOrientation();
     };
   }, []);
 
