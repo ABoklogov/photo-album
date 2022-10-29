@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigation } from "@react-navigation/native";
 import {
   StyleSheet,
@@ -6,11 +6,20 @@ import {
   Image,
 } from "react-native";
 import BtnCreatePhoto from 'components/shared/BtnCreatePhoto';
+import * as ScreenOrientation from 'expo-screen-orientation';
 import { colors } from 'res/vars.js';
 
 export default CreatePostPhoto = () => {
   const navigation = useNavigation();
   const [photo, setPhoto] = useState();
+
+  const offOrientation = async () => {
+    await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
+  };
+
+  useEffect(() => {
+    offOrientation();
+  }, []);
 
   return (
     <View style={styles.container}>
