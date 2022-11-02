@@ -3,7 +3,8 @@ import {
   StyleSheet,
   View,
   Dimensions,
-  Platform
+  Platform,
+  Image,
 } from "react-native";
 import { Camera, CameraType, FlashMode } from 'expo-camera';
 import * as ScreenOrientation from 'expo-screen-orientation';
@@ -32,16 +33,18 @@ export default CameraScreen = () => {
   const [orientation, setOrientation] = useState(1); // поворот экрана 
   const [photo, setPhoto] = useState(); // фото
 
-  console.log("🚀 ~ hasCameraPermission", hasCameraPermission)
-  console.log("🚀 ~ hasMediaLibraryPermission", hasMediaLibraryPermission)
-  console.log("🚀 ~ type", type)
-  console.log("🚀 ~ flash", flash)
-  console.log("🚀 ~ photo", photo)
-  console.log("🚀 ~ orientation", orientation)
+  // console.log("🚀 ~ hasCameraPermission", hasCameraPermission)
+  // console.log("🚀 ~ hasMediaLibraryPermission", hasMediaLibraryPermission)
+  // console.log("🚀 ~ type", type)
+  // console.log("🚀 ~ flash", flash)
+  // console.log("🚀 ~ photo", photo)
+  // console.log("🚀 ~ orientation", orientation)
   console.log("🚀 ~ imagePadding", imagePadding)
+  console.log("🚀 ~ width", width)
+  console.log("🚀 ~ height", height)
   console.log("🚀 ~ screenRatio", screenRatio)
   console.log("🚀 ~ ratio", ratio)
-
+  console.log('-----------------------------------');
 
   const onOrientation = async () => {
     await ScreenOrientation.unlockAsync();
@@ -92,7 +95,14 @@ export default CameraScreen = () => {
       let minDistance = null;
       for (const ratio of ratios) {
         const parts = ratio.split(':');
-        const realRatio = parseInt(parts[0]) / parseInt(parts[1]);
+
+        let realRatio;
+        if (orientation === 1) {
+          realRatio = parseInt(parts[0]) / parseInt(parts[1]);
+        } else {
+          realRatio = parseInt(parts[1]) / parseInt(parts[0]);
+        };
+        // console.log("🚀 ~ prepareRatio ~ realRatio", realRatio)
         realRatios[ratio] = realRatio;
         // ratio не может быть выше экрана, поэтому нам не нужен abs()
         const distance = screenRatio - realRatio;
@@ -104,7 +114,7 @@ export default CameraScreen = () => {
             minDistance = ratio;
           }
         }
-      }
+      };
       // устанавливаем лучшее соотношение
       desiredRatio = minDistance;
       //  рассчитываем разницу между шириной камеры и высотой экрана
@@ -112,7 +122,7 @@ export default CameraScreen = () => {
         (height - realRatios[desiredRatio] * width) / 2
       );
       // устанавливаем отступы и коэффициент предварительного просмотра
-      setImagePadding(remainder / 2);
+      setImagePadding(remainder * 2);
       setRatio(desiredRatio);
       setIsRatioSet(true);
     }
@@ -159,32 +169,35 @@ export default CameraScreen = () => {
       <View style={styles.container}>
         <Camera
           onCameraReady={setCameraReady}
-          ref={(ref) => {
-            setCamera(ref);
-          }}
+          ref={ref => setCamera(ref)}
           style={{
             ...styles.camera,
-            marginTop: imagePadding * 2
+            marginTop: orientation === 1 ? imagePadding : 0,
+            marginLeft: orientation === 1 ? 0 : imagePadding,
           }}
           type={type}
           ratio={ratio}
         >
-          {photo &&
-            <Image
-              style={styles.preview}
-              source={{ uri: photo }}
-            />}
-
-          {!photo &&
-            <View style={orientation === 1 ? styles.blockBtnPortret : styles.blockBtnHorizont}>
-              <BtnToggleFlashPhoto
-                toggleFlash={toggleFlash}
-                flash={flash}
+          {photo && (
+            <View style={styles.previewContainer}>
+              <Image
+                style={styles.previewPhoto}
+                source={{ uri: photo }}
               />
-              <BtnCreatePhoto takePhoto={takePhoto} />
-              <BtnToglleTypePhoto toggleCamera={toggleCameraType} />
-            </View>}
+            </View>
+          )}
         </Camera>
+
+        {!photo && (
+          <View style={orientation === 1 ? styles.blockBtnPortret : styles.blockBtnHorizont}>
+            <BtnToggleFlashPhoto
+              toggleFlash={toggleFlash}
+              flash={flash}
+            />
+            <BtnCreatePhoto takePhoto={takePhoto} />
+            <BtnToglleTypePhoto toggleCamera={toggleCameraType} />
+          </View>
+        )}
       </View>
     )
   }
@@ -196,22 +209,22 @@ const styles = StyleSheet.create({
     position: 'relative',
     justifyContent: "center",
     alignItems: 'center',
-    backgroundColor: colors.lightGrey,
+    backgroundColor: '#000',
   },
   camera: {
     flex: 1,
-    // marginTop: imagePadding,
-    // marginBottom: imagePadding,
-
-    // justifyContent: "center",
-    // alignItems: 'center',
+    alignItems: 'center',
     width: '100%',
     height: '100%',
   },
-  preview: {
+  previewContainer: {
     position: 'absolute',
     top: 0,
     left: 0,
+    width: '100%',
+    height: '100%',
+  },
+  previewPhoto: {
     width: '100%',
     height: '100%',
   },
