@@ -14,7 +14,7 @@ import CreatePostForm from "components/CreatePostForm";
 import BtnDeletePost from 'components/shared/BtnDeletePost';
 import { colors } from 'res/vars.js';
 
-export default CreatePostsScreen = ({ navigation }) => {
+export default CreatePostsScreen = ({ navigation, route }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export default CreatePostsScreen = ({ navigation }) => {
       <View style={styles.container}>
         <ScrollView>
           <View>
-            <CreatePostPhoto />
+            <CreatePostPhoto newPhoto={route.params ? route.params.photo : null} />
 
             <View style={styles.btnUploadPhoto}>
               <BtnUploadPhoto />

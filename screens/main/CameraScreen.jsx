@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigation } from "@react-navigation/native";
 import {
   StyleSheet,
   View,
@@ -13,10 +14,13 @@ import * as MediaLibrary from 'expo-media-library';
 import BtnCreatePhoto from 'components/shared/BtnCreatePhoto';
 import BtnToglleTypePhoto from 'components/shared/BtnToglleTypePhoto';
 import BtnToggleFlashPhoto from 'components/shared/BtnToggleFlashPhoto';
+import BtnAddPhoto from 'components/shared/BtnAddPhoto';
+import BtnReshootPhoto from 'components/shared/BtnReshootPhoto';
 import Message from 'components/shared/Message';
 import { colors, strings } from 'res/vars.js';
 
 export default CameraScreen = () => {
+  const navigation = useNavigation();
   // разрешения
   const [hasCameraPermission, setHasCameraPermission] = useState();
   const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState();
@@ -31,14 +35,14 @@ export default CameraScreen = () => {
   const [type, setType] = useState(CameraType.back); // тип
   const [flash, setFlash] = useState(FlashMode.off); // вспышка
   const [orientation, setOrientation] = useState(1); // поворот экрана 
-  const [photo, setPhoto] = useState(); // фото
+  const [photo, setPhoto] = useState(null); // фото
 
-  // console.log("🚀 ~ hasCameraPermission", hasCameraPermission)
-  // console.log("🚀 ~ hasMediaLibraryPermission", hasMediaLibraryPermission)
-  // console.log("🚀 ~ type", type)
-  // console.log("🚀 ~ flash", flash)
-  // console.log("🚀 ~ photo", photo)
-  // console.log("🚀 ~ orientation", orientation)
+  console.log("🚀 ~ hasCameraPermission", hasCameraPermission)
+  console.log("🚀 ~ hasMediaLibraryPermission", hasMediaLibraryPermission)
+  console.log("🚀 ~ type", type)
+  console.log("🚀 ~ flash", flash)
+  console.log("🚀 ~ photo", photo)
+  console.log("🚀 ~ orientation", orientation)
   console.log("🚀 ~ imagePadding", imagePadding)
   console.log("🚀 ~ width", width)
   console.log("🚀 ~ height", height)
@@ -70,13 +74,6 @@ export default CameraScreen = () => {
     // вешаем слушатель на ориентацию экрана
     ScreenOrientation.addOrientationChangeListener(onChengeOrientation);
     // при уходе со страницы убираем слушателя на ориентацию экрана и блокируем поворот экрана
-
-    // определяем соотношения сторон, поддерживаеммых телефоном
-    // (async () => {
-    //   const ratios = await camera.getSupportedRatiosAsync();
-    //   setRatios(ratios);
-    // })();
-
     return () => {
       ScreenOrientation.removeOrientationChangeListeners();
       offOrientation();
@@ -87,6 +84,7 @@ export default CameraScreen = () => {
     let desiredRatio = '4:3'; // дефолтное соотношение сторон
 
     if (Platform.OS === 'android') {
+      // определяем соотношения сторон, поддерживаеммых телефоном
       const ratios = await camera.getSupportedRatiosAsync();
 
       // рассчитываем поддерживаемые соотношения сторон камеры
@@ -102,7 +100,6 @@ export default CameraScreen = () => {
         } else {
           realRatio = parseInt(parts[1]) / parseInt(parts[0]);
         };
-        // console.log("🚀 ~ prepareRatio ~ realRatio", realRatio)
         realRatios[ratio] = realRatio;
         // ratio не может быть выше экрана, поэтому нам не нужен abs()
         const distance = screenRatio - realRatio;
@@ -122,7 +119,7 @@ export default CameraScreen = () => {
         (height - realRatios[desiredRatio] * width) / 2
       );
       // устанавливаем отступы и коэффициент предварительного просмотра
-      setImagePadding(remainder * 2);
+      setImagePadding(remainder / 2);
       setRatio(desiredRatio);
       setIsRatioSet(true);
     }
@@ -140,8 +137,14 @@ export default CameraScreen = () => {
       quality: 1,
       exif: false
     };
-    let newPhoto = await camera.takePictureAsync(options);
-    setPhoto(newPhoto.uri);
+    // let newPhoto = await camera.takePictureAsync(options);
+    // setPhoto(newPhoto.uri);
+    let newPhoto = () => {
+      setTimeout(() => {
+        setPhoto(require('assets/images/test_photo.jpg'));
+      }, 1000);
+    };
+    newPhoto();
   };
 
   const toggleCameraType = () => {
@@ -150,7 +153,12 @@ export default CameraScreen = () => {
   const toggleFlash = () => {
     setFlash(current => (current === FlashMode.off ? FlashMode.on = 'on' : FlashMode.off = 'off'))
   };
-
+  const addPhoto = () => {
+    navigation.navigate('CreatePosts', { photo });
+  };
+  const reshootPhoto = () => {
+    setPhoto(null);
+  };
   // сообщения, если не получены разрешения
   if (hasCameraPermission === undefined) {
     return (
@@ -172,23 +180,29 @@ export default CameraScreen = () => {
           ref={ref => setCamera(ref)}
           style={{
             ...styles.camera,
+            // стили для портретной ориентации
             marginTop: orientation === 1 ? imagePadding : 0,
+            marginBottom: orientation === 1 ? imagePadding : 0,
+            // стили для ландшафтной ориентации
             marginLeft: orientation === 1 ? 0 : imagePadding,
+            marginRight: orientation === 1 ? 0 : imagePadding,
           }}
           type={type}
           ratio={ratio}
         >
-          {photo && (
-            <View style={styles.previewContainer}>
-              <Image
-                style={styles.previewPhoto}
-                source={{ uri: photo }}
-              />
-            </View>
-          )}
         </Camera>
 
-        {!photo && (
+        {photo && (
+          <View style={styles.previewContainer}>
+            <Image
+              style={styles.previewPhoto}
+              // source={{ uri: photo }}
+              source={photo}
+            />
+          </View>
+        )}
+
+        {!photo ? (
           <View style={orientation === 1 ? styles.blockBtnPortret : styles.blockBtnHorizont}>
             <BtnToggleFlashPhoto
               toggleFlash={toggleFlash}
@@ -196,6 +210,11 @@ export default CameraScreen = () => {
             />
             <BtnCreatePhoto takePhoto={takePhoto} />
             <BtnToglleTypePhoto toggleCamera={toggleCameraType} />
+          </View>
+        ) : (
+          <View style={orientation === 1 ? styles.blockBtnPortret : styles.blockBtnHorizont}>
+            <BtnReshootPhoto reshootPhoto={reshootPhoto} />
+            <BtnAddPhoto addPhoto={addPhoto} />
           </View>
         )}
       </View>

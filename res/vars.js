@@ -24,6 +24,7 @@ export const colors = {
   lightGrey: '#F6F6F6',
   green: '#56C330',
   blue: '#0097ff',
+  red: '#FF464B',
 };
 
 export const strings = {

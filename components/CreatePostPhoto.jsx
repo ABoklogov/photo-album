@@ -9,24 +9,30 @@ import BtnCreatePhoto from 'components/shared/BtnCreatePhoto';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import { colors } from 'res/vars.js';
 
-export default CreatePostPhoto = () => {
+export default CreatePostPhoto = ({ newPhoto }) => {
   const navigation = useNavigation();
   const [photo, setPhoto] = useState();
-
-  const offOrientation = async () => {
-    await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
-  };
 
   useEffect(() => {
     offOrientation();
   }, []);
+
+  useEffect(() => {
+    if (newPhoto) {
+      setPhoto(newPhoto);
+    }
+  }, [newPhoto]);
+
+  const offOrientation = async () => {
+    await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
+  };
 
   return (
     <View style={styles.container}>
       {photo &&
         <Image
           style={styles.preview}
-          source={{ uri: photo }}
+          source={photo}
         />}
       <View style={styles.btnTake}>
         <BtnCreatePhoto takePhoto={() => navigation.navigate('Camera')} />
