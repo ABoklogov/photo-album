@@ -36,6 +36,7 @@ export default CameraScreen = () => {
   const [flash, setFlash] = useState(FlashMode.off); // вспышка
   const [orientation, setOrientation] = useState(1); // поворот экрана 
   const [photo, setPhoto] = useState(null); // фото
+  const [photoOrientation, setPhotoOrientation] = useState(null); // ориентайия во время сделанной фотографии
 
   console.log("🚀 ~ hasCameraPermission", hasCameraPermission)
   console.log("🚀 ~ hasMediaLibraryPermission", hasMediaLibraryPermission)
@@ -48,7 +49,22 @@ export default CameraScreen = () => {
   console.log("🚀 ~ height", height)
   console.log("🚀 ~ screenRatio", screenRatio)
   console.log("🚀 ~ ratio", ratio)
+  console.log("🚀 ~ photoOrientation", photoOrientation)
   console.log('-----------------------------------');
+
+  let photoWidth = '100%';
+  let photoHeight = '100%';
+  // расчет сделанной фотографии
+  if (photoOrientation === 1 && orientation !== 1) {
+    photoWidth = (height * screenRatio) + imagePadding / 2;
+    photoHeight = '100%';
+  } else if (photoOrientation === 1 && orientation === 1) {
+    photoWidth = '100%';
+    photoHeight = '100%';
+  } else if (photoOrientation !== 1 && orientation === 1) {
+    photoWidth = '100%';
+    photoHeight = (width / screenRatio) + imagePadding / 2;
+  };
 
   const onOrientation = async () => {
     await ScreenOrientation.unlockAsync();
@@ -119,7 +135,7 @@ export default CameraScreen = () => {
         (height - realRatios[desiredRatio] * width) / 2
       );
       // устанавливаем отступы и коэффициент предварительного просмотра
-      setImagePadding(remainder / 2);
+      setImagePadding(remainder);
       setRatio(desiredRatio);
       setIsRatioSet(true);
     }
@@ -137,14 +153,16 @@ export default CameraScreen = () => {
       quality: 1,
       exif: false
     };
-    // let newPhoto = await camera.takePictureAsync(options);
-    // setPhoto(newPhoto.uri);
-    let newPhoto = () => {
-      setTimeout(() => {
-        setPhoto(require('assets/images/test_photo.jpg'));
-      }, 1000);
-    };
-    newPhoto();
+    let newPhoto = await camera.takePictureAsync(options);
+    setPhotoOrientation(orientation);
+    console.log('type', type);
+    setPhoto(newPhoto.uri);
+    // let newPhoto = () => {
+    //   setTimeout(() => {
+    //     setPhoto(require('assets/images/test_photo.jpg'));
+    //   }, 1000);
+    // };
+    // newPhoto();
   };
 
   const toggleCameraType = () => {
@@ -174,30 +192,33 @@ export default CameraScreen = () => {
     )
   } else {
     return (
-      <View style={styles.container}>
-        <Camera
-          onCameraReady={setCameraReady}
-          ref={ref => setCamera(ref)}
-          style={{
-            ...styles.camera,
-            // стили для портретной ориентации
-            marginTop: orientation === 1 ? imagePadding : 0,
-            marginBottom: orientation === 1 ? imagePadding : 0,
-            // стили для ландшафтной ориентации
-            marginLeft: orientation === 1 ? 0 : imagePadding,
-            marginRight: orientation === 1 ? 0 : imagePadding,
-          }}
-          type={type}
-          ratio={ratio}
-        >
-        </Camera>
-
-        {photo && (
-          <View style={styles.previewContainer}>
+      <View style={{
+        ...styles.container,
+        // стили для портретной ориентации
+        marginTop: orientation === 1 ? imagePadding : 0,
+        marginBottom: orientation === 1 ? imagePadding : 0,
+        // стили для ландшафтной ориентации
+        marginLeft: orientation === 1 ? 0 : imagePadding,
+        marginRight: orientation === 1 ? 0 : imagePadding,
+      }}>
+        {!photo ? (
+          <Camera
+            onCameraReady={setCameraReady}
+            ref={ref => setCamera(ref)}
+            style={styles.camera}
+            type={type}
+            ratio={ratio}
+          >
+          </Camera>
+        ) : (
+          <View style={{
+            width: photoWidth,
+            height: photoHeight,
+          }}>
             <Image
-              style={styles.previewPhoto}
-              // source={{ uri: photo }}
-              source={photo}
+              style={type === 'front' ? styles.previewPhotoFront : styles.previewPhoto}
+              source={{ uri: photo }}
+            // source={photo}
             />
           </View>
         )}
@@ -228,7 +249,6 @@ const styles = StyleSheet.create({
     position: 'relative',
     justifyContent: "center",
     alignItems: 'center',
-    backgroundColor: '#000',
   },
   camera: {
     flex: 1,
@@ -236,16 +256,23 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  previewContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-  },
+  // previewContainer: {
+  // position: 'absolute',
+  // top: 0,
+  // left: 0,
+  // width: '100%',
+  // height: '100%',
+  // },
   previewPhoto: {
     width: '100%',
     height: '100%',
+  },
+  previewPhotoFront: {
+    width: '100%',
+    height: '100%',
+    transform: [
+      { scaleX: -1 }
+    ]
   },
   blockBtnPortret: {
     position: 'absolute',

@@ -32,7 +32,7 @@ export default CreatePostPhoto = ({ newPhoto }) => {
       {photo &&
         <Image
           style={styles.preview}
-          source={photo}
+          source={{ uri: photo }}
         />}
       <View style={styles.btnTake}>
         <BtnCreatePhoto takePhoto={() => navigation.navigate('Camera')} />
