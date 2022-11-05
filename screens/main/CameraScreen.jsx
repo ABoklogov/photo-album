@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import { Camera, CameraType, FlashMode } from 'expo-camera';
 import * as ScreenOrientation from 'expo-screen-orientation';
-// import { shareAsync } from 'expo-sharing';
 import * as MediaLibrary from 'expo-media-library';
 import BtnCreatePhoto from 'components/shared/BtnCreatePhoto';
 import BtnToglleTypePhoto from 'components/shared/BtnToglleTypePhoto';
@@ -17,7 +16,7 @@ import BtnToggleFlashPhoto from 'components/shared/BtnToggleFlashPhoto';
 import BtnAddPhoto from 'components/shared/BtnAddPhoto';
 import BtnReshootPhoto from 'components/shared/BtnReshootPhoto';
 import Message from 'components/shared/Message';
-import { colors, strings } from 'res/vars.js';
+import { strings } from 'res/vars.js';
 
 export default CameraScreen = () => {
   const navigation = useNavigation();
@@ -38,19 +37,19 @@ export default CameraScreen = () => {
   const [photo, setPhoto] = useState(null); // фото
   const [photoOrientation, setPhotoOrientation] = useState(null); // ориентайия во время сделанной фотографии
 
-  console.log("🚀 ~ hasCameraPermission", hasCameraPermission)
-  console.log("🚀 ~ hasMediaLibraryPermission", hasMediaLibraryPermission)
-  console.log("🚀 ~ type", type)
-  console.log("🚀 ~ flash", flash)
-  console.log("🚀 ~ photo", photo)
-  console.log("🚀 ~ orientation", orientation)
-  console.log("🚀 ~ imagePadding", imagePadding)
-  console.log("🚀 ~ width", width)
-  console.log("🚀 ~ height", height)
-  console.log("🚀 ~ screenRatio", screenRatio)
-  console.log("🚀 ~ ratio", ratio)
-  console.log("🚀 ~ photoOrientation", photoOrientation)
-  console.log('-----------------------------------');
+  // console.log("🚀 ~ hasCameraPermission", hasCameraPermission)
+  // console.log("🚀 ~ hasMediaLibraryPermission", hasMediaLibraryPermission)
+  // console.log("🚀 ~ type", type)
+  // console.log("🚀 ~ flash", flash)
+  // console.log("🚀 ~ photo", photo)
+  // console.log("🚀 ~ orientation", orientation)
+  // console.log("🚀 ~ imagePadding", imagePadding)
+  // console.log("🚀 ~ width", width)
+  // console.log("🚀 ~ height", height)
+  // console.log("🚀 ~ screenRatio", screenRatio)
+  // console.log("🚀 ~ ratio", ratio)
+  // console.log("🚀 ~ photoOrientation", photoOrientation)
+  // console.log('-----------------------------------');
 
   let photoWidth = '100%';
   let photoHeight = '100%';
@@ -98,7 +97,6 @@ export default CameraScreen = () => {
 
   const prepareRatio = async () => {
     let desiredRatio = '4:3'; // дефолтное соотношение сторон
-
     if (Platform.OS === 'android') {
       // определяем соотношения сторон, поддерживаеммых телефоном
       const ratios = await camera.getSupportedRatiosAsync();
@@ -153,10 +151,13 @@ export default CameraScreen = () => {
       quality: 1,
       exif: false
     };
-    let newPhoto = await camera.takePictureAsync(options);
-    setPhotoOrientation(orientation);
-    console.log('type', type);
-    setPhoto(newPhoto.uri);
+    try {
+      let newPhoto = await camera.takePictureAsync(options);
+      setPhotoOrientation(orientation);
+      setPhoto(newPhoto.uri);
+    } catch (error) {
+      console.log(error);
+    };
     // let newPhoto = () => {
     //   setTimeout(() => {
     //     setPhoto(require('assets/images/test_photo.jpg'));
@@ -168,15 +169,21 @@ export default CameraScreen = () => {
   const toggleCameraType = () => {
     setType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
   };
+
   const toggleFlash = () => {
-    setFlash(current => (current === FlashMode.off ? FlashMode.on = 'on' : FlashMode.off = 'off'))
+    if (type === CameraType.back) {
+      setFlash(flash === FlashMode.off ? FlashMode.on = 'on' : FlashMode.off = 'off');
+    };
   };
+
   const addPhoto = () => {
     navigation.navigate('CreatePosts', { photo });
   };
+
   const reshootPhoto = () => {
     setPhoto(null);
   };
+
   // сообщения, если не получены разрешения
   if (hasCameraPermission === undefined) {
     return (
@@ -207,6 +214,7 @@ export default CameraScreen = () => {
             ref={ref => setCamera(ref)}
             style={styles.camera}
             type={type}
+            flashMode={flash}
             ratio={ratio}
           >
           </Camera>
@@ -216,7 +224,7 @@ export default CameraScreen = () => {
             height: photoHeight,
           }}>
             <Image
-              style={type === 'front' ? styles.previewPhotoFront : styles.previewPhoto}
+              style={type === CameraType.front ? styles.previewPhotoFront : styles.previewPhoto}
               source={{ uri: photo }}
             // source={photo}
             />
@@ -256,13 +264,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  // previewContainer: {
-  // position: 'absolute',
-  // top: 0,
-  // left: 0,
-  // width: '100%',
-  // height: '100%',
-  // },
   previewPhoto: {
     width: '100%',
     height: '100%',

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigation } from "@react-navigation/native";
 import {
   Platform,
   KeyboardAvoidingView,
@@ -14,25 +15,35 @@ import { colors, strings } from 'res/vars.js';
 const statePost = {
   name: '',
   position: '',
+  photo: null,
 };
 
-export default CreatePostForm = ({ opensKeyboard, navigation }) => {
+export default CreatePostForm = ({ opensKeyboard, newPhoto }) => {
+  const navigation = useNavigation();
   const [state, setState] = useState(statePost);
+  const dataIsFilled = state.name && state.position && state.photo;
 
   const submitState = () => {
     console.log(state);
     onChangeName('');
     onChangePosition('');
-    // logIn();
+    onChangePhoto(null);
+    navigation.navigate('Posts', { state });
   };
 
-  const onChangeName = (value) => {
-    setState((prevState) => ({ ...prevState, name: value }))
+  useEffect(() => {
+    onChangePhoto(newPhoto);
+  }, [newPhoto]);
+
+  const onChangeName = (name) => {
+    setState((prevState) => ({ ...prevState, name: name }));
   };
-  const onChangePosition = (value) => {
-    setState((prevState) => ({ ...prevState, position: value }))
+  const onChangePosition = (position) => {
+    setState((prevState) => ({ ...prevState, position: position }));
   };
-  // const logIn = () => navigation.navigate("Home");
+  const onChangePhoto = (photo) => {
+    setState((prevState) => ({ ...prevState, photo: photo }));
+  };
 
   return (
     <View style={styles.containerForm}>
@@ -56,8 +67,8 @@ export default CreatePostForm = ({ opensKeyboard, navigation }) => {
 
           <Button
             text={strings.buttonPost}
-            background={colors.lightGrey}
-            textColor={colors.grey}
+            background={dataIsFilled ? colors.green : colors.lightGrey}
+            textColor={dataIsFilled ? colors.white : colors.grey}
             submitState={submitState}
           />
         </View>

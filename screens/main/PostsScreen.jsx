@@ -10,14 +10,16 @@ import * as ScreenOrientation from 'expo-screen-orientation';
 import AllPostsList from "components/AllPostsList";
 import { colors } from 'res/vars.js';
 
-export default PostsScreen = () => {
+export default PostsScreen = ({ route }) => {
   const offOrientation = async () => {
     await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
   };
-
+  // выключаем поворот экрана
   useEffect(() => {
     offOrientation();
   }, []);
+
+  console.log(route.params?.photo);
 
   return (
     <SafeAreaView>

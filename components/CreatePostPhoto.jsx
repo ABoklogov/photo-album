@@ -17,6 +17,7 @@ export default CreatePostPhoto = ({ newPhoto }) => {
     offOrientation();
   }, []);
 
+  // если сделали фото записываем его в стейт
   useEffect(() => {
     if (newPhoto) {
       setPhoto(newPhoto);

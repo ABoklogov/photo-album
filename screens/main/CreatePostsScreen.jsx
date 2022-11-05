@@ -6,7 +6,6 @@ import {
   Keyboard,
   ScrollView,
 } from "react-native";
-import * as ScreenOrientation from 'expo-screen-orientation';
 import CreatePostPhoto from 'components/CreatePostPhoto';
 import Footer from 'components/Footer';
 import BtnUploadPhoto from 'components/shared/BtnUploadPhoto';
@@ -14,7 +13,7 @@ import CreatePostForm from "components/CreatePostForm";
 import BtnDeletePost from 'components/shared/BtnDeletePost';
 import { colors } from 'res/vars.js';
 
-export default CreatePostsScreen = ({ navigation, route }) => {
+export default CreatePostsScreen = ({ route }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
   useEffect(() => {
@@ -39,7 +38,10 @@ export default CreatePostsScreen = ({ navigation, route }) => {
 
             <View style={styles.btnUploadPhoto}>
               <BtnUploadPhoto />
-              <CreatePostForm opensKeyboard={opensKeyboard} />
+              <CreatePostForm
+                opensKeyboard={opensKeyboard}
+                newPhoto={route.params ? route.params.photo : null}
+              />
             </View>
           </View>
         </ScrollView>
