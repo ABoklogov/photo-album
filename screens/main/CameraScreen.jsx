@@ -38,7 +38,7 @@ export default CameraScreen = () => {
   const [orientation, setOrientation] = useState(1); // поворот экрана 
   const [photo, setPhoto] = useState(null); // фото
   const [photoOrientation, setPhotoOrientation] = useState(null); // ориентайия во время сделанной фотографии
-  const [coords, setCoords] = useState(null); // местоположение
+  // const [location, setLocation] = useState(null); // местоположение
 
   // console.log("🚀 ~ hasCameraPermission", hasCameraPermission)
   // console.log("🚀 ~ hasMediaLibraryPermission", hasMediaLibraryPermission)
@@ -159,18 +159,11 @@ export default CameraScreen = () => {
     };
     try {
       let newPhoto = await camera.takePictureAsync(options);
-      let location = await Location.getCurrentPositionAsync();
-      console.log("🚀 ~ takePhoto ~ location", location)
 
       setPhotoOrientation(orientation);
       setPhoto(newPhoto.uri);
-
-      const coords = {
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
-      };
-      console.log("🚀 ~ takePhoto ~ coords", coords)
-      setCoords(coords);
+      // setLocation(location);
+      // console.log("🚀 ~ takePhoto ~ location", location)
     } catch (error) {
       console.log(error);
     };
@@ -192,8 +185,31 @@ export default CameraScreen = () => {
     };
   };
 
-  const addPhoto = () => {
-    navigation.navigate('CreatePosts', { photo, coords });
+  const addPhoto = async () => {
+    // находим координаты
+    let { coords } = await Location.getCurrentPositionAsync();
+    const { latitude, longitude } = coords;
+    let address = '';
+
+    if (coords) {
+      // находим адрес
+      let response = await Location.reverseGeocodeAsync({
+        latitude,
+        longitude
+      });
+      for (let item of response) {
+        address = `${item.city}, ${item.region}, ${item.country}`;
+      }
+    };
+    const location = {
+      coords: {
+        latitude,
+        longitude,
+      },
+      address
+    };
+
+    navigation.navigate('CreatePosts', { photo, location });
   };
 
   const reshootPhoto = () => {
