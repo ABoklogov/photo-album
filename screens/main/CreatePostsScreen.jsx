@@ -7,6 +7,7 @@ import {
   Keyboard,
   ScrollView,
 } from "react-native";
+import * as Location from 'expo-location';
 import CreatePostPhoto from 'components/CreatePostPhoto';
 import Footer from 'components/Footer';
 import BtnUploadPhoto from 'components/shared/BtnUploadPhoto';
@@ -23,11 +24,17 @@ const statePost = {
 
 export default CreatePostsScreen = ({ route }) => {
   const navigation = useNavigation();
+  const [hasLocationPromissions, setHasLocationPromissions] = useState();
   const [state, setState] = useState(statePost);
   console.log("🚀 ~ state", state)
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
   useEffect(() => {
+    (async () => {
+      const locationPromissions = await Location.requestForegroundPermissionsAsync(); // разрешение на определение местоположения
+      setHasLocationPromissions(locationPromissions.status === 'granted');
+    })();
+
     // слушатель закрытия клавиатуры (при закрытии клавиатуры возвращаемся в первоначальное состояние):
     const keyboardDidHide = Keyboard.addListener('keyboardDidHide', () => setIsShowKeyboard(false));
     return () => keyboardDidHide.remove();
@@ -36,18 +43,46 @@ export default CreatePostsScreen = ({ route }) => {
   useEffect(() => {
     if (route.params) {
       onChangePhoto(route.params.photo);
-      onChangePosition(route.params.location.address);
-      onChangeCoords(route.params.location.coords);
+      locates(); // определяем местоположение
     }
-    // onChangePhoto(newPhoto);
   }, [route.params]);
+
+  const locates = async () => {
+    // находим координаты
+    let { coords } = await Location.getCurrentPositionAsync();
+    const { latitude, longitude } = coords;
+    let address = '';
+
+    if (coords) {
+      // находим адрес
+      let response = await Location.reverseGeocodeAsync({
+        latitude,
+        longitude
+      });
+
+      for (let item of response) {
+        if (item.city) {
+          address = `${item.city}, ${item.country}`;
+        } else {
+          address = `${item.region}, ${item.country}`;
+        };
+      };
+      onChangeCoords({ latitude, longitude });
+      onChangePosition(address);
+    };
+  };
 
   const submitState = () => {
     console.log(state);
+    removeState();
+    navigation.navigate('Posts', { state });
+  };
+
+  const removeState = () => {
     onChangeName('');
     onChangePosition('');
     onChangePhoto(null);
-    navigation.navigate('Posts', { state });
+    onChangeCoords(null);
   };
 
   const onChangeName = (name) => {
@@ -69,6 +104,8 @@ export default CreatePostsScreen = ({ route }) => {
   };
   const opensKeyboard = () => setIsShowKeyboard(true);
 
+  const dataIsFilled = state.name && state.position && state.photo;
+
   return (
     <TouchableWithoutFeedback onPress={removesKeyboard}>
       <View style={styles.container}>
@@ -84,11 +121,8 @@ export default CreatePostsScreen = ({ route }) => {
                 submitState={submitState}
                 onChangeName={onChangeName}
                 onChangePosition={onChangePosition}
-                onChangePhoto={onChangePhoto}
                 opensKeyboard={opensKeyboard}
-                newPhoto={state.photo}
-                location={state.position}
-                coords={state.coords}
+                dataIsFilled={dataIsFilled}
               />
             </View>
           </View>
@@ -96,7 +130,10 @@ export default CreatePostsScreen = ({ route }) => {
 
         {!isShowKeyboard &&
           <Footer>
-            <BtnDeletePost />
+            <BtnDeletePost
+              dataIsFilled={dataIsFilled}
+              removeState={removeState}
+            />
           </Footer>}
       </View>
     </TouchableWithoutFeedback>

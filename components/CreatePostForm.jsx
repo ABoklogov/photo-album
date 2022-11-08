@@ -12,26 +12,14 @@ import ImputNamePost from 'components/shared/InputNamePost';
 import InputPositionPost from 'components/shared/InputPositionPost';
 import { colors, strings } from 'res/vars.js';
 
-
 export default CreatePostForm = ({
   state,
   submitState,
   onChangeName,
   onChangePosition,
-  onChangePhoto,
   opensKeyboard,
-  newPhoto,
-  location,
-  coords
+  dataIsFilled,
 }) => {
-
-
-  const dataIsFilled = state.name && state.position && state.photo;
-
-
-
-
-
 
 
   return (

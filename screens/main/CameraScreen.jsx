@@ -10,7 +10,6 @@ import {
 import { Camera, CameraType, FlashMode } from 'expo-camera';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import * as MediaLibrary from 'expo-media-library';
-import * as Location from 'expo-location';
 import BtnCreatePhoto from 'components/shared/BtnCreatePhoto';
 import BtnToglleTypePhoto from 'components/shared/BtnToglleTypePhoto';
 import BtnToggleFlashPhoto from 'components/shared/BtnToggleFlashPhoto';
@@ -24,7 +23,6 @@ export default CameraScreen = () => {
   // разрешения
   const [hasCameraPermission, setHasCameraPermission] = useState();
   const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState();
-  const [hasLocationPromissions, setHasLocationPromissions] = useState();
   const [camera, setCamera] = useState(null);
   // соотношения сторон и отступы камеры
   const [imagePadding, setImagePadding] = useState(0);
@@ -38,7 +36,6 @@ export default CameraScreen = () => {
   const [orientation, setOrientation] = useState(1); // поворот экрана 
   const [photo, setPhoto] = useState(null); // фото
   const [photoOrientation, setPhotoOrientation] = useState(null); // ориентайия во время сделанной фотографии
-  // const [location, setLocation] = useState(null); // местоположение
 
   // console.log("🚀 ~ hasCameraPermission", hasCameraPermission)
   // console.log("🚀 ~ hasMediaLibraryPermission", hasMediaLibraryPermission)
@@ -79,11 +76,9 @@ export default CameraScreen = () => {
     (async () => {
       const cameraPromission = await Camera.requestCameraPermissionsAsync(); // разрешение на камеру
       const mediaLibraryPromissions = await MediaLibrary.requestPermissionsAsync(); // разрешение на доступ к памяти телефона
-      const locationPromissions = await Location.requestForegroundPermissionsAsync();
 
       setHasCameraPermission(cameraPromission.status === 'granted');
       setHasMediaLibraryPermission(mediaLibraryPromissions.status === 'granted');
-      setHasLocationPromissions(locationPromissions.status === 'granted');
     })();
     // разблокируем поворот экрана
     onOrientation();
@@ -159,11 +154,8 @@ export default CameraScreen = () => {
     };
     try {
       let newPhoto = await camera.takePictureAsync(options);
-
       setPhotoOrientation(orientation);
       setPhoto(newPhoto.uri);
-      // setLocation(location);
-      // console.log("🚀 ~ takePhoto ~ location", location)
     } catch (error) {
       console.log(error);
     };
@@ -186,30 +178,7 @@ export default CameraScreen = () => {
   };
 
   const addPhoto = async () => {
-    // находим координаты
-    let { coords } = await Location.getCurrentPositionAsync();
-    const { latitude, longitude } = coords;
-    let address = '';
-
-    if (coords) {
-      // находим адрес
-      let response = await Location.reverseGeocodeAsync({
-        latitude,
-        longitude
-      });
-      for (let item of response) {
-        address = `${item.city}, ${item.region}, ${item.country}`;
-      }
-    };
-    const location = {
-      coords: {
-        latitude,
-        longitude,
-      },
-      address
-    };
-
-    navigation.navigate('CreatePosts', { photo, location });
+    navigation.navigate('CreatePosts', { photo });
   };
 
   const reshootPhoto = () => {

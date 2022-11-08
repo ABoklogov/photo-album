@@ -17,11 +17,13 @@ export default CreatePostPhoto = ({ newPhoto }) => {
     offOrientation();
   }, []);
 
-  // если сделали фото записываем его в стейт
+  // если сделали фото записываем его в стейт, если почистили стейт, то убираем фото
   useEffect(() => {
     if (newPhoto) {
       setPhoto(newPhoto);
-    }
+    } else {
+      setPhoto(null);
+    };
   }, [newPhoto]);
 
   const offOrientation = async () => {
