@@ -21,7 +21,6 @@ export default CreatePostForm = ({
   dataIsFilled,
 }) => {
 
-
   return (
     <View style={styles.containerForm}>
       <KeyboardAvoidingView

@@ -17,6 +17,7 @@ import BtnAddPhoto from 'components/shared/BtnAddPhoto';
 import BtnReshootPhoto from 'components/shared/BtnReshootPhoto';
 import Message from 'components/shared/Message';
 import { strings } from 'res/vars.js';
+import { colors } from '../../res/vars';
 
 export default CameraScreen = () => {
   const navigation = useNavigation();
@@ -51,18 +52,21 @@ export default CameraScreen = () => {
   // console.log("🚀 ~ photoOrientation", photoOrientation)
   // console.log('-----------------------------------');
 
-  let photoWidth = '100%';
-  let photoHeight = '100%';
-  // расчет сделанной фотографии
+  let photoWidth = width;
+  let photoHeight = height;
+  // расчет размера сделанной фотографии в зависимости от поворота экрана
   if (photoOrientation === 1 && orientation !== 1) {
-    photoWidth = (height * screenRatio) + imagePadding / 2;
-    photoHeight = '100%';
+    photoWidth = width - 240;
+    photoHeight = height - 32;
   } else if (photoOrientation === 1 && orientation === 1) {
-    photoWidth = '100%';
-    photoHeight = '100%';
+    photoWidth = width - 32;
+    photoHeight = 240;
   } else if (photoOrientation !== 1 && orientation === 1) {
-    photoWidth = '100%';
-    photoHeight = (width / screenRatio) + imagePadding / 2;
+    photoWidth = width - 32;
+    photoHeight = 240;
+  } else if (photoOrientation !== 1 && orientation !== 1) {
+    photoWidth = width - imagePadding * 2;
+    photoHeight = height;
   };
 
   const onOrientation = async () => {
@@ -150,7 +154,8 @@ export default CameraScreen = () => {
   const takePhoto = async () => {
     let options = {
       quality: 1,
-      exif: false
+      exif: false,
+      // base64: true,
     };
     try {
       let newPhoto = await camera.takePictureAsync(options);
@@ -218,14 +223,19 @@ export default CameraScreen = () => {
             flashMode={flash}
             ratio={ratio}
           >
+            <View style={{
+              ...styles.cameraBorder,
+              borderColor: orientation !== 1 ? 'transparent' : colors.grey
+            }}></View>
           </Camera>
         ) : (
-          <View style={{
-            width: photoWidth,
-            height: photoHeight,
-          }}>
+          <View style={styles.previewContainer}>
             <Image
-              style={type === CameraType.front ? styles.previewPhotoFront : styles.previewPhoto}
+              style={{
+                borderRadius: 8,
+                width: photoWidth,
+                height: photoHeight,
+              }}
               source={{ uri: photo }}
             // source={photo}
             />
@@ -234,6 +244,7 @@ export default CameraScreen = () => {
 
         {!photo ? (
           <View style={orientation === 1 ? styles.blockBtnPortret : styles.blockBtnHorizont}>
+
             <BtnToggleFlashPhoto
               toggleFlash={toggleFlash}
               flash={flash}
@@ -261,20 +272,23 @@ const styles = StyleSheet.create({
   },
   camera: {
     flex: 1,
+    justifyContent: "center",
+    width: '100%',
+    height: '100%',
+  },
+  cameraBorder: {
+    height: 240,
+    marginHorizontal: 16,
+    marginVertical: 16,
+    borderWidth: 1,
+    borderRadius: 8,
+  },
+  previewContainer: {
+    justifyContent: "center",
     alignItems: 'center',
     width: '100%',
     height: '100%',
-  },
-  previewPhoto: {
-    width: '100%',
-    height: '100%',
-  },
-  previewPhotoFront: {
-    width: '100%',
-    height: '100%',
-    transform: [
-      { scaleX: -1 }
-    ]
+    backgroundColor: 'transparent',
   },
   blockBtnPortret: {
     position: 'absolute',
