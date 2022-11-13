@@ -12,7 +12,7 @@ import { colors, fonts, sizeText } from 'res/vars.js';
 export default InputPositionPost = ({
   placeholder,
   opensKeyboard,
-  stateKey,
+  state,
   onChange
 }) => {
   const [isFocus, setIsFocus] = useState(false);
@@ -22,6 +22,12 @@ export default InputPositionPost = ({
     setIsFocus(true);
     opensKeyboard();
   };
+
+  const location = {
+    coords: state.coords,
+    title: state.name,
+  };
+
   return (
     <View style={styles.container}>
       <TextInput
@@ -31,14 +37,14 @@ export default InputPositionPost = ({
         placeholderTextColor={colors.grey}
         onFocus={chengeFocusInput}
         onBlur={() => setIsFocus(false)}
-        value={stateKey}
+        value={state.position}
         onChangeText={(value) => onChange(value)}
       />
 
       <View style={styles.icon}>
         <TouchableOpacity
           activeOpacity={0.8}
-          onPress={() => navigation.navigate('Map')}
+          onPress={() => navigation.navigate('Map', location)}
         >
           <MapMarker />
         </TouchableOpacity>

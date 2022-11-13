@@ -5,7 +5,13 @@ const posts = [
     name: 'Лес',
     amountLikes: 123,
     image: require('assets/images/posts/post2.jpg'),
-    location: 'Russia',
+    location: {
+      coords: {
+        latitude: 51.660781,
+        longitude: 39.200296,
+      },
+      title: 'Russia',
+    },
     comments: [
       {
         id: 'm4kto34o5nm',
@@ -43,7 +49,13 @@ const posts = [
     name: 'Закат на Черном море',
     amountLikes: 24,
     image: require('assets/images/posts/post1.jpg'),
-    location: 'USA',
+    location: {
+      coords: {
+        latitude: 38.899513,
+        longitude: -77.036527,
+      },
+      title: 'USA',
+    },
     comments: [],
   },
   {
@@ -52,7 +64,10 @@ const posts = [
     name: 'Херня из под ногтей',
     amountLikes: 3,
     image: require('assets/images/posts/test_post.jpg'),
-    location: 'LV-426',
+    location: {
+      coords: null,
+      title: 'LV-426',
+    },
     comments: [],
   },
   {
@@ -61,7 +76,13 @@ const posts = [
     name: 'Старый домик в Венеции',
     amountLikes: 77,
     image: require('assets/images/posts/post3.jpg'),
-    location: 'Chine',
+    location: {
+      coords: {
+        latitude: 39.901849,
+        longitude: 116.391441,
+      },
+      title: 'Chine',
+    },
     comments: [
       {
         id: '333gfdgf44',
@@ -113,7 +134,10 @@ const posts = [
     name: 'Я лечу на задание',
     amountLikes: 432,
     image: require('assets/images/posts/test_post2.jpg'),
-    location: 'LV-426',
+    location: {
+      coords: null,
+      title: 'LV-426',
+    },
     comments: [],
   },
   {
@@ -122,7 +146,10 @@ const posts = [
     name: 'Бывший начальник',
     amountLikes: 0,
     image: require('assets/images/posts/test_post3.jpg'),
-    location: 'LV-423',
+    location: {
+      coords: null,
+      title: 'LV-423',
+    },
     comments: [{
       id: 'tttttt444444h',
       idUser: 'qwerty123456',
@@ -137,7 +164,10 @@ const posts = [
     name: 'Воюем с автоботами',
     amountLikes: 33,
     image: require('assets/images/posts/test_post4.jpeg'),
-    location: 'LV-426',
+    location: {
+      coords: null,
+      title: 'LV-426',
+    },
     comments: [
       {
         id: 'fdsfdfyty76798lk',

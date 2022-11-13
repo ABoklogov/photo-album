@@ -14,13 +14,13 @@ export default PostLocation = ({ location }) => {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
-      onPress={() => navigation.navigate('Map', { location })}
+      onPress={() => navigation.navigate('Map', location)}
     >
       <View style={styles.container}>
         <View style={styles.marker}>
           <MapMarker />
         </View>
-        <Text style={styles.text}>{location}</Text>
+        <Text style={styles.text}>{location.title}</Text>
       </View>
     </TouchableOpacity>
   )

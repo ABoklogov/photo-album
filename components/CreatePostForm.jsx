@@ -37,7 +37,7 @@ export default CreatePostForm = ({
           <InputPositionPost
             placeholder={strings.placeholderPositionPost}
             opensKeyboard={opensKeyboard}
-            stateKey={state.position}
+            state={state}
             onChange={onChangePosition}
           />
 
