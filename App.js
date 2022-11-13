@@ -2,7 +2,9 @@ import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 import useFonts from 'hooks/useFonts';
-
+import { Provider } from 'react-redux';
+import { store } from 'redux/store';
+// console.log("🚀 ~ store", store)
 import { NavigationContainer } from '@react-navigation/native';
 import useRoute from 'router/router';
 
@@ -38,11 +40,13 @@ export default function App() {
   // --- подключение шрифтов end---
 
   return (
-    <View style={styles.container} onLayout={onLayoutRootView}>
-      <NavigationContainer>
-        {routing}
-      </NavigationContainer>
-    </View>
+    <Provider store={store}>
+      <View style={styles.container} onLayout={onLayoutRootView}>
+        <NavigationContainer>
+          {routing}
+        </NavigationContainer>
+      </View>
+    </Provider>
   );
 }
 

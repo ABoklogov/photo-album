@@ -153,7 +153,7 @@ const posts = [
     comments: [{
       id: 'tttttt444444h',
       idUser: 'qwerty123456',
-      text: 'Pidor))))',
+      text: 'Ddbasjl3287ffbhjsd))))',
       date: '11 июня, 2033',
       time: '13:14',
     },],

@@ -54,7 +54,7 @@ export default CameraScreen = () => {
 
   let photoWidth = width;
   let photoHeight = height;
-  // расчет размера сделанной фотографии в зависимости от поворота экрана
+  // расчет размера сделанной фотографии в зависимости от поворота экрана  
   if (photoOrientation === 1 && orientation !== 1) {
     photoWidth = width - 240;
     photoHeight = height - 32;
