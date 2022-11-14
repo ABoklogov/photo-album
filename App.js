@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 import useFonts from 'hooks/useFonts';
 import { Provider } from 'react-redux';
-import { store } from './slices/index';
+import { store } from './store/index';
 
 import { NavigationContainer } from '@react-navigation/native';
 import useRoute from 'router/router';
