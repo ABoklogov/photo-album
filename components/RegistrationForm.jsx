@@ -7,6 +7,9 @@ import {
   Text,
 } from "react-native";
 
+import { signUpUser } from 'store/user/userOperations';
+import { useDispatch } from 'react-redux';
+
 import Avatar from 'components/Avatar';
 import Title from 'components/shared/Title';
 import Button from 'components/shared/Button';
@@ -27,13 +30,15 @@ const initialState = {
 };
 
 export default RegistrationForm = ({ opensKeyboard, navigation }) => {
+  const dispatch = useDispatch();
+
   const [state, setState] = useState(initialState);
 
   const submitState = () => {
     console.log(state);
-    onChangeLogin('');
-    onChangeEmail('');
-    onChangePassword('');
+    dispatch(signUpUser(state));
+    // очищаем state
+    setState(initialState);
     // logIn();
   };
   const onChangeLogin = (value) => {
