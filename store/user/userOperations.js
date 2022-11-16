@@ -1,4 +1,8 @@
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
+} from "firebase/auth";
 
 export const signUpUser = ({
   login,
@@ -16,8 +20,19 @@ export const signUpUser = ({
   };
 };
 
-export const signIpUser = () => async (dispatch, getState) => {
+export const signIpUser = ({
+  email,
+  password
+}) => async (dispatch, getState) => {
+  try {
+    const auth = getAuth();
+    const user = await signInWithEmailAndPassword(auth, email, password);
+    console.log("🚀 ~ signIpUser ~ user", user)
 
+  } catch (error) {
+    console.log(error);
+    console.log(error.massage);
+  };
 };
 
 export const signOutUser = () => async (dispatch, getState) => {

@@ -5,6 +5,7 @@ import useFonts from 'hooks/useFonts';
 import { Provider } from 'react-redux';
 import { store } from './store/index';
 import './firebase/config'; // чтобы работало, нужно создать в корне проекта файл metro.config.js
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { NavigationContainer } from '@react-navigation/native';
 import useRoute from 'router/router';
 
@@ -12,7 +13,16 @@ SplashScreen.preventAutoHideAsync(); // для шрифтов
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
-  const routing = useRoute(false);
+  const [user, setUser] = useState(null);
+
+  const routing = useRoute(user);
+
+  // проверяем зашедшего юзера
+  (async () => {
+    const auth = getAuth();
+    await onAuthStateChanged(auth, (user) => setUser(user));
+  })();
+
 
   // --- подключение шрифтов start---
   useEffect(() => {

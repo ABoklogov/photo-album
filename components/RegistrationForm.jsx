@@ -30,16 +30,15 @@ const initialState = {
 };
 
 export default RegistrationForm = ({ opensKeyboard, navigation }) => {
-  const dispatch = useDispatch();
-
   const [state, setState] = useState(initialState);
+
+  const dispatch = useDispatch();
 
   const submitState = () => {
     console.log(state);
     dispatch(signUpUser(state));
     // очищаем state
     setState(initialState);
-    // logIn();
   };
   const onChangeLogin = (value) => {
     setState((prevState) => ({ ...prevState, login: value }))
@@ -50,7 +49,6 @@ export default RegistrationForm = ({ opensKeyboard, navigation }) => {
   const onChangePassword = (value) => {
     setState((prevState) => ({ ...prevState, password: value }))
   };
-  // const logIn = () => navigation.navigate("Home");
 
   return (
     <View style={styles.containerForm}>

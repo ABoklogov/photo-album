@@ -7,6 +7,9 @@ import {
   Text,
 } from "react-native";
 
+import { signIpUser } from 'store/user/userOperations';
+import { useDispatch } from 'react-redux';
+
 import Title from 'components/shared/Title';
 import Button from 'components/shared/Button';
 import Input from 'components/shared/Input';
@@ -27,11 +30,13 @@ const initialState = {
 export default LoginForm = ({ opensKeyboard, navigation }) => {
   const [state, setState] = useState(initialState);
 
+  const dispatch = useDispatch();
+
   const submitState = () => {
     console.log(state);
-    onChangeEmail('');
-    onChangePassword('');
-    // logIn();
+    dispatch(signIpUser(state));
+    // очищаем state
+    setState(initialState);
   };
 
   const onChangeEmail = (value) => {
@@ -40,7 +45,6 @@ export default LoginForm = ({ opensKeyboard, navigation }) => {
   const onChangePassword = (value) => {
     setState((prevState) => ({ ...prevState, password: value }))
   };
-  // const logIn = () => navigation.navigate("Home");
 
   return (
     <View style={styles.containerForm}>
