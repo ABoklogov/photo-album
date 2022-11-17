@@ -49,6 +49,7 @@ export const strings = {
   linkLogin: 'Нет аккаунта? Зарегистрироваться',
   permissionRequest: 'Запрос разрешений...',
   noPermissionCamera: 'Разрешение для камеры не предоставлено. Пожалуйста, измените это в настройках.',
+  loading: 'Загрузка...',
 };
 
 export const images = {

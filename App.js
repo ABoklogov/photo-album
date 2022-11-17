@@ -1,47 +1,34 @@
 import { useCallback, useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 import useFonts from 'hooks/useFonts';
 import { Provider } from 'react-redux';
 import { store } from './store/index';
 import './firebase/config'; // чтобы работало, нужно создать в корне проекта файл metro.config.js
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { NavigationContainer } from '@react-navigation/native';
-import useRoute from 'router/router';
+
+import { StyleSheet, View } from 'react-native';
+import Main from 'components/Main';
 
 SplashScreen.preventAutoHideAsync(); // для шрифтов
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
-  const [user, setUser] = useState(null);
 
-  const routing = useRoute(user);
-
-  // проверяем зашедшего юзера
-  (async () => {
-    const auth = getAuth();
-    await onAuthStateChanged(auth, (user) => setUser(user));
-  })();
-
-
-  // --- подключение шрифтов start---
+  // --- подключение шрифтов start ---
   useEffect(() => {
-    async function prepare() {
+    (async () => {
       try {
         await useFonts();
       } catch (e) {
         console.warn(e);
       } finally {
         setIsReady(true);
-      }
-    };
-    prepare();
+      };
+    })();
   }, []);
-
   const onLayoutRootView = useCallback(async () => {
     if (isReady) {
       await SplashScreen.hideAsync();
-    }
+    };
   }, [isReady]);
 
   if (!isReady) {
@@ -52,9 +39,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <View style={styles.container} onLayout={onLayoutRootView}>
-        <NavigationContainer>
-          {routing}
-        </NavigationContainer>
+        <Main />
       </View>
     </Provider>
   );
@@ -63,8 +48,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: '#fff',
-    // justifyContent: "center",
-    // alignItems: 'center',
   },
 });

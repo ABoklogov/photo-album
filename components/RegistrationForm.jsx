@@ -24,7 +24,7 @@ import {
 } from 'res/vars.js';
 
 const initialState = {
-  login: '',
+  nickName: '',
   email: '',
   password: '',
 };
@@ -41,7 +41,7 @@ export default RegistrationForm = ({ opensKeyboard, navigation }) => {
     setState(initialState);
   };
   const onChangeLogin = (value) => {
-    setState((prevState) => ({ ...prevState, login: value }))
+    setState((prevState) => ({ ...prevState, nickName: value }))
   };
   const onChangeEmail = (value) => {
     setState((prevState) => ({ ...prevState, email: value }))
@@ -66,7 +66,7 @@ export default RegistrationForm = ({ opensKeyboard, navigation }) => {
             <Input
               placeholder={strings.placeholderLogin}
               opensKeyboard={opensKeyboard}
-              stateKey={state.login}
+              stateKey={state.nickName}
               onChange={onChangeLogin}
             />
           </View>

@@ -1,28 +1,31 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  // email: null,
-  // token: null,
-  // id: null,
   idUser: null,
-
+  nickName: null,
+  email: null,
+  stateChange: null,
 };
 
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUser(state, action) {
-      state.email = action.payload.email;
-      state.token = action.payload.token;
-      state.id = action.payload.id;
-    },
-    removeUser(state) {
-      state.email = null;
-      state.token = null;
-      state.id = null;
-    },
+    // обновляет юзера
+    updateUserProfile: (state, { payload }) => ({
+      ...state,
+      idUser: payload.idUser,
+      email: payload.email,
+      nickName: payload.nickName,
+    }),
+    // проверяет юзера
+    userStateChange: (state, { payload }) => ({
+      ...state,
+      stateChange: payload.stateChange,
+    }),
   },
 });
 
-export const { setUser, removeUser } = userSlice.actions;
+console.log("🚀 ~ userSlice", userSlice)
+
+export const { updateUserProfile } = userSlice.actions;
