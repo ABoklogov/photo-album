@@ -1,8 +1,9 @@
-import { useNavigation } from "@react-navigation/native";
+// import { useNavigation } from "@react-navigation/native";
 import { useEffect } from 'react';
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import * as ScreenOrientation from 'expo-screen-orientation';
 import AllPostsList from "components/AllPostsList";
+import { colors } from 'res/vars.js';
 
 export default PostsScreen = ({ route }) => {
   const offOrientation = async () => {
@@ -14,9 +15,14 @@ export default PostsScreen = ({ route }) => {
   }, []);
 
   return (
-    <AllPostsList />
+    <View style={styles.container}>
+      <AllPostsList />
+    </View>
   )
 };
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: colors.white,
+  }
 });

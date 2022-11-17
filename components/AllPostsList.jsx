@@ -54,14 +54,15 @@ const styles = StyleSheet.create({
   postList: {
     position: 'relative',
     height: '100%',
-    paddingLeft: 16,
-    paddingRight: 16,
     backgroundColor: colors.white,
   },
   userBlockPosition: {
     marginBottom: 15,
   },
   item: {
-    marginBottom: 32,
+    // paddingTop: 33,
+    paddingLeft: 16,
+    paddingRight: 16,
+    marginTop: 32,
   }
 });
