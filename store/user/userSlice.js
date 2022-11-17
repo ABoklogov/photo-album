@@ -4,7 +4,7 @@ const initialState = {
   idUser: null,
   nickName: null,
   email: null,
-  stateChange: null,
+  stateChange: false,
 };
 
 export const userSlice = createSlice({
@@ -18,7 +18,7 @@ export const userSlice = createSlice({
       email: payload.email,
       nickName: payload.nickName,
     }),
-    // проверяет юзера
+    // обновляет состояние юзера
     userStateChange: (state, { payload }) => ({
       ...state,
       stateChange: payload.stateChange,
@@ -26,6 +26,6 @@ export const userSlice = createSlice({
   },
 });
 
-console.log("🚀 ~ userSlice", userSlice)
+// console.log("🚀 ~ userSlice", userSlice)
 
-export const { updateUserProfile } = userSlice.actions;
+export const { updateUserProfile, userStateChange } = userSlice.actions;

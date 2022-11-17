@@ -4,8 +4,9 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
-import { updateUserProfile } from './userSlice';
+import { updateUserProfile, userStateChange } from './userSlice';
 
 // регистрация
 export const signUpUser = ({
@@ -43,8 +44,14 @@ export const signIpUser = ({
 }) => async (dispatch, getState) => {
   try {
     const auth = getAuth();
-    const user = await signInWithEmailAndPassword(auth, email, password);
-    console.log("🚀 ~ signIpUser ~ user", user)
+    const { user } = await signInWithEmailAndPassword(auth, email, password);
+
+    dispatch(userStateChange({ stateChange: true }));
+    dispatch(updateUserProfile({
+      idUser: user.uid,
+      nickName: user.displayName,
+      email: user.email,
+    }));
 
   } catch (error) {
     console.log(error);
@@ -54,14 +61,25 @@ export const signIpUser = ({
 
 // выход
 export const signOutUser = () => async (dispatch, getState) => {
-
+  const auth = getAuth();
+  await signOut(auth);
+  dispatch(userStateChange({ stateChange: false }));
 };
 
-// обновление текуущего юзера
+// обновление текущего юзера
 export const stateChangeUser = () => async (dispatch, getState) => {
-  // const auth = getAuth();
-  // await onAuthStateChanged(auth, (user) => {
-  //   setUser(user);
-  //   setIsLoading(true);
-  // });
+  const auth = getAuth();
+  await onAuthStateChanged(auth, (user) => {
+    // проверяем, если такой user есть, обновляем стейт
+    if (user) {
+      dispatch(userStateChange({ stateChange: true }));
+      dispatch(updateUserProfile({
+        idUser: user.uid,
+        nickName: user.displayName,
+        email: user.email,
+      }));
+    }
+    // setUser(user);
+    // setIsLoading(true);
+  });
 };
